@@ -852,6 +852,18 @@
           "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
         }
       ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 34,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
+          "uuid": "e575479f-06-52ef14dd0f642b670376334e888e1f9e0187eced",
+          "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
+        }
+      ]
     }
   ],
   "outliers": [
@@ -1103,12 +1115,6 @@
       "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
       "uuid": "e575479f-04-f8dd163c774cf7f98c7d462174ba6b9c6ab25001",
       "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[3]"
-    },
-    {
-      "url": "https://www.goindigo.in/mokobara.html",
-      "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
-      "uuid": "e575479f-06-52ef14dd0f642b670376334e888e1f9e0187eced",
-      "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
     },
     {
       "url": "https://www.goindigo.in/mokobara.html",
