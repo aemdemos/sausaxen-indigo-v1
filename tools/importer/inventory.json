@@ -816,6 +816,18 @@
           "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]"
         }
       ]
+    },
+    {
+      "name": "Table",
+      "cluster": 31,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/campaigns/thai-visa.html",
+          "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
+          "uuid": "ea18c62f-09-bfd9bec1de38226b9ff4814326f124642b24fa72",
+          "xpath": "/html[1]/body[1]/div[4]/div[1]/div[3]"
+        }
+      ]
     }
   ],
   "outliers": [
@@ -1171,12 +1183,6 @@
       "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
       "uuid": "ea18c62f-08-df5212e4edb3f7eda41fcf94a16fe2e66dad0df7",
       "xpath": "/html[1]/body[1]/div[4]/div[1]/div[2]"
-    },
-    {
-      "url": "https://www.goindigo.in/campaigns/thai-visa.html",
-      "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
-      "uuid": "ea18c62f-09-bfd9bec1de38226b9ff4814326f124642b24fa72",
-      "xpath": "/html[1]/body[1]/div[4]/div[1]/div[3]"
     }
   ],
   "sections": [
