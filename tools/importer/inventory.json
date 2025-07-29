@@ -796,6 +796,9 @@
     {
       "name": "Hero",
       "cluster": 29,
+      "source": "Hero",
+      "target": "Hero (hero29)",
+      "key": "hero29",
       "instances": [
         {
           "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
@@ -808,6 +811,9 @@
     {
       "name": "Hero",
       "cluster": 30,
+      "source": "Hero",
+      "target": "Hero (hero30)",
+      "key": "hero30",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -820,6 +826,9 @@
     {
       "name": "Table",
       "cluster": 31,
+      "source": "Table",
+      "target": "Table (table31)",
+      "key": "table31",
       "instances": [
         {
           "url": "https://www.goindigo.in/campaigns/thai-visa.html",
@@ -832,6 +841,9 @@
     {
       "name": "Cards",
       "cluster": 32,
+      "source": "Cards",
+      "target": "Cards (cards32)",
+      "key": "cards32",
       "instances": [
         {
           "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
@@ -842,8 +854,11 @@
       ]
     },
     {
-      "name": "new",
+      "name": "Embed (video)",
       "cluster": 33,
+      "source": "Embed",
+      "target": "Embed (embedVideo33)",
+      "key": "embedVideo33",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -856,6 +871,9 @@
     {
       "name": "Columns",
       "cluster": 34,
+      "source": "Columns",
+      "target": "Columns (columns34)",
+      "key": "columns34",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -868,6 +886,9 @@
     {
       "name": "Columns",
       "cluster": 35,
+      "source": "Columns",
+      "target": "Columns (columns35)",
+      "key": "columns35",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -880,6 +901,9 @@
     {
       "name": "Columns",
       "cluster": 36,
+      "source": "Columns",
+      "target": "Columns (columns36)",
+      "key": "columns36",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
