@@ -804,6 +804,18 @@
           "xpath": "/html[1]/body[1]/div[3]/section[1]/div[7]"
         }
       ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 30,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
+          "uuid": "e575479f-03-839628ac769644a16ed449ca9d564f8b364ef79d",
+          "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]"
+        }
+      ]
     }
   ],
   "outliers": [
@@ -1061,12 +1073,6 @@
       "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
       "uuid": "e575479f-02-6e673259ac93572dbd9caab98aa11c4db0b883e5",
       "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
-    },
-    {
-      "url": "https://www.goindigo.in/mokobara.html",
-      "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
-      "uuid": "e575479f-03-839628ac769644a16ed449ca9d564f8b364ef79d",
-      "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]"
     },
     {
       "url": "https://www.goindigo.in/mokobara.html",
