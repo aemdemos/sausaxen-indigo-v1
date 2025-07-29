@@ -1,0 +1,44 @@
+{
+  "templates": [
+    {
+      "name": "'Dashboard Template'",
+      "cluster": 1,
+      "pages": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "uuid": "e575479ff978666b8edcf96582a5b9dad9b34e58"
+        },
+        {
+          "url": "https://www.goindigo.in/campaigns/thai-visa.html",
+          "uuid": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard Template",
+      "cluster": 2,
+      "pages": [
+        {
+          "url": "https://www.goindigo.in/mobile-app/food-menu.html",
+          "uuid": "9f078988d28a0cd609b66b3f05ff1b8c32fcc6d8"
+        },
+        {
+          "url": "https://www.goindigo.in/information/route-map.html",
+          "uuid": "c186f34c0f320609482c40f4c48cc67cebe33269"
+        },
+        {
+          "url": "https://www.goindigo.in/codeshare.html",
+          "uuid": "e546181a78883bf5e341ab394a80659929b28b23"
+        },
+        {
+          "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
+          "uuid": "c9d08ec7e46ab904a75be66b38eb4b9c3d71c926"
+        },
+        {
+          "url": "https://www.goindigo.in/information/visa-verification.html",
+          "uuid": "59e2f8834498aba3b311e5bbfeddb59a7d78ef9f"
+        }
+      ]
+    }
+  ]
+}
