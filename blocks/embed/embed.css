@@ -1,8 +1,16 @@
+/* Fixed CSS Code */
 .embed {
   width: unset;
   text-align: center;
   max-width: 800px;
   margin: 32px auto;
+  background-color: #e6e5e7;
+  min-height: 100vh;
+  padding: 0;
+  max-width: none;
+  box-sizing: border-box;
+  text-align: left;
+  display: block;
 }
 
 .embed > div {
