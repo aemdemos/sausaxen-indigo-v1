@@ -1121,15 +1121,11 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
-/* --- Left column: stacked sections --- */
 .columns.columns22 > div > div:first-child {
   gap: 0;
   min-width: 0;
   max-width: 100%;
 }
-
-/* Section headers (left column) */
 .columns.columns22 > div > div:first-child > p {
   font-size: 16px;
   font-weight: 700;
@@ -1142,13 +1138,9 @@
 .columns.columns22 > div > div:first-child > p:first-child {
   margin-top: 0;
 }
-
-/* Add spacing between major sections in left column */
 .columns.columns22 > div > div:first-child > ul:not(:first-of-type) {
   margin-top: 16px;
 }
-
-/* Unordered lists (left column) */
 .columns.columns22 > div > div:first-child ul {
   list-style: none;
   padding: 0;
@@ -1172,8 +1164,6 @@
   color: #0070e0;
   text-decoration: underline;
 }
-
-/* --- Right column: tightly stacked groups, left-aligned --- */
 .columns.columns22 > div > div:last-child {
   gap: 0;
   min-width: 0;
@@ -1181,8 +1171,6 @@
   align-items: flex-start;
   padding-left: 0;
 }
-
-/* Section headers in right column */
 .columns.columns22 > div > div:last-child > h6,
 .columns.columns22 > div > div:last-child > p {
   font-size: 16px;
@@ -1197,8 +1185,6 @@
 .columns.columns22 > div > div:last-child > p:first-child {
   margin-top: 0;
 }
-
-/* Unordered lists (right column) */
 .columns.columns22 > div > div:last-child ul {
   list-style: none;
   padding: 0;
@@ -1230,8 +1216,6 @@
   color: #0070e0;
   text-decoration: underline;
 }
-
-/* Social: display links in a row, truncate overflow, make compact */
 .columns.columns22 > div > div:last-child p a {
   display: inline-block;
   margin-right: 8px;
@@ -1246,8 +1230,6 @@
 .columns.columns22 > div > div:last-child p a:last-child {
   margin-right: 0;
 }
-
-/* App badges and images in right column */
 .columns.columns22 picture img,
 .columns.columns22 img {
   max-width: 110px;
@@ -1258,22 +1240,16 @@
   box-shadow: none;
   background: none;
 }
-
-/* Awards images are smaller */
 .columns.columns22 [id="our-awards"] + ul li picture img {
   max-width: 38px;
   margin-bottom: 4px;
 }
-
-/* Remove excessive vertical gaps between all groups in right column */
 .columns.columns22 > div > div:last-child > * {
   margin-bottom: 5px;
 }
 .columns.columns22 > div > div:last-child > *:last-child {
   margin-bottom: 0;
 }
-
-/* Reduce margin below images and social section */
 .columns.columns22 > div > div:last-child ul li picture img,
 .columns.columns22 > div > div:last-child ul li img {
   margin-bottom: 3px;
@@ -1295,9 +1271,133 @@
     gap: 8px;
   }
 }
-
-/* Utility: prevent word-breaks in links */
 .columns.columns22 a {
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+
+
+.columns {
+  background: #f7f7fb;
+  width: 100%;
+  padding: 40px 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.columns > div {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgba(34,34,34,0.05);
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 24px;
+  padding: 36px 32px;
+  box-sizing: border-box;
+
+  /* Flexible horizontal layout for features */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 36px;
+}
+
+/* Responsive: two per row at tablet, one per row at mobile */
+@media (max-width: 900px) {
+  .columns > div {
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 24px 8px;
+  }
+  .columns > div > div {
+    flex: 1 1 45%;
+    min-width: 220px;
+  }
+}
+@media (max-width: 600px) {
+  .columns > div {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 0;
+  }
+  .columns > div > div {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* Feature: icon and text horizontal, left-aligned, no border/oval */
+.columns > div > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove accidental borders/ovals */
+.columns > div > div,
+.columns > div > div > p,
+.columns > div > div > p img {
+  border: none;
+  outline: none;
+}
+
+/* Icon styling */
+.columns > div > div > p:first-child img {
+  background: #fff;
+  border: 1.5px solid #18181a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  object-fit: contain;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Remove default p spacing inside features */
+.columns > div > div > p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Feature text styling */
+.columns > div > div > p:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  font-family: 'Poppins-Regular', 'Poppins-Regular Fallback', Arial, sans-serif;
+  line-height: 1.2;
+}
+
+/* Feature title */
+.columns > div > div > p:last-child strong,
+.columns > div > div > p:last-child b {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.1;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Feature subtitle/description */
+.columns > div > div > p:last-child span,
+.columns > div > div > p:last-child em {
+  font-size: 14px;
+  color: #75747b;
+  font-weight: 400;
+  display: block;
+  margin-top: 0;
 }
