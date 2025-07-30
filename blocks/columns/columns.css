@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 .columns > div {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -177,7 +179,7 @@
 
 .columns.columns4 > div > div:not(:first-child) .button-container a.button {
   color: #666;
-  opacity: 0.85;
+  opacity: 85%;
   font-size: 13px;
   font-weight: 400;
   background: none;
@@ -250,7 +252,7 @@
 }
 
 .columns.columns7 > div > div:last-child > *:nth-child(-n+4) {
-  opacity: 0.55;
+  opacity: 55%;
   font-size: 13px;
   margin-bottom: 2px;
   transition: opacity 0.2s;
@@ -679,6 +681,7 @@
 .columns {
   background: var(--background-color);
 }
+
 .columns > div > div {
   display: flex;
   flex-direction: row;
@@ -687,6 +690,7 @@
   width: 100%;
   gap: 0;
 }
+
 .columns > div > div > div:first-child {
   flex: 0 1 80%;
   max-width: 80%;
@@ -697,6 +701,7 @@
   align-items: stretch;
   height: auto;
 }
+
 .columns > div > div > div:first-child picture,
 .columns > div > div > div:first-child img {
   display: block;
@@ -705,6 +710,7 @@
   max-width: none;
   object-fit: cover;
 }
+
 .columns > div > div > div:nth-child(2),
 .columns > div > div > div:nth-child(3) {
   flex: 0 1 10%;
@@ -717,6 +723,7 @@
   height: 100%;
   padding-left: 0;
 }
+
 .columns > div > div > div:nth-child(2) img,
 .columns > div > div > div:nth-child(3) img {
   max-width: 110px;
@@ -725,9 +732,11 @@
   margin: 0 auto;
   display: block;
 }
+
 .columns > div > div > div > *:not(:last-child) {
   margin-bottom: 10px;
 }
+
 @media (width <= 900px) {
   .columns > div > div {
     flex-direction: column;
@@ -769,14 +778,14 @@
   min-width: 0;
   background: #fff;
   border-radius: 14px;
-  box-shadow: 0 4px 16px 0 rgba(60,60,60,0.08);
+  box-shadow: 0 4px 16px 0 rgb(60 60 60 / 8%);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   min-height: 330px;
-  padding: 32px 28px 24px 28px;
+  padding: 32px 28px 24px;
   transition: box-shadow 0.2s;
 }
 
@@ -800,14 +809,101 @@
   min-height: 0;
 }
 
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .columns > div {
     flex-direction: column;
     gap: 16px;
   }
+
   .columns > div > div {
     min-height: 180px;
-    padding: 20px 14px 16px 14px;
+    padding: 20px 14px 16px;
     border-radius: 10px;
+  }
+}
+
+
+.columns.columns19 {
+  background: #f7f7fb;
+  width: 100%;
+  padding: 48px 0; /* Increased vertical padding for a more open feel */
+  box-sizing: border-box;
+}
+
+.columns.columns19 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center columns as a group */
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px; /* More horizontal interior padding */
+  box-sizing: border-box;
+  gap: 0 72px; /* Substantial horizontal gap between items for even spacing */
+}
+
+.columns.columns19 > div > div {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  min-height: 0;
+  flex: 0 1 auto; /* Let items size to their content but distribute evenly */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Vertically center text within each item */
+  box-sizing: border-box;
+}
+
+/* Center all direct children (the <p>s) */
+.columns.columns19 > div > div > * {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the text */
+.columns.columns19 > div > div > p {
+  color: #22232a;
+  font-size: 13px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive: stack to two columns on tablets */
+@media (width <= 900px) {
+  .columns.columns19 > div {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 700px;
+    padding: 0 12px;
+    gap: 24px 0;
+  }
+
+  .columns.columns19 > div > div {
+    flex: 0 1 48%;
+    margin-bottom: 16px;
+  }
+}
+
+/* Responsive: stack to one column on mobile */
+@media (width <= 540px) {
+  .columns.columns19 > div {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 95vw;
+    padding: 0 4vw;
+    gap: 0;
+  }
+
+  .columns.columns19 > div > div {
+    flex: 1 1 100%;
+    margin-bottom: 12px;
   }
 }
