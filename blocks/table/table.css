@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .table.block {
   width: 100%;
   overflow-x: auto;
@@ -50,18 +51,164 @@
   margin-top: 0.25em;
 }
 
-/* no header variant */
 .table.block.no-header table tbody tr {
   border-top: 1px solid;
 }
 
-/* striped variant */
-.table.block.striped tbody tr:nth-child(odd) {
-  background-color: var(--overlay-background-color);
+.table.striped.bordered {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 2%);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 0;
+  overflow-x: visible;
 }
 
-/* bordered variant */
-.table.block.bordered table th,
-.table.block.bordered table td {
-  border: 1px solid;
+.table.striped.bordered > table > thead > tr > th {
+  background: #fff;
+  color: #222;
+  padding: 48px 36px 22px;
+  font-size: 15px;
+  font-weight: normal;
+  text-align: left;
+  line-height: 1.7;
+}
+
+.table.striped.bordered > table > thead > tr {
+  background: #fff;
+}
+
+.table.striped.bordered p strong {
+  display: block;
+  font-size: 19px;
+  font-weight: 900;
+  margin-top: 52px;
+  margin-bottom: 1px;
+  color: #222;
+  line-height: 1.25;
+}
+
+.table.striped.bordered p strong + table {
+  margin-top: 2px;
+}
+
+.table.striped.bordered p {
+  margin: 0 0 18px;
+  color: #222;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.table.striped.bordered ul {
+  margin: 0 0 18px 32px;
+  padding-left: 18px;
+  color: #222;
+  font-size: 15px;
+}
+
+.table.striped.bordered ul li {
+  margin-bottom: 7px;
+  list-style-type: disc;
+}
+
+.table.striped.bordered p + table,
+.table.striped.bordered ul + table,
+.table.striped.bordered table + p,
+.table.striped.bordered table + table {
+  margin-top: 12px;
+}
+
+.table.striped.bordered table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 26px;
+  background: #fff;
+  font-size: inherit;
+}
+
+.table.striped.bordered table table thead tr {
+  background: #222;
+}
+
+.table.striped.bordered table table thead th {
+  background: #222;
+  color: #fff;
+  font-weight: 900;
+  font-size: 15px;
+  padding: 20px 14px 17px;
+  border: none;
+  text-align: left;
+}
+
+.table.striped.bordered table table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.table.striped.bordered table table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.table.striped.bordered table table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+.table.striped.bordered table table th,
+.table.striped.bordered table table td {
+  padding: 15px 14px;
+  font-size: 15px;
+  color: #222;
+  font-weight: normal;
+  border: none;
+  vertical-align: top;
+}
+
+.table.striped.bordered table table td:nth-child(3),
+.table.striped.bordered table table th:nth-child(3) {
+  text-align: right;
+  font-family: monospace, Courier New, Courier;
+  min-width: 120px;
+  white-space: nowrap;
+}
+
+.table.striped.bordered table table th:first-child,
+.table.striped.bordered table table td:first-child {
+  text-align: center;
+  min-width: 46px;
+}
+
+.table.striped.bordered > table,
+.table.striped.bordered > table > thead > tr > th,
+.table.striped.bordered > table > tbody > tr > td {
+  border: none;
+  background: #fff;
+}
+
+.table.striped.bordered u {
+  text-decoration: underline;
+  color: #222;
+}
+
+@media (width <= 600px) {
+  .table.striped.bordered > table > thead > tr > th {
+    padding: 18px 4vw 10px;
+    font-size: 13px;
+  }
+
+  .table.striped.bordered table table th,
+  .table.striped.bordered table table td {
+    font-size: 13px;
+    padding: 8px 4px;
+  }
+
+  .table.striped.bordered table table td:nth-child(3),
+  .table.striped.bordered table table th:nth-child(3) {
+    min-width: 80px;
+  }
 }
