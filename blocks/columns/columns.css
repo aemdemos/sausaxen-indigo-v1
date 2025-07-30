@@ -1,17 +1,37 @@
-/* Disable no-descending-specificity globally to resolve descending specificity rule violations */
+/* Disable no-descending-specificity globally for the file */
 /* stylelint-disable no-descending-specificity */
 
 .columns > div {
-  display: flex;
-  flex-direction: column;
-}
-
-.columns img {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 32px;
+  align-items: start;
   width: 100%;
 }
 
+.columns img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .columns > div > div {
-  order: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.columns > div > div:nth-child(3n+2),
+.columns > div > div:nth-child(3n+3) {
+  align-items: center;
+}
+
+.columns > div > div > *:not(:last-child) {
+  margin-bottom: 12px;
 }
 
 .columns > div > .columns-img-col {
@@ -32,6 +52,22 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+}
+
+.columns {
+  width: 100%;
+  background: var(--background-color);
+}
+
+@media (width <= 900px) {
+  .columns > div {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .columns > div > div {
+    align-items: center;
   }
 }
 
@@ -204,7 +240,6 @@
   text-align: left;
 }
 
-/* ---------- FOURTH COLUMN STRUCTURE & GROUPING ---------- */
 .columns.columns7 > div > div:last-child {
   min-width: 220px;
   max-width: 340px;
@@ -217,7 +252,6 @@
   height: auto;
 }
 
-/* For the fourth column, visually de-emphasize the first 4 elements (the redundant download/app preview blocks) */
 .columns.columns7 > div > div:last-child > *:nth-child(-n+4) {
   opacity: 0.55;
   font-size: 13px;
@@ -225,12 +259,10 @@
   transition: opacity 0.2s;
 }
 
-/* Add a tighter gap between the redundant blocks and the real "Social" heading, to visually indicate section change */
 .columns.columns7 > div > div:last-child > *:nth-child(4) {
   margin-bottom: 10px;
 }
 
-/* Section groupings: grouped headings and content with tight rhythm */
 .columns.columns7 > div > div:last-child h6 {
   margin-bottom: 8px;
   margin-top: 0;
@@ -247,12 +279,10 @@
   margin-top: 0;
 }
 
-/* Remove top margin for the very first child in last column */
 .columns.columns7 > div > div:last-child > *:first-child {
   margin-top: 0;
 }
 
-/* Download badges and awards section: tight stacking */
 .columns.columns7 > div > div:last-child img,
 .columns.columns7 > div > div:last-child picture {
   display: block;
@@ -266,7 +296,6 @@
   margin-bottom: 10px;
 }
 
-/* Remove list bullets and minimize list margin globally */
 .columns.columns7 ul {
   list-style: none;
   padding-left: 0;
@@ -281,7 +310,6 @@
   display: none;
 }
 
-/* Headings in columns 1-3 */
 .columns.columns7 p:first-child {
   font-family: var(--heading-font-family);
   font-size: 16px;
@@ -292,7 +320,6 @@
   line-height: 1.2;
 }
 
-/* Links */
 .columns.columns7 a {
   color: #444;
   font-size: 14px;
