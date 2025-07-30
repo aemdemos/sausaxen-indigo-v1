@@ -783,6 +783,78 @@
           "xpath": "/html[1]/body[1]/div[3]/section[1]/div[4]"
         }
       ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 28,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
+          "urlHash": "c9d08ec7e46ab904a75be66b38eb4b9c3d71c926",
+          "uuid": "c9d08ec7-05-e4f2e2f7e0914c67207e72b62d3fdcaec184b36d",
+          "xpath": "/html[1]/body[1]/div[3]/section[1]/div[7]"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "cluster": 29,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
+          "uuid": "e575479f-03-839628ac769644a16ed449ca9d564f8b364ef79d",
+          "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Cards",
+      "cluster": 30,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
+          "urlHash": "c9d08ec7e46ab904a75be66b38eb4b9c3d71c926",
+          "uuid": "c9d08ec7-04-fb0f8cd3ecc09ac27fd78e99b660f0a65ef2efaa",
+          "xpath": "/html[1]/body[1]/div[3]/section[1]/div[6]"
+        }
+      ]
+    },
+    {
+      "name": "Columns",
+      "cluster": 31,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
+          "uuid": "e575479f-06-52ef14dd0f642b670376334e888e1f9e0187eced",
+          "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
+        }
+      ]
+    },
+    {
+      "name": "Embed (video)",
+      "cluster": 32,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/mokobara.html",
+          "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
+          "uuid": "e575479f-02-6e673259ac93572dbd9caab98aa11c4db0b883e5",
+          "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
+        }
+      ]
+    },
+    {
+      "name": "Table (striped & bordered)",
+      "cluster": 33,
+      "instances": [
+        {
+          "url": "https://www.goindigo.in/campaigns/thai-visa.html",
+          "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
+          "uuid": "ea18c62f-09-bfd9bec1de38226b9ff4814326f124642b24fa72",
+          "xpath": "/html[1]/body[1]/div[4]/div[1]/div[3]"
+        }
+      ]
     }
   ],
   "outliers": [
@@ -1006,18 +1078,6 @@
       "xpath": "/html[1]/body[1]/div[3]/section[1]/div[5]"
     },
     {
-      "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
-      "urlHash": "c9d08ec7e46ab904a75be66b38eb4b9c3d71c926",
-      "uuid": "c9d08ec7-04-fb0f8cd3ecc09ac27fd78e99b660f0a65ef2efaa",
-      "xpath": "/html[1]/body[1]/div[3]/section[1]/div[6]"
-    },
-    {
-      "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
-      "urlHash": "c9d08ec7e46ab904a75be66b38eb4b9c3d71c926",
-      "uuid": "c9d08ec7-05-e4f2e2f7e0914c67207e72b62d3fdcaec184b36d",
-      "xpath": "/html[1]/body[1]/div[3]/section[1]/div[7]"
-    },
-    {
       "url": "https://www.goindigo.in/codeshare.html",
       "urlHash": "e546181a78883bf5e341ab394a80659929b28b23",
       "uuid": "e546181a-01-bd0f3cb64b813c40ff632c176a402b1dc719bdf9",
@@ -1044,26 +1104,8 @@
     {
       "url": "https://www.goindigo.in/mokobara.html",
       "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
-      "uuid": "e575479f-02-6e673259ac93572dbd9caab98aa11c4db0b883e5",
-      "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]"
-    },
-    {
-      "url": "https://www.goindigo.in/mokobara.html",
-      "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
-      "uuid": "e575479f-03-839628ac769644a16ed449ca9d564f8b364ef79d",
-      "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[2]"
-    },
-    {
-      "url": "https://www.goindigo.in/mokobara.html",
-      "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
       "uuid": "e575479f-04-f8dd163c774cf7f98c7d462174ba6b9c6ab25001",
       "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[3]"
-    },
-    {
-      "url": "https://www.goindigo.in/mokobara.html",
-      "urlHash": "e575479ff978666b8edcf96582a5b9dad9b34e58",
-      "uuid": "e575479f-06-52ef14dd0f642b670376334e888e1f9e0187eced",
-      "xpath": "/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]"
     },
     {
       "url": "https://www.goindigo.in/mokobara.html",
@@ -1150,12 +1192,6 @@
       "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
       "uuid": "ea18c62f-08-df5212e4edb3f7eda41fcf94a16fe2e66dad0df7",
       "xpath": "/html[1]/body[1]/div[4]/div[1]/div[2]"
-    },
-    {
-      "url": "https://www.goindigo.in/campaigns/thai-visa.html",
-      "urlHash": "ea18c62f1dab6476661b0ca30703329ca0f2ceaf",
-      "uuid": "ea18c62f-09-bfd9bec1de38226b9ff4814326f124642b24fa72",
-      "xpath": "/html[1]/body[1]/div[4]/div[1]/div[3]"
     }
   ],
   "sections": [
