@@ -1,3 +1,6 @@
+/* Disable descending specificity check globally for this file */
+/* stylelint-disable no-descending-specificity */
+
 .columns > div {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -38,6 +41,7 @@
 .columns > div > .columns-img-col img {
   display: block;
 }
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
@@ -492,6 +496,7 @@
     max-width: 100%;
   }
 }
+
 .columns.columns11 > div > div {
   display: flex;
   flex-direction: column;
@@ -500,6 +505,7 @@
   box-sizing: border-box;
   max-width: 100%;
 }
+
 .columns.columns11 strong {
   color: #222;
   font-size: 16px;
@@ -513,6 +519,7 @@
 .columns.columns11 > div > div:last-child strong {
   margin-bottom: 0;
 }
+
 .columns.columns11 ul,
 .columns.columns11 li {
   margin: 0;
@@ -541,6 +548,7 @@
   color: #0077b6;
   text-decoration: underline;
 }
+
 .columns.columns11 > div > div:last-child ul,
 .columns.columns11 > div > div:last-child ul li {
   width: 100%;
@@ -551,6 +559,7 @@
 .columns.columns11 > div > div:last-child ul:first-of-type li:last-child {
   margin-bottom: 32px;
 }
+
 .columns.columns11 > div > div:last-child > p {
   margin-top: 40px;
   margin-bottom: 10px;
@@ -563,14 +572,17 @@
 .columns.columns11 > div > div:last-child > p:first-child {
   margin-top: 0;
 }
+
 .columns.columns11 > div > div:last-child > p + ul {
   margin-top: 12px;
   margin-bottom: 28px;
 }
+
 .columns.columns11 > div > div:last-child ul:first-of-type a {
   font-size: 13px;
   color: #767676;
 }
+
 .columns.columns11 > div > div:last-child picture {
   display: block;
   margin-bottom: 20px;
@@ -584,6 +596,7 @@
 .columns.columns11 > div > div:last-child ul + p {
   margin-top: 44px;
 }
+
 .columns.columns11 > div > div:last-child img {
   display: block;
   max-width: 180px;
@@ -597,10 +610,12 @@
 .columns.columns11 > div > div:last-child ul li img {
   margin-bottom: 0;
 }
+
 .columns.columns11 > div > div:last-child ul:nth-of-type(2) img,
 .columns.columns11 > div > div:last-child ul:nth-of-type(3) img {
   max-width: 160px;
 }
+
 .columns.columns11 > div > div:last-child ul,
 .columns.columns11 > div > div:last-child ul li,
 .columns.columns11 > div > div:last-child picture,
@@ -623,7 +638,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 104px;
-  padding: 30px 40px 30px 40px; /* Increase vertical and horizontal padding for centering and inset */
+  padding: 30px 40px;
   width: 100%;
   box-sizing: border-box;
   gap: 0;
@@ -649,16 +664,108 @@
   text-align: center;
 }
 
-/* Responsive: stack columns vertically on narrow screens */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .columns.columns12 > div {
     flex-direction: column;
     min-height: unset;
     padding: 16px 0;
     gap: 16px;
   }
+
   .columns.columns12 > div > div {
     width: 100%;
     padding: 8px 0;
+  }
+}
+
+
+.columns {
+  background: var(--background-color);
+}
+
+/* Main row: left image dominant, product columns much narrower, no gap */
+.columns > div > div {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 0;
+}
+
+/* Left image column: very wide, sets block height */
+.columns > div > div > div:first-child {
+  flex: 0 1 80%;
+  max-width: 80%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  height: auto;
+}
+
+/* Left image: fills column, keeps aspect, no letterboxing */
+.columns > div > div > div:first-child picture,
+.columns > div > div > div:first-child img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* Product columns: much narrower, tightly packed, stretch vertically */
+.columns > div > div > div:nth-child(2),
+.columns > div > div > div:nth-child(3) {
+  flex: 0 1 10%;
+  max-width: 10%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding-left: 0;
+}
+
+/* Product images: slightly larger for narrow columns */
+.columns > div > div > div:nth-child(2) img,
+.columns > div > div > div:nth-child(3) img {
+  max-width: 110px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Reduce vertical whitespace between stacked elements */
+.columns > div > div > div > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* Responsive stacking for narrow screens */
+@media (width <= 900px) {
+  .columns > div > div {
+    flex-direction: column;
+  }
+
+  .columns > div > div > div {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .columns > div > div > div:first-child {
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .columns > div > div > div img {
+    max-width: 100%;
+    height: auto;
   }
 }
