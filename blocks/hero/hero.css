@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -150,10 +151,7 @@
   }
 }
 
-/* Disabled the no-descending-specificity rule globally */
-/* stylelint-disable no-descending-specificity */
 .hero.hero26 {
-  /* Remove all default spacing, use minuscule top padding for optical whitespace */
   padding: 0.5px 0 0;
   margin: 0;
   min-height: 0;
@@ -189,4 +187,44 @@
   box-sizing: border-box;
   vertical-align: top;
   scroll-margin: 0;
+}
+
+.hero.hero27 {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  height: 120px;
+  min-height: 0;
+
+  /* Use the correct tropical boat image as a background */
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: none;
+}
+
+/* Ensure direct children fill all available horizontal space and do not interfere with background */
+.hero.hero27 > div {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+}
+
+/* Prevent nested divs from interfering with layout or background */
+.hero.hero27 > div > div {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
