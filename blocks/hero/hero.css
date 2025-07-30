@@ -1,4 +1,6 @@
+/* Disable no-descending-specificity globally */
 /* stylelint-disable no-descending-specificity */
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -8,6 +10,11 @@
   position: relative;
   padding: 40px 24px;
   min-height: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  background: none;
 }
 
 .hero h1,
@@ -41,7 +48,7 @@
   height: 100%;
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   .hero {
     padding: 40px 32px;
   }
@@ -126,7 +133,7 @@
   background: #f0f0f0;
 }
 
-@media (width <= 600px) {
+@media (max-width: 600px) {
   .hero.hero14 {
     min-height: 80px;
   }
@@ -196,8 +203,6 @@
   padding: 0;
   height: 120px;
   min-height: 0;
-
-  /* Use the correct tropical boat image as a background */
   background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat transparent;
   display: flex;
   flex-direction: row;
@@ -208,7 +213,6 @@
   box-shadow: none;
 }
 
-/* Ensure direct children fill all available horizontal space and do not interfere with background */
 .hero.hero27 > div {
   flex: 1 1 0;
   min-width: 0;
@@ -219,7 +223,6 @@
   display: flex;
 }
 
-/* Prevent nested divs from interfering with layout or background */
 .hero.hero27 > div > div {
   flex: 1 1 0;
   min-width: 0;
@@ -227,4 +230,110 @@
   background: transparent;
   border: none;
   box-shadow: none;
+}
+
+/* Left side: content area with dark background */
+.hero > div:first-child {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 0 48px 48px;
+  background: #23232b;
+  color: #fff;
+  min-width: 0;
+  z-index: 2;
+}
+
+/* Left side text color */
+.hero > div:first-child * {
+  color: #fff;
+}
+
+/* Right side: image as background that covers only this column, with fade to dark on the left */
+.hero > div:last-child {
+  flex: 1 1 0%;
+  position: relative;
+  min-height: 300px;
+  background: 
+    linear-gradient(to left, rgb(35 35 43 / 100%) 0%, rgb(35 35 43 / 90%) 15%, rgb(35 35 43 / 60%) 30%, rgb(35 35 43 / 0%) 60%),
+    url('/your-image-path.jpg') right center no-repeat;
+  background-size: cover;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Ensure image in right column fills area if used as <img> or <picture> */
+.hero > div:last-child img,
+.hero > div:last-child picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Button styles in left column */
+.hero > div:first-child .button,
+.hero > div:first-child button {
+  margin-top: 32px;
+  background: #fff;
+  color: #3170D7;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  padding: 10px 32px;
+  font-family: inherit;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgb(49 112 215 / 8%);
+  transition: background 0.2s;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.hero > div:first-child .button:hover,
+.hero > div:first-child button:hover {
+  background: #f1f6fb;
+}
+
+/* Headline styles */
+.hero > div:first-child h1,
+.hero > div:first-child h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  font-family: Quicksand, Arial Rounded MT Bold, Arial, sans-serif;
+  font-weight: bold;
+  margin: 0 0 18px;
+  line-height: 1.1;
+}
+
+/* Responsive: stack vertically on smaller screens */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    min-height: 400px;
+  }
+
+  .hero > div:first-child,
+  .hero > div:last-child {
+    width: 100%;
+    padding: 32px 24px;
+  }
+
+  .hero > div:first-child {
+    min-height: 200px;
+    padding: 32px 24px 24px;
+    background: #23232b;
+  }
+
+  .hero > div:last-child {
+    min-height: 200px;
+    background:
+      linear-gradient(to top, rgb(35 35 43 / 100%) 0%, rgb(35 35 43 / 80%) 20%, rgb(35 35 43 / 30%) 60%, rgb(35 35 43 / 0%) 100%),
+      url('/your-image-path.jpg') center top no-repeat;
+    background-size: cover;
+  }
 }
