@@ -1,4 +1,6 @@
-/* Disable no-descending-specificity globally to handle rule order conflicts */
+/* Fixed and validated CSS */
+
+/* Disable no-descending-specificity globally */
 /* stylelint-disable no-descending-specificity */
 
 .columns > div {
@@ -42,6 +44,7 @@
   display: block;
 }
 
+/* Modern range notation for media queries */
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
@@ -345,7 +348,6 @@
   padding: 0;
 }
 
-/* Main row: side by side columns, proportional widths, minimal gap */
 .columns.columns10 > div {
   display: flex;
   flex-direction: row;
@@ -359,7 +361,6 @@
   padding: 2px 0 0;
 }
 
-/* Left column: slightly narrower, content-sized height */
 .columns.columns10 > div > div:first-child {
   flex: 0 1 44%;
   padding: 28px 12px 28px 28px;
@@ -376,7 +377,6 @@
   gap: 24px;
 }
 
-/* Right column: slightly wider, grid for feature quadrants */
 .columns.columns10 > div > div:last-child {
   flex: 0 1 56%;
   padding: 28px 28px 28px 12px;
@@ -394,7 +394,6 @@
   justify-items: start;
 }
 
-/* Quadrants inside right column */
 .columns.columns10 > div > div:last-child > div {
   padding: 0;
   margin: 0;
@@ -408,7 +407,6 @@
   box-sizing: border-box;
 }
 
-/* Images */
 .columns.columns10 img {
   display: block;
   max-width: 100%;
@@ -418,7 +416,6 @@
   margin: 0;
 }
 
-/* Responsive stacking for smaller screens */
 @media (width <= 900px) {
   .columns.columns10 > div {
     flex-direction: column;
@@ -443,4 +440,200 @@
     gap: 10px 0;
     padding: 14px 2vw;
   }
+}
+
+
+.columns.columns11 {
+  background: #f6f6f6;
+  padding: 48px 0;
+}
+
+.columns.columns11 > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 230px;
+  gap: 64px;
+  align-items: start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+
+@media (width <= 1200px) {
+  .columns.columns11 > div {
+    max-width: 100%;
+    padding: 0 10px;
+    gap: 28px;
+    grid-template-columns: 1fr 1fr 1fr 180px;
+  }
+}
+
+@media (width <= 900px) {
+  .columns.columns11 > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .columns.columns11 > div > div:nth-child(3) {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+
+  .columns.columns11 > div > div:nth-child(4) {
+    grid-column: 2 / 3;
+    grid-row: 2;
+  }
+}
+
+@media (width <= 700px) {
+  .columns.columns11 > div {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 4px;
+  }
+
+  .columns.columns11 > div > div {
+    grid-column: 1 / 2 !important;
+    grid-row: auto !important;
+    max-width: 100%;
+  }
+}
+
+/* Column content styling */
+.columns.columns11 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Section headers */
+.columns.columns11 strong {
+  color: #222;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: inherit;
+  display: block;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.columns.columns11 > div > div:last-child strong {
+  margin-bottom: 0;
+}
+
+/* Lists, links, and spacing */
+.columns.columns11 ul,
+.columns.columns11 li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns.columns11 li {
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.columns.columns11 li:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns11 a {
+  color: #4d4d4d;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.15s;
+  line-height: 1.7;
+}
+
+.columns.columns11 a:hover {
+  color: #0077b6;
+  text-decoration: underline;
+}
+
+/* --- RIGHTMOST COLUMN VERTICAL SPACING AND GROUPING --- */
+.columns.columns11 > div > div:last-child ul,
+.columns.columns11 > div > div:last-child ul li {
+  width: 100%;
+  display: block;
+  min-height: 1px;
+}
+
+.columns.columns11 > div > div:last-child ul:first-of-type li:last-child {
+  margin-bottom: 32px;
+}
+
+/* Spacing before download/awards headings */
+.columns.columns11 > div > div:last-child > p {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #222;
+  letter-spacing: 0;
+}
+
+.columns.columns11 > div > div:last-child > p:first-child {
+  margin-top: 0;
+}
+
+/* Add more vertical space between badge/download/award blocks */
+.columns.columns11 > div > div:last-child > p + ul {
+  margin-top: 12px;
+  margin-bottom: 28px;
+}
+
+/* Social links in last column should be smaller and lighter */
+.columns.columns11 > div > div:last-child ul:first-of-type a {
+  font-size: 13px;
+  color: #767676;
+}
+
+/* WhatsApp, Download and Awards spacing in last column */
+.columns.columns11 > div > div:last-child picture {
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.columns.columns11 > div > div:last-child picture:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns11 > div > div:last-child ul + p {
+  margin-top: 44px;
+}
+
+/* Fix images in last column: ensure visibility, size, spacing */
+.columns.columns11 > div > div:last-child img {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+  margin-left: 0;
+}
+
+.columns.columns11 > div > div:last-child ul li img {
+  margin-bottom: 0;
+}
+
+/* Restrict app badges/awards to left-align and compact size */
+.columns.columns11 > div > div:last-child ul:nth-of-type(2) img,
+.columns.columns11 > div > div:last-child ul:nth-of-type(3) img {
+  max-width: 160px;
+}
+
+/* Ensure images/pictures are never hidden or collapsed */
+.columns.columns11 > div > div:last-child ul,
+.columns.columns11 > div > div:last-child ul li,
+.columns.columns11 > div > div:last-child picture,
+.columns.columns11 > div > div:last-child img {
+  visibility: visible;
+  opacity: 1;
 }
