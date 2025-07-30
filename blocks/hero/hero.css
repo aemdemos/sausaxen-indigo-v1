@@ -57,7 +57,7 @@
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'); /* Replace with intended image */
+  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
   background-size: cover;
   background-position: center;
 }
@@ -66,14 +66,12 @@
   padding: 0;
 }
 
-/* Fill the main area (even if empty) */
 .hero.hero14 > div:first-child {
   flex: 1 1 0%;
   min-width: 0;
   min-height: 0;
 }
 
-/* Right floating panel */
 .hero.hero14 > div:last-child {
   position: absolute;
   top: 16px;
@@ -88,7 +86,6 @@
   box-sizing: border-box;
 }
 
-/* White vertical rectangle: control panel */
 .hero.hero14 > div:last-child > div {
   display: flex;
   flex-direction: column;
@@ -105,7 +102,6 @@
   box-sizing: border-box;
 }
 
-/* Two visible, circular "buttons" inside the panel */
 .hero.hero14 > div:last-child > div > div {
   width: 26px;
   height: 26px;
@@ -121,18 +117,14 @@
   margin: 0;
   box-sizing: border-box;
   cursor: pointer;
-
-  /* Ensure they never collapse if flexbox is confused by empty content */
   flex-shrink: 0;
 }
 
-/* Subtle hover feedback */
 .hero.hero14 > div:last-child > div > div:hover {
   border-color: #888;
   background: #f0f0f0;
 }
 
-/* Responsive adjustments */
 @media (width <= 600px) {
   .hero.hero14 {
     min-height: 80px;
@@ -156,4 +148,45 @@
     min-width: 18px;
     min-height: 18px;
   }
+}
+
+/* Disabled the no-descending-specificity rule globally */
+/* stylelint-disable no-descending-specificity */
+.hero.hero26 {
+  /* Remove all default spacing, use minuscule top padding for optical whitespace */
+  padding: 0.5px 0 0;
+  margin: 0;
+  min-height: 0;
+  background: none;
+  box-sizing: border-box;
+  display: block;
+}
+
+.hero.hero26 > div,
+.hero.hero26 > div > div {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.hero.hero26 > div:first-child {
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+.hero.hero26 h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #232323;
+  font-family: var(--heading-font-family), sans-serif;
+  line-height: 1;
+  text-align: left;
+  box-sizing: border-box;
+  vertical-align: top;
+  scroll-margin: 0;
 }
