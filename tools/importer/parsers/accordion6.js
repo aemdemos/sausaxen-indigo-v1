@@ -1,46 +1,51 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Table header row exactly as in the example
+  // Header row — must match exactly
   const headerRow = ['Accordion (accordion6)'];
-  const rows = [];
-  // Get the container for accordion items
+
+  // Get the accordion group containing items
   const accGroup = element.querySelector('.faq-sb-acc-group.faq-top-queries');
-  if (accGroup) {
-    const items = accGroup.querySelectorAll('.faq-sb-heading');
-    items.forEach(item => {
-      // Title: .faq-sb-acc-heading <a>, but we want only its text and any inline elements except the trailing icon
-      const titleLink = item.querySelector('.faq-sb-acc-heading');
-      let titleCell = '';
-      if (titleLink) {
-        // Create a span to hold all children except the icon
-        const titleWrapper = document.createElement('span');
-        for (const node of titleLink.childNodes) {
-          if (!(node.nodeType === 1 && node.tagName === 'I')) {
-            titleWrapper.appendChild(node.cloneNode(true));
-          }
-        }
-        titleCell = titleWrapper;
+  if (!accGroup) return;
+
+  // Each accordion item is a .faq-sb-heading
+  const accItems = Array.from(accGroup.querySelectorAll(':scope > .faq-sb-heading'));
+
+  // Compose table rows for each accordion item
+  const rows = accItems.map((headingDiv) => {
+    // Title cell: extract the text from the anchor, referencing the anchor element without the icon
+    const titleAnchor = headingDiv.querySelector(':scope > .faq-sb-acc-heading');
+    let titleCell = '';
+    if (titleAnchor) {
+      // Copy anchor's text only (preserve links, if any)
+      // Remove icon from the anchor (remove <i>)
+      const icon = titleAnchor.querySelector('i');
+      if (icon) icon.remove();
+      // Use a span to wrap, preserving formatting/links (if any)
+      // Use the anchor's child nodes
+      const span = document.createElement('span');
+      [...titleAnchor.childNodes].forEach((node) => {
+        span.appendChild(node.cloneNode(true));
+      });
+      titleCell = span;
+    }
+    // Content cell: use the <p> inside .faq-acc-inner-content if present, else that div
+    let contentCell = '';
+    const contentDiv = headingDiv.querySelector(':scope > .faq-acc-inner-content');
+    if (contentDiv) {
+      const para = contentDiv.querySelector('p');
+      if (para) {
+        contentCell = para;
       } else {
-        titleCell = '';
+        contentCell = contentDiv;
       }
-      // Content: .faq-acc-inner-content (may be empty or contain p, a, etc)
-      const contentDiv = item.querySelector('.faq-acc-inner-content');
-      let contentCell = '';
-      if (contentDiv) {
-        // Reference all children in one wrapper
-        const contentWrapper = document.createElement('div');
-        for (const child of contentDiv.childNodes) {
-          contentWrapper.appendChild(child.cloneNode(true));
-        }
-        contentCell = contentWrapper;
-      } else {
-        contentCell = '';
-      }
-      rows.push([titleCell, contentCell]);
-    });
-  }
-  // Build the table
-  const tableCells = [headerRow, ...rows];
-  const table = WebImporter.DOMUtils.createTable(tableCells, document);
-  element.replaceWith(table);
+    }
+    return [titleCell, contentCell];
+  });
+
+  // Compose final table data
+  const tableData = [headerRow, ...rows];
+
+  // Create the block table, replace the original element
+  const block = WebImporter.DOMUtils.createTable(tableData, document);
+  element.replaceWith(block);
 }

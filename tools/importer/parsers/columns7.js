@@ -1,41 +1,61 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper: get absolute URL for images
-  function getAbsoluteUrl(src) {
-    const a = document.createElement('a');
-    a.href = src;
-    return a.href;
+  // Helper to extract all direct children (including text nodes) from a parent
+  function extractAllContent(parent) {
+    const fragment = document.createDocumentFragment();
+    Array.from(parent.childNodes).forEach((node) => {
+      fragment.appendChild(node);
+    });
+    return fragment;
   }
 
-  // Find the container for the columns
-  const row = element.querySelector('.row');
+  // Find main columns in the footer
   const accordion = element.querySelector('.ig-footer-accordion');
+  const sitemaps = accordion ? Array.from(accordion.querySelectorAll('.col-12.col-md-3.ig-acc-sitemap')) : [];
+  const row = element.querySelector('.row');
+  const socialCol = row ? Array.from(row.children).find(c => c.classList && c.classList.contains('social-downloads')) : null;
 
-  // Collect Columns:
-  // 1: 'Get to Know Us'
-  // 2: 'Services'
-  // 3: 'Quick links'
-  // 4: Social/Download/Awards
-  let col1 = null, col2 = null, col3 = null, col4 = null;
-  if (accordion) {
-    const sitemapCols = accordion.querySelectorAll('.col-12.col-md-3.ig-acc-sitemap');
-    if (sitemapCols.length > 0) col1 = sitemapCols[0];
-    if (sitemapCols.length > 1) col2 = sitemapCols[1];
-    if (sitemapCols.length > 2) col3 = sitemapCols[2];
-  }
-  if (row) {
-    col4 = row.querySelector('.col-lg-3.social-downloads');
+  // Top Left: All content from the first sitemap ("Get to Know Us")
+  let topLeft = '';
+  if (sitemaps[0]) {
+    topLeft = extractAllContent(sitemaps[0]);
   }
 
-  // Fallback: If any missing, fill with empty divs for structure
-  function safeCol(col) { return col || document.createElement('div'); }
+  // Top Right: All content from the social/downloads/awards column
+  let topRight = '';
+  if (socialCol) {
+    topRight = extractAllContent(socialCol);
+  }
 
-  // Table header as in the example (must match exactly)
-  const headerRow = ['Columns (columns7)'];
-  // Table content row: each column in its own cell
-  const contentRow = [safeCol(col1), safeCol(col2), safeCol(col3), safeCol(col4)];
+  // Bottom Left: All content from the second sitemap ("Services")
+  let bottomLeft = '';
+  if (sitemaps[1]) {
+    bottomLeft = extractAllContent(sitemaps[1]);
+  }
 
-  // Create and insert table
-  const table = WebImporter.DOMUtils.createTable([headerRow, contentRow], document);
+  // Bottom Right: All content from the third sitemap ("Quick links")
+  let bottomRight = '';
+  if (sitemaps[2]) {
+    bottomRight = extractAllContent(sitemaps[2]);
+  }
+
+  // Copyright row (full width)
+  let copyrightContent = '';
+  const copyrightBlk = element.querySelector('.copyright-blck');
+  if (copyrightBlk) {
+    copyrightContent = extractAllContent(copyrightBlk);
+  }
+
+  // Build table rows according to the Columns (columns7) spec
+  const cells = [
+    ['Columns (columns7)'],
+    [topLeft, topRight],
+    [bottomLeft, bottomRight]
+  ];
+  if (copyrightContent) {
+    cells.push([copyrightContent]);
+  }
+
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

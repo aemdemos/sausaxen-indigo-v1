@@ -1,82 +1,100 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  const header = ['Accordion (accordion20)'];
-  const rows = [header];
+  // Header row: matches example exactly
+  const headerRow = ['Accordion (accordion20)'];
+  const rows = [headerRow];
 
-  // Helper: get all direct children matching selector
-  const getChildren = (parent, selector) => Array.from(parent.querySelectorAll(':scope > ' + selector));
+  // For deduplication of questions
+  const seenQuestions = new Set();
 
-  // 1. FAQ grouped categories (accordion blocks)
-  const groups = element.querySelectorAll('.faq-sb-acc-group');
-  groups.forEach(group => {
-    // Get the group title
-    const groupHeadingA = group.querySelector('.faq-sb-heading > a');
-    let groupLabel = '';
-    if (groupHeadingA) {
-      const copyA = groupHeadingA.cloneNode(true);
-      Array.from(copyA.querySelectorAll('i')).forEach(i => i.remove());
-      groupLabel = copyA.textContent.trim();
-    }
-    // For each accordion item in this group
-    getChildren(group, '.faq-sb-acc-content').forEach(contentDiv => {
-      const innerContent = contentDiv.querySelector('.faq-sb-inner-content');
-      if (!innerContent) return;
-      const questionA = innerContent.querySelector('a.faq-sb-acc-heading');
-      let questionTitle = '';
-      if (questionA) {
-        const qa = questionA.cloneNode(true);
-        Array.from(qa.querySelectorAll('i')).forEach(i => i.remove());
-        questionTitle = qa.textContent.trim();
-      }
-      const accInnerContent = innerContent.querySelector('.faq-acc-inner-content');
-      let answerContent = null;
-      if (accInnerContent) {
-        // Reference existing element (not clone)
-        answerContent = accInnerContent;
-      }
-      // Compose row: [title, content]
-      // If group has a heading, prepend it (for clarity)
-      const cellTitle = groupLabel ? groupLabel + ': ' + questionTitle : questionTitle;
-      rows.push([cellTitle, answerContent]);
-    });
-  });
+  // Helper: Remove 'Read more' links that use javascript:void(0)
+  function cleanContent(el) {
+    if (!el) return '';
+    el.querySelectorAll('a[href="javascript:void(0)"]').forEach(a => a.remove());
+    return el;
+  }
 
-  // 2. Top Questions (not inside a group)
-  // These are .faq-sb-heading inside .faq-top-queries section
-  const topQueriesHeader = element.querySelector('.faq-sb-top-queries.qst');
-  if (topQueriesHeader) {
-    // Next sibling is the container for the top questions
-    let topSection = topQueriesHeader.nextElementSibling;
-    if (topSection && topSection.classList.contains('faq-top-queries')) {
-      // For each heading
-      getChildren(topSection, '.faq-sb-heading').forEach(headingDiv => {
-        const qA = headingDiv.querySelector('a.faq-sb-acc-heading');
-        let title = '';
-        if (qA) {
-          const qa = qA.cloneNode(true);
-          Array.from(qa.querySelectorAll('i')).forEach(i => i.remove());
-          title = qa.textContent.trim();
-        }
-        // The answer is in the .faq-acc-inner-content inside the headingDiv or as next sibling
-        let answerDiv = headingDiv.querySelector('.faq-acc-inner-content');
-        if (!answerDiv) {
-          let ns = headingDiv.nextElementSibling;
-          if (ns && ns.classList.contains('faq-acc-inner-content')) {
-            answerDiv = ns;
+  // Helper: Get question string for dedupe
+  function getQuestionKey(anchor) {
+    if (!anchor) return '';
+    // Use only visible text (skip icons)
+    return Array.from(anchor.childNodes)
+      .filter(n => n.nodeType === Node.TEXT_NODE)
+      .map(n => n.textContent)
+      .join(' ').replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+
+  // Extract accordion items from structured groups
+  // (FAQ categories and Top Questions)
+  function extractAccordionItems(element) {
+    const items = [];
+    // 1. Category Accordions
+    element.querySelectorAll(':scope .faq-sb-acc-group').forEach(group => {
+      group.querySelectorAll(':scope .faq-sb-acc-content').forEach(item => {
+        const anchor = item.querySelector('.faq-sb-inner-content > a.faq-sb-acc-heading');
+        if (!anchor) return;
+        const questionKey = getQuestionKey(anchor);
+        if (seenQuestions.has(questionKey)) return;
+        seenQuestions.add(questionKey);
+        // Use a div for the title cell with only the text
+        const titleDiv = document.createElement('div');
+        titleDiv.textContent = getQuestionKey(anchor);
+        // Find the answer content
+        const href = anchor.getAttribute('href');
+        let contentCell = '';
+        if (href && href.startsWith('#')) {
+          const contentId = href.slice(1);
+          const content = item.querySelector(`#${contentId}`);
+          if (content) {
+            cleanContent(content);
+            // If there's only one child (usually <p>), use that directly
+            if (content.children.length === 1) {
+              contentCell = content.children[0];
+            } else {
+              contentCell = Array.from(content.childNodes);
+            }
           }
         }
-        rows.push([title, answerDiv]);
+        items.push([titleDiv, contentCell]);
+      });
+    });
+    // 2. Top Questions Accordions
+    const topBlock = element.querySelector(':scope .faq-top-queries');
+    if (topBlock) {
+      topBlock.querySelectorAll(':scope .faq-sb-heading').forEach(heading => {
+        const anchor = heading.querySelector('a.faq-sb-acc-heading');
+        if (!anchor) return;
+        const questionKey = getQuestionKey(anchor);
+        if (seenQuestions.has(questionKey)) return;
+        seenQuestions.add(questionKey);
+        const titleDiv = document.createElement('div');
+        titleDiv.textContent = getQuestionKey(anchor);
+        const href = anchor.getAttribute('href');
+        let contentCell = '';
+        if (href && href.startsWith('#')) {
+          const contentId = href.slice(1);
+          const content = heading.querySelector(`#${contentId}`);
+          if (content) {
+            cleanContent(content);
+            if (content.children.length === 1) {
+              contentCell = content.children[0];
+            } else {
+              contentCell = Array.from(content.childNodes);
+            }
+          }
+        }
+        items.push([titleDiv, contentCell]);
       });
     }
+    return items;
   }
 
-  // Only include rows that have both a title and content
-  const finalRows = [rows[0]];
-  for (let i = 1; i < rows.length; i++) {
-    if (rows[i][0] && rows[i][1]) finalRows.push(rows[i]);
-  }
+  // Compose the table rows from accordion items
+  extractAccordionItems(element).forEach(([title, content]) => {
+    rows.push([title, content]);
+  });
 
-  // Build and replace
-  const table = WebImporter.DOMUtils.createTable(finalRows, document);
-  element.replaceWith(table);
+  // Create table and replace element
+  const block = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(block);
 }

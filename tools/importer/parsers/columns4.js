@@ -1,38 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the .row containing columns
+  // Find the '.row' containing the columns
   const row = element.querySelector('.row');
   if (!row) return;
 
-  // Get all immediate children of .row as columns
-  const columns = Array.from(row.children);
+  // Get all direct column divs
+  const cols = Array.from(row.children).filter(child => child.classList.contains('col-12'));
 
-  // Build the columns cell array by referencing each column's direct children
-  // Preserves all content within each column (icons, headings, paragraphs, links)
-  const colCells = columns.map(col => {
-    // We want to reference all direct children of the column (no clones)
-    const colContent = [];
-    Array.from(col.childNodes).forEach(child => {
-      // Only include elements and non-empty text nodes
-      if (child.nodeType === 1 || (child.nodeType === 3 && child.textContent.trim())) {
-        colContent.push(child);
-      }
-    });
-    // If only one element, return it directly for cleaner tables
-    if (colContent.length === 1) return colContent[0];
-    // If multiple, return as an array
-    return colContent;
+  // For each column, extract the main content, preserving structure
+  const cells = cols.map(col => {
+    if (col.querySelector('.ig-content-blck.contact-phone-opt')) {
+      const icon = col.querySelector('.ig-icon-blck');
+      const content = col.querySelector('.ig-content-blck.contact-phone-opt');
+      const callNum = col.querySelector('.callTonumber-block');
+      const arr = [icon, content, callNum].filter(Boolean);
+      return arr;
+    }
+    const feedback = col.querySelector('a.contact-email-opt');
+    if (feedback) return feedback;
+    const chat = col.querySelector('a.contact-us-contact-option-chat');
+    if (chat) return chat;
+    return col;
   });
 
-  // The first row is the header row per spec
+  // Correct header row: a single cell (one column)
   const headerRow = ['Columns (columns4)'];
-  // The second row is the actual columns content
-  const bodyRow = colCells;
+  // Compose block table: first row is header (1 cell), second is cells (N columns)
+  const tableRows = [headerRow, cells];
 
-  const cells = [headerRow, bodyRow];
-
-  // Create the table block
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  // Replace the original element with the block
-  element.replaceWith(block);
+  // Create table and replace original element
+  const table = WebImporter.DOMUtils.createTable(tableRows, document);
+  element.replaceWith(table);
 }

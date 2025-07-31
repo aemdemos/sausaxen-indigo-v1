@@ -1,18 +1,16 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the innermost row containing the columns
+  // Find the row containing the stats
   const row = element.querySelector('.row');
   if (!row) return;
-
-  // Get all immediate .innerwrap-stats children (columns)
+  // Collect all columns (each stat)
   const columns = Array.from(row.querySelectorAll(':scope > .innerwrap-stats'));
-  if (!columns.length) return;
+  if (columns.length === 0) return;
 
-  // Build the table: header is a single cell (one column), second row has N columns
-  const cells = [
-    ['Columns (columns12)'], // header row, single cell
-    columns                 // content row, as many columns as found
-  ];
+  // Header row: exactly one cell, per the requirements
+  const headerRow = ['Columns (columns12)'];
+  const contentRow = columns;
+  const cells = [headerRow, contentRow];
 
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);

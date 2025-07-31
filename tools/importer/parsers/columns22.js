@@ -1,47 +1,44 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Combine all left navigation blocks into a single array for one cell
-  function getLeftColumn(element) {
-    const accordion = element.querySelector('.ig-footer-accordion');
-    if (!accordion) return '';
-    // Get first three nav columns
-    const navCols = Array.from(accordion.querySelectorAll('.col-12.col-md-3.ig-acc-sitemap')).slice(0, 3);
-    const leftCellContent = [];
-    navCols.forEach(col => {
-      Array.from(col.children).forEach(child => {
-        if (child.textContent.trim() !== '' || child.querySelector('ul, button, .footer-links.section')) {
-          leftCellContent.push(child);
-        }
-      });
-    });
-    // Fallback
-    if (leftCellContent.length === 0) return '';
-    return leftCellContent;
+  // Helper: get direct child with class
+  function getDirectChildByClass(parent, className) {
+    return Array.from(parent.children).find((el) => el.classList.contains(className));
   }
 
-  // Combine all right-side content into a single array for one cell
-  function getRightColumn(element) {
-    const mainRow = element.querySelector('.row');
-    if (!mainRow) return '';
-    const rightCol = mainRow.querySelector('.col-lg-3.social-downloads');
-    if (!rightCol) return '';
-    const rightCellContent = [];
-    Array.from(rightCol.children).forEach(child => {
-      if (child.textContent.trim() !== '' || child.querySelector('img,ul,h6,div')) {
-        rightCellContent.push(child);
+  // 1. Left column: All navigation links (Get to Know Us, Services, Quick links) grouped into one div
+  const accordion = element.querySelector('#footer-accordion');
+  let leftColContent = document.createElement('div');
+  if (accordion) {
+    // Only keep first three .ig-acc-sitemap (major columns)
+    const cols = Array.from(accordion.querySelectorAll('.ig-acc-sitemap')).slice(0, 3);
+    cols.forEach((col) => {
+      // Find button (header) and ul (list) - in order
+      const button = col.querySelector('button');
+      const ul = col.querySelector('ul');
+      if (button) leftColContent.appendChild(button);
+      if (ul) leftColContent.appendChild(ul);
+    });
+  }
+
+  // 2. Right column: Social, downloads, awards, etc.
+  const row = element.querySelector('.row');
+  let rightCol = getDirectChildByClass(row, 'social-downloads');
+  let rightColContent = document.createElement('div');
+  if (rightCol) {
+    // Filter out empty textblock.section children
+    Array.from(rightCol.children).forEach((child) => {
+      if (!(child.classList && child.classList.contains('textblock') && child.textContent.trim() === '')) {
+        rightColContent.appendChild(child);
       }
     });
-    // Also aggregate all .footer-links.section (awards) inside rightCol if not already in content
-    Array.from(rightCol.querySelectorAll('.footer-links.section')).forEach(section => {
-      if (!rightCellContent.includes(section)) rightCellContent.push(section);
-    });
-    return rightCellContent;
   }
 
-  const headerRow = ['Columns (columns22)'];
-  const leftCol = getLeftColumn(element);
-  const rightCol = getRightColumn(element);
-  const tableRows = [headerRow, [leftCol, rightCol]];
-  const table = WebImporter.DOMUtils.createTable(tableRows, document);
+  // Compose the block table as 2 columns, matching the example
+  const cells = [
+    ['Columns (columns22)'],
+    [leftColContent, rightColContent],
+  ];
+
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }
