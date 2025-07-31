@@ -1472,7 +1472,7 @@
   justify-content: flex-end;
   min-width: 0;
   min-height: 140px;
-  padding: 0 4px 18px 4px; /* bottom padding increases space below text */
+  padding: 0 4px 18px 4px;
   background: none;
   box-shadow: none;
   border-radius: 0;
@@ -1490,7 +1490,7 @@
   white-space: pre-line;
   word-break: keep-all;
   max-width: 130px;
-  margin-top: 34px; /* moves text block down in the cell */
+  margin-top: 34px;
 }
 
 @media (max-width: 700px) {
@@ -1511,4 +1511,91 @@
     max-width: 100%;
     margin-top: 20px;
   }
+}
+
+
+.columns {
+  /* Background & outline for pill effect */
+  background: #fff;
+  border-radius: 12px;
+  margin: 0;
+  padding: 0;
+  border: 1.5px solid #e5e7eb;
+  box-shadow: 0 1px 6px 0 rgba(60,60,60,0.045);
+  /* Remove any inherited box-shadows that might stack */
+  box-sizing: border-box;
+}
+
+.columns > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 38px;
+  height: 38px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  /* Remove any inherited shadow or border from inner row */
+  box-shadow: none;
+  border: none;
+}
+
+.columns > div > div {
+  /* Single section behavior: fill, center and match pill height */
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: transparent;
+  height: 100%;
+  min-height: 36px;
+  min-width: 0;
+  border: none;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 0 18px;
+  font-size: 14px;
+  color: #6b7280;
+  box-shadow: none;
+  margin: 0;
+}
+
+/* Only-child: fully rounded, no border, transparent bg (inherits from parent) */
+.columns > div > div:only-child {
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+}
+
+/* Responsive stacking for narrow screens */
+@media (max-width: 600px) {
+  .columns > div {
+    flex-direction: column;
+    min-height: 0;
+    height: auto;
+    border-radius: 12px;
+  }
+  .columns > div > div {
+    border-radius: 0;
+    min-width: 0;
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+  }
+  .columns > div > div:only-child {
+    border-radius: 12px;
+  }
+}
+
+/* Prevent text overflow */
+.columns > div > div > * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
 }
