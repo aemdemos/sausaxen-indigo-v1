@@ -313,84 +313,6 @@
 }
 
 
-.columns.columns19 {
-  background: #f7f7fb;
-  width: 100%;
-  padding: 48px 0;
-  box-sizing: border-box;
-}
-
-.columns.columns19 > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 40px;
-  box-sizing: border-box;
-  gap: 0 72px;
-}
-
-.columns.columns19 > div > div {
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  min-height: 0;
-  flex: 0 1 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-.columns.columns19 > div > div > * {
-  width: 100%;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-.columns.columns19 > div > div > p {
-  color: #22232a;
-  font-size: 13px;
-  font-family: Inter, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.4;
-  margin: 0;
-  padding: 0;
-}
-@media (width <= 900px) {
-  .columns.columns19 > div {
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 700px;
-    padding: 0 12px;
-    gap: 24px 0;
-  }
-
-  .columns.columns19 > div > div {
-    flex: 0 1 48%;
-    margin-bottom: 16px;
-  }
-}
-@media (width <= 540px) {
-  .columns.columns19 > div {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 95vw;
-    padding: 0 4vw;
-    gap: 0;
-  }
-
-  .columns.columns19 > div > div {
-    flex: 1 1 100%;
-    margin-bottom: 12px;
-  }
-}
-
-
 .columns.columns21 {
   background: #f7f8fc;
   padding: 40px 0;
@@ -1515,14 +1437,12 @@
 
 
 .columns {
-  /* Background & outline for pill effect */
   background: #fff;
   border-radius: 12px;
   margin: 0;
   padding: 0;
   border: 1.5px solid #e5e7eb;
   box-shadow: 0 1px 6px 0 rgba(60,60,60,0.045);
-  /* Remove any inherited box-shadows that might stack */
   box-sizing: border-box;
 }
 
@@ -1539,13 +1459,11 @@
   padding: 0;
   margin: 0;
   gap: 0;
-  /* Remove any inherited shadow or border from inner row */
   box-shadow: none;
   border: none;
 }
 
 .columns > div > div {
-  /* Single section behavior: fill, center and match pill height */
   flex: 1 1 0;
   display: flex;
   align-items: center;
@@ -1563,15 +1481,11 @@
   box-shadow: none;
   margin: 0;
 }
-
-/* Only-child: fully rounded, no border, transparent bg (inherits from parent) */
 .columns > div > div:only-child {
   border-radius: 12px;
   border: none;
   background: transparent;
 }
-
-/* Responsive stacking for narrow screens */
 @media (max-width: 600px) {
   .columns > div {
     flex-direction: column;
@@ -1590,12 +1504,92 @@
     border-radius: 12px;
   }
 }
-
-/* Prevent text overflow */
 .columns > div > div > * {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
   padding: 0;
+}
+
+
+.columns.columns19 {
+  background: #f7f7fb;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 18px 0 18px 0;
+  width: 100%;
+  display: block; /* Remove flex so padding works as expected */
+}
+
+.columns.columns19 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 56px; /* Slightly more gap for better balance */
+  width: 100%;
+  max-width: 100%;
+  padding: 0 36px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.columns.columns19 > div > div {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.columns.columns19 > div > div > p {
+  color: #22232a;
+  font-size: 13px;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+  max-width: 100%;
+}
+
+/* Responsive: two columns on medium, stack on small screens */
+@media (max-width: 900px) {
+  .columns.columns19 > div {
+    flex-wrap: wrap;
+    gap: 24px 0;
+    padding: 0 12px;
+    max-width: 700px;
+  }
+  .columns.columns19 > div > div {
+    flex: 0 1 48%;
+    margin-bottom: 16px;
+  }
+}
+@media (max-width: 540px) {
+  .columns.columns19 > div {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 95vw;
+    padding: 0 4vw;
+    gap: 0;
+  }
+  .columns.columns19 > div > div {
+    flex: 1 1 100%;
+    margin-bottom: 12px;
+  }
+}
+
+/* Remove any unwanted background, border, or shadow from previous columns/card styles */
+.columns.columns19,
+.columns.columns19 > div,
+.columns.columns19 > div > div {
+  background: #f7f7fb;
+  border: none;
+  box-shadow: none;
 }
