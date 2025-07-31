@@ -1,37 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Collect all text content from the element and its descendants
-  // as a single block for the cell if any present.
-  // For robustness, include all direct children (including elements with no text)
-  const contentNodes = Array.from(element.childNodes).filter(
-    node => node.nodeType !== Node.COMMENT_NODE
-  );
-
-  // If there is at least one non-empty text node or element, add it to the cell
-  let cellContent;
-  if (contentNodes.length > 0) {
-    // If all child nodes are empty whitespace text nodes, fallback to ''
-    const hasVisible = contentNodes.some(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        return node.textContent.trim().length > 0;
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        return node.textContent.trim().length > 0;
-      }
-      return false;
-    });
-    if (hasVisible) {
-      cellContent = contentNodes;
-    } else {
-      cellContent = [''];
+  // Table header must exactly match the example: one cell, 'Embed'.
+  const headerRow = ['Embed'];
+  
+  // The content row should contain all content (text, HTML) from the .cmp-embed block.
+  // If .cmp-embed is empty, the cell should be an empty string, per block guidelines.
+  let contentCell = '';
+  const embedDiv = element.querySelector('.cmp-embed');
+  if (embedDiv) {
+    // Gather all child nodes (including text) from .cmp-embed
+    const nodes = Array.from(embedDiv.childNodes)
+      .filter(node => (node.nodeType === Node.ELEMENT_NODE && node.textContent.trim()) || (node.nodeType === Node.TEXT_NODE && node.textContent.trim()));
+    if (nodes.length === 1) {
+      contentCell = nodes[0];
+    } else if (nodes.length > 1) {
+      contentCell = nodes;
     }
-  } else {
-    cellContent = [''];
+    // If .cmp-embed has no children/text, leave contentCell as empty string.
   }
 
-  const cells = [
-    ['Embed'],
-    [cellContent]
-  ];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    [contentCell]
+  ], document);
   element.replaceWith(table);
 }

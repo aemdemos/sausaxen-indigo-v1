@@ -1,25 +1,35 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the main <img> for the background
-  let img = null;
-  const imgs = element.querySelectorAll('img');
-  for (let i = 0; i < imgs.length; i++) {
-    const src = imgs[i].getAttribute('src') || '';
-    // Only use if not a data URI and is not clearly a spacer
-    if (src && !src.startsWith('data:')) {
-      img = imgs[i];
-      break;
+  // Locate the background image: prefer the visible desktop image
+  let imgEl = null;
+  const bckgrdTupple = element.querySelector('.bckgrd-tupple');
+  if (bckgrdTupple) {
+    imgEl = bckgrdTupple.querySelector('img.xs-hidden') || bckgrdTupple.querySelector('img');
+  }
+
+  // Locate the banner content
+  let contentCell = '';
+  if (bckgrdTupple) {
+    const contentDiv = bckgrdTupple.querySelector('.banner-content');
+    if (contentDiv) {
+      // If there's any child with non-empty content, include all children in the cell
+      const hasNonEmpty = Array.from(contentDiv.children).some(
+        (child) => child.textContent.trim().length > 0
+      );
+      if (hasNonEmpty) {
+        contentCell = Array.from(contentDiv.children);
+      } else if (contentDiv.textContent && contentDiv.textContent.trim().length > 0) {
+        // If there is non-element text inside contentDiv
+        contentCell = contentDiv.textContent.trim();
+      }
     }
   }
 
-  // Find the content section (could be empty)
-  const bannerContent = element.querySelector('.banner-content');
-
-  // Compose the rows as per spec: header, image, content
-  const cells = [];
-  cells.push(['Hero (hero27)']);
-  cells.push([img ? img : '']);
-  cells.push([bannerContent ? bannerContent : '']);
+  // Prepare table rows
+  const headerRow = ['Hero (hero27)'];
+  const imageRow = [imgEl ? imgEl : ''];
+  const contentRow = [contentCell];
+  const cells = [headerRow, imageRow, contentRow];
 
   const block = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(block);

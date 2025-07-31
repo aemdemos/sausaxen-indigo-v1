@@ -1,47 +1,46 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Block name header as required
+  // Table block header
   const headerRow = ['Table (striped, bordered)'];
 
-  // Find the active tab-pane (for the screenshot, we use the first tab-pane, which is active)
-  const tabPanes = element.querySelectorAll('.tab-pane');
-  let activeTab = Array.from(tabPanes).find(tp => tp.classList.contains('active')) || tabPanes[0];
+  // Find the main tab-content block, which holds all the tab panels
+  const tabContentContainer = element.querySelector('.tab-content');
+  if (!tabContentContainer) return;
 
-  // Find the main textblock section in the active tab (contains all content)
-  let textblock = activeTab.querySelector('.textblock.section');
-  let contentRoot = textblock ? (textblock.querySelector('.container') || textblock) : activeTab;
+  // Get the nav tab names in order, as in the rendered tabs
+  const navTabs = element.querySelectorAll('.nav.nav-tabs a');
+  const tabNames = Array.from(navTabs).map(a => a.textContent.trim());
 
-  // Collect all visible content nodes (elements and text) in order, including whitespace-only text nodes
-  // (but skip empty nodes and clearfix divs)
-  const contentElements = [];
-  for (let node of Array.from(contentRoot.childNodes)) {
-    if (node.nodeType === 3) {
-      // Text node
-      if (node.textContent && node.textContent.trim() !== '') {
-        const span = document.createElement('span');
-        span.textContent = node.textContent;
-        contentElements.push(span);
-      }
-    } else if (node.nodeType === 1) {
-      // Element node
-      if (node.classList.contains('clearfix')) continue; // skip clearfix
-      contentElements.push(node);
+  // Find each .tab-pane (each country)
+  const tabPanes = Array.from(tabContentContainer.children).filter(div => div.classList.contains('tab-pane'));
+
+  // For each tab/country: create a cell with a heading and all its content, referencing existing elements.
+  const tabCells = tabPanes.map((tabPane, idx) => {
+    // Wrap the tab's content in a div for one cell
+    const div = document.createElement('div');
+
+    // Add a heading for the tab name, using <h3> for clarity
+    const h3 = document.createElement('h3');
+    h3.textContent = tabNames[idx] || `Tab ${idx+1}`;
+    div.appendChild(h3);
+
+    // Find the .textblock.section inside the tabPane
+    const textblock = tabPane.querySelector('.textblock.section');
+    if (textblock) {
+      Array.from(textblock.children).forEach(child => {
+        // Skip "clearfix" style or empty non-content divs
+        if (child.classList.contains('clearfix')) return;
+        // Reference the existing element, do not clone
+        div.appendChild(child);
+      });
     }
-  }
+    return [div];
+  });
 
-  if (!contentElements.length) {
-    contentElements.push(contentRoot);
-  }
+  // Compose final cells array for the block table: header, then one row per tab/country
+  const cells = [headerRow, ...tabCells];
 
-  // Compose the cells array for the block table
-  const cells = [
-    headerRow,
-    [contentElements]
-  ];
-
-  // Create the block table
+  // Create the table block and replace the original element
   const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element with the new block table
   element.replaceWith(block);
 }

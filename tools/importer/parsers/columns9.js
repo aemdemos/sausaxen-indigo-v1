@@ -1,41 +1,33 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Build the header row
-  const headerRow = ['Columns (columns9)'];
+  // Select all direct children that are column candidates
+  // We want to keep the column structure, but ensure the header row is a single cell
+  // The main columns are:
+  // - .cmp-custom-drop-down (first instance) -- One Way
+  // - .widget-container__filter-bar__pax-selection
+  // - .widget-container__filter-bar__specailFare
+  // - .widget-container__filter-bar__currency-desktop
 
-  // --- FIRST ROW (2 columns) ---
-  // Left/top cell: Trip type + Pax selection
-  const topLeft = document.createElement('div');
-  const tripType = element.querySelector(':scope > .cmp-custom-drop-down');
-  const paxSelection = element.querySelector(':scope > .widget-container__filter-bar__pax-selection');
-  if (tripType) topLeft.appendChild(tripType);
-  if (paxSelection) topLeft.appendChild(paxSelection);
+  const columns = [];
+  const oneWay = element.querySelector('.cmp-custom-drop-down');
+  if (oneWay) columns.push(oneWay);
 
-  // Right/top cell: align to screenshot intent (empty or 'Special Fares' if it fits better visually)
-  // But in the HTML, there is no image or visually prominent content for this cell. We'll leave it empty.
-  const topRight = document.createElement('div');
+  const pax = element.querySelector('.widget-container__filter-bar__pax-selection');
+  if (pax) columns.push(pax);
 
-  // --- SECOND ROW (2 columns) ---
-  // Left/bottom cell: Special fares (if present)
-  const bottomLeft = document.createElement('div');
-  const specialFares = element.querySelector(':scope > .widget-container__filter-bar__specailFare');
-  if (specialFares) bottomLeft.appendChild(specialFares);
+  const specialFare = element.querySelector('.widget-container__filter-bar__specailFare');
+  if (specialFare) columns.push(specialFare);
 
-  // Right/bottom cell: Currency dropdown (if present)
-  const bottomRight = document.createElement('div');
-  const currency = element.querySelector(':scope > .widget-container__filter-bar__currency-desktop');
-  if (currency) bottomRight.appendChild(currency);
+  const currency = element.querySelector('.widget-container__filter-bar__currency-desktop');
+  if (currency) columns.push(currency);
 
-  // Compose the table in 2x2 grid following the markdown example's structure
+  // The header row must be a single cell array:
   const cells = [
-    headerRow,
-    [topLeft, topRight],
-    [bottomLeft, bottomRight]
+    ['Columns (columns9)'],
+    columns
   ];
-
-  // Create the block table
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-
-  // Replace the original element
-  element.replaceWith(block);
+  
+  // Create block table
+  const table = WebImporter.DOMUtils.createTable(cells, document);
+  element.replaceWith(table);
 }

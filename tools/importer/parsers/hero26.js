@@ -1,41 +1,55 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as required
+  // Header row: must match the block name exactly
   const headerRow = ['Hero (hero26)'];
 
-  // Background image row (none present in this HTML)
+  // Row 2: Background image (none present in this example)
   const backgroundRow = [''];
 
-  // Compose content row
-  // For this block, combine all visible content from the main content column into a single cell
-  let mainCol = element.querySelector('.col-md-10.col-9');
-  if (!mainCol) {
-    // fallback to first child div
-    mainCol = element.querySelector('div');
-  }
+  // Row 3: Content (title, subheading, CTA)
+  // Find all direct children columns
+  const cols = element.querySelectorAll(':scope > div');
 
-  let contentCell = '';
-  if (mainCol) {
-    // Gather all nodes contributing to visible content (text, headings, links, etc.)
-    // We reference existing child nodes without cloning to preserve structure and semantics
-    const nodes = Array.from(mainCol.childNodes).filter(node => {
-      // Filter out empty text nodes and comment nodes
-      if (node.nodeType === Node.COMMENT_NODE) return false;
-      if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) return false;
-      return true;
-    });
-    // If we have only one node, use it directly; otherwise, wrap in a div
-    if (nodes.length === 1) {
-      contentCell = nodes[0];
-    } else if (nodes.length > 1) {
-      const wrapper = document.createElement('div');
-      nodes.forEach(node => wrapper.appendChild(node));
-      contentCell = wrapper;
+  let content = [];
+  // Get column with h2 and subheading (generally col-md-10 or col-9)
+  let textCol = null;
+  for (const col of cols) {
+    if (col.querySelector('h2')) {
+      textCol = col;
+      break;
     }
   }
-  if (!contentCell) contentCell = '';
+  if (textCol) {
+    const h2 = textCol.querySelector('h2');
+    if (h2 && h2.textContent.trim()) {
+      content.push(h2);
+    }
+    // subheading: in this HTML it's a <p> inside an <a>, but is empty in this example
+    const subhead = textCol.querySelector('a > p');
+    if (subhead && subhead.textContent.trim()) {
+      content.push(subhead);
+    }
+  }
 
-  const contentRow = [contentCell];
+  // Get CTA if present (typically in col-md-2)
+  let ctaCol = null;
+  for (const col of cols) {
+    if (col.querySelector('a.view-all-cta')) {
+      ctaCol = col;
+      break;
+    }
+  }
+  if (ctaCol) {
+    const cta = ctaCol.querySelector('a.view-all-cta');
+    if (cta && cta.textContent.trim()) {
+      content.push(cta);
+    }
+  }
+
+  // Always provide a single cell (can be empty if no content)
+  const contentRow = [content];
+
+  // Assemble table
   const cells = [headerRow, backgroundRow, contentRow];
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);

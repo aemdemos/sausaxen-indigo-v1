@@ -1,19 +1,27 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the row containing the stat columns
-  const statsRow = element.querySelector('.stats-wrapper .row');
-  if (!statsRow) return;
+  // Find the .row containing the columns
+  const row = element.querySelector('.row');
+  if (!row) return;
 
-  // Extract all direct child .innerwrap-stats elements (each is a column)
-  const statDivs = Array.from(statsRow.querySelectorAll(':scope > .innerwrap-stats'));
-  if (statDivs.length === 0) return;
+  // Gather all direct child divs with the innerwrap-stats class (each column)
+  const columns = Array.from(row.children).filter(
+    (child) => child.classList.contains('innerwrap-stats')
+  );
+  if (columns.length === 0) return;
 
-  // Table header: single cell as per spec
+  // Header row: only one cell, as per the markdown example
   const headerRow = ['Columns (columns5)'];
-  // Content row: one cell per column
-  const contentRow = statDivs;
+  // Data row: one cell per column
+  const dataRow = columns;
 
-  const cells = [headerRow, contentRow];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // Create the table with exactly one cell in header row, and N cells in data row
+  const table = WebImporter.DOMUtils.createTable([headerRow, dataRow], document);
+  // Set colspan for the header cell if there are multiple columns
+  if (columns.length > 1) {
+    const th = table.querySelector('th');
+    if (th) th.setAttribute('colspan', columns.length);
+  }
+
   element.replaceWith(table);
 }

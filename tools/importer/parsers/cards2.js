@@ -1,45 +1,43 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as per example
-  const headerRow = ['Cards (cards2)'];
-  const rows = [headerRow];
-
-  // Find all card wrappers
-  const cardContainers = element.querySelectorAll('.wrap-foodmenu');
-
-  cardContainers.forEach(card => {
-    // IMAGE cell: Use the <picture> element (references the image)
-    const picture = card.querySelector('picture');
-
-    // TEXT cell: Name (as <strong>) and price (with icon)
-    const contentDiv = card.querySelector('.wrapfoodcontent');
-    let textContent = document.createElement('div');
-    
-    // Title
-    const nameDiv = contentDiv && contentDiv.querySelector('.wrap-foodname');
-    if (nameDiv && nameDiv.textContent.trim()) {
-      const strong = document.createElement('strong');
-      strong.textContent = nameDiv.textContent.trim();
-      textContent.appendChild(strong);
+  // Prepare the table header as in the example
+  const rows = [['Cards (cards2)']];
+  // The cards are direct children of the .row.foodmenumargin container
+  const row = element.querySelector('.row.foodmenumargin');
+  if (!row) {
+    // Element structure is not as expected, do nothing
+    return;
+  }
+  // For each direct .col-* > .wrap-foodmenu within the row
+  const cardColumns = row.querySelectorAll(':scope > div');
+  cardColumns.forEach((col) => {
+    const card = col.querySelector('.wrap-foodmenu');
+    if (!card) return;
+    // First cell: the image (the <picture> element)
+    const pic = card.querySelector('picture');
+    // Second cell: text content (title and price)
+    const content = card.querySelector('.wrapfoodcontent');
+    if (!pic || !content) return;
+    // Title: .wrap-foodname
+    const foodName = content.querySelector('.wrap-foodname');
+    // Price and type: .wrap-foodprice (may contain icon)
+    const foodPrice = content.querySelector('.wrap-foodprice');
+    // Compose text cell:
+    // Use a <div> containing the foodName in a <strong> or <h3>, and the foodPrice (with icons)
+    const textDiv = document.createElement('div');
+    if (foodName) {
+      const h3 = document.createElement('h3');
+      h3.textContent = foodName.textContent.trim();
+      textDiv.appendChild(h3);
     }
-
-    // Price (with veg/non-veg icon)
-    const priceDiv = contentDiv && contentDiv.querySelector('.wrap-foodprice');
-    if (priceDiv) {
-      // Ensure spacing between title and price
-      if (textContent.childNodes.length) {
-        textContent.appendChild(document.createElement('br'));
-      }
-      textContent.appendChild(priceDiv);
+    if (foodPrice) {
+      // Instead of cloning, move the actual element (since price is always after foodName)
+      textDiv.appendChild(foodPrice);
     }
-
-    rows.push([
-      picture,
-      textContent
-    ]);
+    // Add the row: [image, text]
+    rows.push([pic, textDiv]);
   });
-
-  // Create the block table and replace the element
+  // Create the block table and replace the original element
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

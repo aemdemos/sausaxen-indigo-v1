@@ -1,35 +1,45 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // 1. Table header row
+  // Table header must match the block name exactly as per requirements
   const headerRow = ['Hero (hero14)'];
 
-  // 2. Background image row: prefer first non-base64 image
+  // Extract the key content elements
+  // 1. Get the background image (prefer non-base64)
   let backgroundImg = null;
-  const imgs = element.querySelectorAll('img');
-  for (const img of imgs) {
-    if (img.src && !img.src.startsWith('data:')) {
-      backgroundImg = img;
-      break;
+  const bckgrdTupple = element.querySelector('.bckgrd-tupple');
+  if (bckgrdTupple) {
+    const imgs = bckgrdTupple.querySelectorAll('img');
+    // Prefer the first not-data: image
+    for (const img of imgs) {
+      if (img.src && !img.src.startsWith('data:')) {
+        backgroundImg = img;
+        break;
+      }
     }
-  }
-  const backgroundRow = [backgroundImg ? backgroundImg : ''];
-
-  // 3. Content row: collect banner-content, but make cell truly empty if all its text content is empty
-  let contentRow = [''];
-  const bannerContent = element.querySelector('.banner-content');
-  if (bannerContent) {
-    // Check if any child node has non-empty text
-    const hasContent = Array.from(bannerContent.childNodes || []).some(node => {
-      return node.nodeType === Node.ELEMENT_NODE && node.textContent.trim().length > 0;
-    });
-    if (hasContent) {
-      // If there's real content, include the whole bannerContent
-      contentRow = [bannerContent];
+    // Fallback: if only base64 image exists
+    if (!backgroundImg && imgs.length > 0) {
+      backgroundImg = imgs[0];
     }
   }
 
-  // 4. Assemble block table
-  const cells = [headerRow, backgroundRow, contentRow];
-  const table = WebImporter.DOMUtils.createTable(cells, document);
+  // 2. Get the text content (banner-content)
+  let contentBlock = null;
+  if (bckgrdTupple) {
+    const bannerContent = bckgrdTupple.querySelector('.banner-content');
+    // Only include if it contains any meaningful element or text
+    if (bannerContent && (bannerContent.textContent.trim().length > 0 || bannerContent.children.length > 0)) {
+      contentBlock = bannerContent;
+    }
+  }
+
+  // Compose rows (always 3 rows: header, image, text)
+  const rows = [
+    headerRow,
+    [backgroundImg ? backgroundImg : ''],
+    [contentBlock ? contentBlock : '']
+  ];
+
+  // Create and replace
+  const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }
