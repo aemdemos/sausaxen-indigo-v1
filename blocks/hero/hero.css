@@ -1,4 +1,4 @@
-/* Disable descending specificity warnings */
+/* Disable no-descending-specificity globally for this file */
 /* stylelint-disable no-descending-specificity */
 
 .hero-container .hero-wrapper {
@@ -52,42 +52,6 @@
   .hero {
     padding: 40px 32px;
   }
-}
-
-.hero.hero27 {
-  width: 100vw;
-  max-width: 100vw;
-  margin: 0;
-  padding: 0;
-  height: 120px;
-  min-height: 0;
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat transparent;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  overflow: hidden;
-  box-sizing: border-box;
-  border: none;
-  box-shadow: none;
-}
-
-.hero.hero27 > div {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  display: flex;
-}
-
-.hero.hero27 > div > div {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 0;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
 
 .hero > div:first-child {
@@ -156,7 +120,7 @@
 .hero > div:first-child h2 {
   color: #fff;
   font-size: 2.2rem;
-  font-family: Quicksand, "Arial Rounded MT Arial", Arial, sans-serif;
+  font-family: Quicksand, Arial Rounded MT Arial, Arial, sans-serif;
   font-weight: bold;
   margin: 0 0 18px;
   line-height: 1.1;
@@ -312,12 +276,10 @@
   display: block;
 }
 
-/* Hide empty first child div for a tighter block */
 .hero.hero26 > div:first-child {
   display: none;
 }
 
-/* Ensure last child (the content wrapper) is block and flush to top/left */
 .hero.hero26 > div:last-child {
   display: block;
   padding: 0;
@@ -326,14 +288,12 @@
   box-shadow: none;
 }
 
-/* Ensure immediate inner div has no spacing */
 .hero.hero26 > div:last-child > div {
   margin: 0;
   padding: 0;
   display: block;
 }
 
-/* Heading: flush to top/left, minimal height, correct font */
 .hero.hero26 h2 {
   font-family: 'Open Sans', Arial, sans-serif;
   color: #222;
@@ -348,14 +308,12 @@
   box-shadow: none;
 }
 
-/* Hide any "View All" links or extra content in the block */
 .hero.hero26 p,
 .hero.hero26 a,
 .hero.hero26 .view-all-link {
   display: none;
 }
 
-/* Remove spacing between this block and surrounding layout, if any */
 .hero.hero26 {
   margin-top: 0;
   margin-bottom: 0;
@@ -364,5 +322,71 @@
 @media (width <= 600px) {
   .hero.hero26 h2 {
     font-size: 16px;
+  }
+}
+
+.hero.hero27 {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  background: none;
+  position: relative;
+}
+
+.hero.hero27 > div,
+.hero.hero27 > div > div {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.hero.hero27 picture,
+.hero.hero27 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  max-width: unset;
+  max-height: unset;
+}
+
+.hero.hero27 h1,
+.hero.hero27 h2,
+.hero.hero27 h3,
+.hero.hero27 h4,
+.hero.hero27 h5,
+.hero.hero27 h6,
+.hero.hero27 p,
+.hero.hero27 .button {
+  display: none;
+}
+
+@media (width <= 900px) {
+  .hero.hero27 {
+    height: 120px;
+    min-height: 120px;
   }
 }
