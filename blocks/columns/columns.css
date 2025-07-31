@@ -661,80 +661,6 @@
 }
 
 
-.columns.columns12 {
-  background: #fff;
-  border-radius: 0;
-  box-shadow: none;
-  border: none;
-  border-bottom: 3px solid #6de1e6;
-  margin: 0;
-  padding: 0;
-}
-
-.columns.columns12 > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 0;
-  margin-bottom: 20px;
-  min-height: 150px;
-  gap: 0;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-}
-
-.columns.columns12 > div > div {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 0;
-  min-height: 140px;
-  padding: 0 4px 18px 4px;
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-  position: relative;
-}
-
-.columns.columns12 > div > div > p {
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #222;
-  text-align: center;
-  line-height: 1.35;
-  margin: 0;
-  white-space: pre-line;
-  word-break: keep-all;
-  max-width: 130px;
-  margin-top: 34px;
-}
-
-@media (max-width: 700px) {
-  .columns.columns12 > div {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 5vw;
-    margin-bottom: 10px;
-    min-height: unset;
-    gap: 8px;
-  }
-  .columns.columns12 > div > div {
-    min-height: 72px;
-    max-width: 100%;
-    padding-bottom: 10px;
-  }
-  .columns.columns12 > div > div > p {
-    max-width: 100%;
-    margin-top: 20px;
-  }
-}
-
-
 .columns {
   background: #fff;
   border-radius: 12px;
@@ -1635,8 +1561,6 @@
   box-sizing: border-box;
   font-family: var(--body-font-family, Arial, sans-serif);
 }
-
-/* Correctly target the main columns row */
 .columns.columns11 > div:first-child {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1646,10 +1570,8 @@
   padding: 0 32px;
   box-sizing: border-box;
   width: 100%;
-  align-items: start; /* Ensure all columns start at top */
+  align-items: start;
 }
-
-/* Responsive adjustments */
 @media (max-width: 1100px) {
   .columns.columns11 > div:first-child {
     gap: 28px;
@@ -1670,8 +1592,6 @@
     padding: 0 3vw;
   }
 }
-
-/* Each column stacks its children vertically with no excess space above */
 .columns.columns11 > div:first-child > div {
   display: flex;
   flex-direction: column;
@@ -1681,18 +1601,14 @@
   max-width: 100%;
   width: 100%;
   height: auto;
-  gap: 16px; /* Consistent vertical gap between blocks */
+  gap: 16px;
   padding: 0;
 }
-
-/* Remove default margins on all children for clean stacking */
 .columns.columns11 > div:first-child > div > * {
   margin-top: 0;
   margin-bottom: 0;
   width: 100%;
 }
-
-/* Headings at the very top, consistently spaced */
 .columns.columns11 h3 {
   font-family: var(--heading-font-family, Arial, sans-serif);
   font-size: 18px;
@@ -1704,13 +1620,9 @@
   align-self: flex-start;
   display: block;
 }
-
-/* Remove margin from subsequent h3s in the rightmost column */
 .columns.columns11 > div:first-child > div:last-child h3:not(:first-of-type) {
   margin-top: 22px;
 }
-
-/* Restore vertical stack for each column's link list */
 .columns.columns11 ul {
   list-style: none;
   margin: 0 0 0 0;
@@ -1720,15 +1632,11 @@
   flex-direction: column;
   gap: 8px;
 }
-
-/* Ensure all list items are displayed and spaced */
 .columns.columns11 li {
   margin: 0;
   padding: 0;
   line-height: 1.6;
 }
-
-/* Consistent link style and left alignment */
 .columns.columns11 a {
   color: #444;
   font-size: 15px;
@@ -1745,8 +1653,6 @@
   color: #005faa;
   text-decoration: underline;
 }
-
-/* --- Rightmost column (Social, Download, Awards) --- */
 .columns.columns11 > div:first-child > div:last-child {
   gap: 16px;
   min-width: 180px;
@@ -1754,8 +1660,6 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
-/* Social icons in a row, app badges in a row, awards stacked */
 .columns.columns11 > div:first-child > div:last-child ul {
   width: 100%;
   margin: 0 0 0 0;
@@ -1764,16 +1668,12 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
-/* Social icons row (first ul) */
 .columns.columns11 > div:first-child > div:last-child ul:first-of-type {
   flex-direction: row;
   gap: 12px;
   margin-bottom: 8px;
   align-items: center;
 }
-
-/* App badges row (second ul) */
 .columns.columns11 > div:first-child > div:last-child ul:nth-of-type(2) {
   flex-direction: row;
   gap: 10px;
@@ -1783,8 +1683,6 @@
 .columns.columns11 > div:first-child > div:last-child ul:nth-of-type(2) li {
   margin-bottom: 0;
 }
-
-/* Awards badges vertical stack (third ul) */
 .columns.columns11 > div:first-child > div:last-child ul:nth-of-type(3) li {
   margin-bottom: 8px;
 }
@@ -1794,8 +1692,6 @@
   border-radius: 6px;
   display: block;
 }
-
-/* Images, badges, and icons consistently block-level and sized */
 .columns.columns11 > div:first-child > div:last-child img {
   display: block;
   max-width: 140px;
@@ -1809,8 +1705,6 @@
   height: 37px;
   margin-bottom: 0;
 }
-
-/* Responsive adjustments for images/badges */
 @media (max-width: 700px) {
   .columns.columns11 > div:first-child > div:last-child img {
     max-width: 90px;
@@ -1824,11 +1718,95 @@
     height: 26px;
   }
 }
-
-/* Ensure all text and elements are left-aligned in all columns */
 .columns.columns11 > div:first-child > div,
 .columns.columns11 > div:first-child > div * {
   text-align: left;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+
+.columns.columns12 {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  border-bottom: 3px solid #6be2e3;
+  min-height: 64px;
+  width: 100%;
+}
+
+.columns.columns12 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 64px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  gap: 0;
+}
+
+.columns.columns12 > div > div {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+  min-height: 54px;
+  padding: 0 6px 14px 6px;
+  margin: 0;
+  box-sizing: border-box;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  max-width: 180px;
+}
+
+.columns.columns12 > div > div > * {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 14px;
+  color: #222;
+  text-align: center;
+  line-height: 1.35;
+  font-weight: 500;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 140px;
+}
+
+.columns.columns12 > div > div > *:not(:last-child) {
+  margin-bottom: 7px;
+}
+
+/* Responsiveness for mobile: stack blocks vertically */
+@media (max-width: 700px) {
+  .columns.columns12 > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    min-height: 0;
+    padding: 6px 5vw 0 5vw;
+  }
+  .columns.columns12 > div > div {
+    min-height: 28px;
+    max-width: 100%;
+    flex: 1 1 100%;
+    padding-bottom: 7px;
+  }
+  .columns.columns12 > div > div > * {
+    font-size: 13px;
+    max-width: 94vw;
+  }
 }
