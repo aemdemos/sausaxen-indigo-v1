@@ -1,27 +1,34 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to find immediate child by class
-  function getDirectChildByClass(parent, className) {
-    return Array.from(parent.children).find(child => child.classList.contains(className));
-  }
+  // Extract visible left-side controls: from, swap, to
+  const from = element.querySelector('.from-destination');
+  const swap = Array.from(element.children).find(el => el.classList && el.classList.contains('icon-swap'));
+  const to = element.querySelector('.to-destination');
 
-  // Get the main columns in order
-  const from = getDirectChildByClass(element, 'from-destination');
-  const swapIcon = element.querySelector(':scope > i.icon-swap');
-  const to = getDirectChildByClass(element, 'to-destination');
-  const dateContainer = getDirectChildByClass(element, 'date-container');
-  const currencyDiv = element.querySelector(':scope > .widget-container__search-form__currency');
-  const searchBtn = element.querySelector(':scope > button.custom-button');
+  // Extract right-side controls: date, currency, search button
+  const date = element.querySelector('.date-container');
+  const currency = element.querySelector('.widget-container__search-form__currency');
+  const searchBtn = element.querySelector('button.custom-button');
 
-  // Compose the columns row as a single array (second row)
-  const columnsRow = [from, swapIcon, to, dateContainer, currencyDiv, searchBtn].filter(Boolean);
+  // Compose first row left column: all left controls in visual order
+  const col1left = [];
+  if (from) col1left.push(from);
+  if (swap) col1left.push(swap);
+  if (to) col1left.push(to);
 
-  // Table data: first row is single header cell, second row is N columns
-  const tableData = [
-    ['Columns (columns15)'],
-    columnsRow
-  ];
+  // Compose first row right column: all right controls in visual order
+  const col1right = [];
+  if (date) col1right.push(date);
+  if (currency) col1right.push(currency);
+  if (searchBtn) col1right.push(searchBtn);
 
-  const table = WebImporter.DOMUtils.createTable(tableData, document);
+  // Only create a second row if either side has content (following the example, usually 2 rows)
+  const row2 = ['', ''];
+
+  const headerRow = ['Columns (columns15)'];
+  const row1 = [col1left, col1right];
+  const cells = [headerRow, row1, row2];
+
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

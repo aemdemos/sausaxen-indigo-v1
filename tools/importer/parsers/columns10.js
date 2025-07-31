@@ -1,72 +1,91 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Helper to get the first desktop image inside a .carousel-image block
-  function getFirstDesktopImg(container) {
-    const desktopImgBlock = container.querySelector('.carousel-image--desktop img');
-    if (desktopImgBlock) return desktopImgBlock;
-    // fallback: first image in .carousel-image
-    const anyImg = container.querySelector('.carousel-image img');
-    return anyImg || null;
-  }
+  // The structure is a two-column layout:
+  // Left: main content (title, bullets, button)
+  // Right: a 2x2 grid of images
+  // We'll build a 2-row, 2-column table, matching the example screenshot.
 
-  // Get left and right column containers
+  // Find the main grid containing the two columns
   const mainGrid = element.querySelector('.mokobara-days-three > .aem-Grid');
   if (!mainGrid) return;
-  const mainCols = mainGrid.querySelectorAll(':scope > .aem-GridColumn');
-  if (mainCols.length < 2) return;
 
-  // LEFT COLUMN (big vertical image)
-  // Find first .carousel-image--desktop img in left column
-  const leftColImgs = mainCols[0].querySelectorAll('.carousel-image');
-  let leftImg = null;
-  for (const carousel of leftColImgs) {
-    const img = getFirstDesktopImg(carousel);
-    if (img) {
-      leftImg = img;
-      break;
+  // Get the immediate columns
+  const gridCols = Array.from(mainGrid.querySelectorAll(':scope > div'));
+  // Defensive: must be at least two columns
+  const leftCol = gridCols[0];
+  const rightCol = gridCols[1];
+
+  // --- LEFT COLUMN (text content) ---
+  // We extract all content blocks: title, bullet list, and button if present
+  let leftContent = [];
+  if (leftCol) {
+    // Find nested grid: where the content blocks actually are
+    const nestedGrid = leftCol.querySelector('.aem-Grid');
+    if (nestedGrid) {
+      // Typically: title, ul, button (assumption based on example)
+      // Let's get all direct children (likely each is a block)
+      const items = Array.from(nestedGrid.children);
+      // We'll append all found meaningful content
+      items.forEach((item) => {
+        // If item contains <img>, skip (left side is text only)
+        if (item.querySelector('img')) return;
+        // For each item, append all its content nodes
+        Array.from(item.childNodes).forEach((n) => {
+          // Only keep significant nodes
+          if (n.nodeType === 1 || (n.nodeType === 3 && n.textContent.trim())) {
+            leftContent.push(n);
+          }
+        });
+      });
     }
   }
-  // left column cell: if image found, use it, else empty div
-  const leftCell = document.createElement('div');
-  if (leftImg) leftCell.appendChild(leftImg);
 
-  // RIGHT COLUMN (2x2 grid of images)
-  // The structure is 2 inner .aem-GridColumn > .aem-Grid > .aem-GridColumn each has a full-width-widget imagevideo
-  // We want to get the two images (top right and bottom right) in order
+  // Fallback: if nothing found, leave cell empty
+  if (leftContent.length === 0) leftContent = [''];
+
+  // --- RIGHT COLUMN (images) ---
+  // We want a 2x2 grid of images, top: (img1, img2), bottom: (img3, img4)
+  // The right column contains two main sub-columns: each of which contains one (or more) .imagevideo blocks with images
+  let rightInnerCols = [];
+  if (rightCol) {
+    const rightGrid = rightCol.querySelector('.aem-Grid');
+    if (rightGrid) {
+      rightInnerCols = Array.from(rightGrid.querySelectorAll(':scope > div'));
+    }
+  }
+
+  // For each right subcol, collect its images
   let rightImgs = [];
-  // Right column has two main .aem-GridColumn children
-  const rightOuterGrid = mainCols[1].querySelector(':scope > div > .aem-Grid');
-  if (rightOuterGrid) {
-    const rightRows = rightOuterGrid.querySelectorAll(':scope > .aem-GridColumn');
-    for (const rowCol of rightRows) {
-      // Each rowCol should have a .imagevideo .carousel-image
-      const carouselBlocks = rowCol.querySelectorAll('.carousel-image');
-      for (const carousel of carouselBlocks) {
-        const img = getFirstDesktopImg(carousel);
-        if (img) {
-          rightImgs.push(img);
-          break;
+  rightInnerCols.forEach((subcol) => {
+    // Each subcol has its own grid
+    const subGrid = subcol.querySelector('.aem-Grid');
+    if (subGrid) {
+      // Get all .imagevideo blocks under this subcol
+      const imgBlocks = Array.from(subGrid.querySelectorAll('.imagevideo'));
+      imgBlocks.forEach((iv) => {
+        // Prefer desktop version
+        const desktop = iv.querySelector('.carousel-image--desktop img');
+        if (desktop) rightImgs.push(desktop);
+        else {
+          // fallback to any image
+          const anyImg = iv.querySelector('img');
+          if (anyImg) rightImgs.push(anyImg);
         }
-      }
+      });
     }
-  }
-  // Defensive: only take up to 2 images
-  rightImgs = rightImgs.slice(0,2);
-
-  // Create a table for the block
-  // Only one table is defined in the example, with a header: 'Columns (columns10)'
-  // The main row is two columns: left big image, right two stacked images
-  // We will stack the right images vertically in a div
-  const rightCell = document.createElement('div');
-  rightImgs.forEach(img => {
-    rightCell.appendChild(img);
   });
 
-  const cells = [
-    ['Columns (columns10)'],
-    [leftCell, rightCell]
-  ];
+  // Defensive: Only take 4 images; if less, fill with empty
+  rightImgs = rightImgs.slice(0, 4);
+  while (rightImgs.length < 4) rightImgs.push('');
 
+  // Compose the table rows
+  const headerRow = ['Columns (columns10)', ''];
+  const row1 = [leftContent, [rightImgs[0], rightImgs[1]]];
+  const row2 = ['', [rightImgs[2], rightImgs[3]]];
+
+  // Make the table
+  const cells = [headerRow, row1, row2];
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

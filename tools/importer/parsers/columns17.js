@@ -1,38 +1,23 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the slide track containing the slides
-  const slideTrack = element.querySelector('.slick-track');
-  if (!slideTrack) return;
+  // Get all carousel slides (image+link blocks)
+  const slides = Array.from(element.querySelectorAll('.slick-slide'));
 
-  // Find all direct child slides
-  const slides = Array.from(slideTrack.children).filter(child => child.classList.contains('slick-slide'));
-
-  // For each slide, extract the main <a> (with image inside), if available
+  // Each column is the <a> tag wrapping the image
   const columns = slides.map(slide => {
-    // Each slide contains a div > div > .ig-slide-item
-    // Go down two levels to reach .ig-slide-item
-    let item = slide.firstElementChild;
-    if (item) item = item.firstElementChild;
-    if (!item) return null;
-    // The main <a> that wraps the content
-    const link = item.querySelector('a');
-    if (link) {
-      return link;
-    } else {
-      // fallback: just return the image
-      const img = item.querySelector('img');
-      return img || null;
-    }
-  }).filter(Boolean);
+    const a = slide.querySelector('a');
+    return a || '';
+  });
 
-  // Only build table if we actually found slides
-  if (columns.length === 0) return;
+  // If there are no columns, don't do anything
+  if (!columns.length) return;
 
-  // Table structure: header is SINGLE cell, second row has N columns
-  const table = WebImporter.DOMUtils.createTable([
+  // Build the block table. First row is header (1 column), second row is the images (n columns)
+  const cells = [
     ['Columns (columns17)'],
     columns
-  ], document);
+  ];
 
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

@@ -1,26 +1,46 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the main <img> for the background
-  let img = null;
-  const imgs = element.querySelectorAll('img');
-  for (let i = 0; i < imgs.length; i++) {
-    const src = imgs[i].getAttribute('src') || '';
-    // Only use if not a data URI and is not clearly a spacer
-    if (src && !src.startsWith('data:')) {
-      img = imgs[i];
+  // 1. Find the static-banner-section (robust to wrappers)
+  const section = element.querySelector('section.static-banner-section');
+  if (!section) return;
+  
+  // 2. Find the bckgrd-tupple (contains images and banner text)
+  const tuple = section.querySelector('.bckgrd-tupple');
+  if (!tuple) return;
+
+  // 3. Get the first non-data:src image for background
+  let bgImg = null;
+  const imgs = tuple.querySelectorAll('img');
+  for (const img of imgs) {
+    if (img.src && !img.src.startsWith('data:')) {
+      bgImg = img;
       break;
     }
   }
 
-  // Find the content section (could be empty)
-  const bannerContent = element.querySelector('.banner-content');
+  // 4. Get .banner-content (contains headings, paragraph, cta, etc.)
+  const bannerContent = tuple.querySelector('.banner-content');
+  let contentCell;
+  if (bannerContent) {
+    // Only include children that have visible content
+    let fragment = document.createDocumentFragment();
+    for (const child of Array.from(bannerContent.children)) {
+      if (child.textContent && child.textContent.trim().length > 0) {
+        fragment.appendChild(child);
+      }
+    }
+    contentCell = fragment.childNodes.length > 0 ? fragment : '';
+  } else {
+    contentCell = '';
+  }
 
-  // Compose the rows as per spec: header, image, content
-  const cells = [];
-  cells.push(['Hero (hero27)']);
-  cells.push([img ? img : '']);
-  cells.push([bannerContent ? bannerContent : '']);
+  // 5. Build the table rows per block spec
+  const rows = [];
+  rows.push(['Hero (hero27)']); // header row as in example
+  rows.push([bgImg ? bgImg : '']); // image row
+  rows.push([contentCell]); // content row (may be empty string)
 
-  const block = WebImporter.DOMUtils.createTable(cells, document);
-  element.replaceWith(block);
+  // 6. Create and replace
+  const table = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(table);
 }

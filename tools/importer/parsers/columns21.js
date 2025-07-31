@@ -1,24 +1,24 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the block container
-  const block = element.querySelector('.mokobara-days-three');
-  if (!block) return;
-  
-  const grid = block.querySelector('.aem-Grid');
+  // Find the grid that holds the image columns
+  const grid = element.querySelector('.mokobara-days-three > .aem-Grid');
   if (!grid) return;
 
-  // Get all columns
-  const columns = Array.from(grid.children);
+  // Get all the direct column elements with class 'imagevideo' (in order)
+  const columns = Array.from(grid.children).filter(col => col.classList.contains('imagevideo'));
+
+  // For each column, extract the .carousel-image block (which holds both desktop and mobile images)
   const cells = columns.map(col => {
     const carousel = col.querySelector('.carousel-image');
     return carousel || col;
   });
 
-  // Build the correct table structure: header row is a single cell, data row has three columns
-  const table = WebImporter.DOMUtils.createTable([
+  // Structure: header row with one cell, then one row with all columns
+  const tableRows = [
     ['Columns (columns21)'],
     cells
-  ], document);
+  ];
 
+  const table = WebImporter.DOMUtils.createTable(tableRows, document);
   element.replaceWith(table);
 }

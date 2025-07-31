@@ -1,47 +1,39 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Combine all left navigation blocks into a single array for one cell
-  function getLeftColumn(element) {
-    const accordion = element.querySelector('.ig-footer-accordion');
-    if (!accordion) return '';
-    // Get first three nav columns
-    const navCols = Array.from(accordion.querySelectorAll('.col-12.col-md-3.ig-acc-sitemap')).slice(0, 3);
-    const leftCellContent = [];
-    navCols.forEach(col => {
-      Array.from(col.children).forEach(child => {
-        if (child.textContent.trim() !== '' || child.querySelector('ul, button, .footer-links.section')) {
-          leftCellContent.push(child);
-        }
-      });
-    });
-    // Fallback
-    if (leftCellContent.length === 0) return '';
-    return leftCellContent;
+  // Locate main row of the footer
+  const row = element.querySelector('.row');
+  // Columns for the links are in the ig-footer-accordion
+  const accordion = element.querySelector('.ig-footer-accordion');
+  let linkCols = [];
+  if (accordion) {
+    linkCols = Array.from(accordion.querySelectorAll('.col-12.col-md-3.ig-acc-sitemap'));
+    // Only take the first three that have actual content
+    linkCols = linkCols.filter(col => col.textContent.trim().length > 0 && col.querySelector('ul.ig-footer-site-list')).slice(0, 3);
   }
 
-  // Combine all right-side content into a single array for one cell
-  function getRightColumn(element) {
-    const mainRow = element.querySelector('.row');
-    if (!mainRow) return '';
-    const rightCol = mainRow.querySelector('.col-lg-3.social-downloads');
-    if (!rightCol) return '';
-    const rightCellContent = [];
-    Array.from(rightCol.children).forEach(child => {
-      if (child.textContent.trim() !== '' || child.querySelector('img,ul,h6,div')) {
-        rightCellContent.push(child);
-      }
-    });
-    // Also aggregate all .footer-links.section (awards) inside rightCol if not already in content
-    Array.from(rightCol.querySelectorAll('.footer-links.section')).forEach(section => {
-      if (!rightCellContent.includes(section)) rightCellContent.push(section);
-    });
-    return rightCellContent;
+  // Social/download/awards column (rightmost)
+  let socialCol = null;
+  if (row) {
+    socialCol = row.querySelector('.col-lg-3.social-downloads');
   }
 
+  // Reference existing elements directly; if missing, use empty div
+  const col1 = linkCols[0] || document.createElement('div');
+  const col2 = linkCols[1] || document.createElement('div');
+  const col3 = linkCols[2] || document.createElement('div');
+  const col4 = socialCol || document.createElement('div');
+
+  // Header row: one cell, string exactly matching the example
   const headerRow = ['Columns (columns22)'];
-  const leftCol = getLeftColumn(element);
-  const rightCol = getRightColumn(element);
-  const tableRows = [headerRow, [leftCol, rightCol]];
-  const table = WebImporter.DOMUtils.createTable(tableRows, document);
+  // Content row: four cells, each for one column
+  const columnsRow = [col1, col2, col3, col4];
+
+  const cells = [
+    headerRow,
+    columnsRow
+  ];
+
+  // Create and replace
+  const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }
