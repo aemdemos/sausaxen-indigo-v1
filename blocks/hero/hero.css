@@ -1,4 +1,4 @@
-/* Disable no-descending-specificity globally for this file */
+/* Disable descending specificity warnings */
 /* stylelint-disable no-descending-specificity */
 
 .hero-container .hero-wrapper {
@@ -52,44 +52,6 @@
   .hero {
     padding: 40px 32px;
   }
-}
-
-.hero.hero26 {
-  padding: 0.5px 0 0;
-  margin: 0;
-  min-height: 0;
-  background: none;
-  box-sizing: border-box;
-  display: block;
-}
-
-.hero.hero26 > div,
-.hero.hero26 > div > div {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.hero.hero26 > div:first-child {
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  display: none;
-}
-
-.hero.hero26 h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #232323;
-  font-family: var(--heading-font-family), Arial, sans-serif;
-  line-height: 1;
-  text-align: left;
-  box-sizing: border-box;
-  vertical-align: top;
-  scroll-margin: 0;
 }
 
 .hero.hero27 {
@@ -194,7 +156,7 @@
 .hero > div:first-child h2 {
   color: #fff;
   font-size: 2.2rem;
-  font-family: Quicksand, Arial Rounded MT Bold, Arial, sans-serif;
+  font-family: Quicksand, "Arial Rounded MT Arial", Arial, sans-serif;
   font-weight: bold;
   margin: 0 0 18px;
   line-height: 1.1;
@@ -232,8 +194,16 @@
   padding: 0;
 }
 
-.hero.hero14 {
+.hero.hero14,
+.hero.hero26 {
   width: 100vw;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.hero.hero14 {
   min-height: 240px;
   height: 33vw;
   max-height: 420px;
@@ -244,13 +214,8 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
 }
 
-/* Do not hide the first child: keep it present but invisible and non-interfering */
 .hero.hero14 > div:first-child {
   flex: 0 0 0;
   min-width: 0;
@@ -264,7 +229,6 @@
   display: block;
 }
 
-/* Vertically center the overlay zoom control panel at the right edge */
 .hero.hero14 > div:last-child {
   position: absolute;
   top: 50%;
@@ -279,7 +243,6 @@
   padding: 0;
 }
 
-/* Zoom control white rectangle with improved sizing and proportions */
 .hero.hero14 > div:last-child > div {
   background: #fff;
   border-radius: 12px;
@@ -295,7 +258,6 @@
   justify-content: center;
 }
 
-/* Two pronounced circular button placeholders stacked vertically */
 .hero.hero14 > div:last-child > div > div {
   width: 38px;
   height: 38px;
@@ -312,7 +274,6 @@
   transition: border-color 0.2s, background 0.2s;
 }
 
-/* Subtle hover effect for interactivity */
 .hero.hero14 > div:last-child > div > div:hover {
   border-color: #aaa;
   background: #f0f0f0;
@@ -341,5 +302,67 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
+  }
+}
+
+.hero.hero26 {
+  background: #fff;
+  box-shadow: none;
+  border: none;
+  display: block;
+}
+
+/* Hide empty first child div for a tighter block */
+.hero.hero26 > div:first-child {
+  display: none;
+}
+
+/* Ensure last child (the content wrapper) is block and flush to top/left */
+.hero.hero26 > div:last-child {
+  display: block;
+  padding: 0;
+  margin: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Ensure immediate inner div has no spacing */
+.hero.hero26 > div:last-child > div {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* Heading: flush to top/left, minimal height, correct font */
+.hero.hero26 h2 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #222;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+  text-align: left;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* Hide any "View All" links or extra content in the block */
+.hero.hero26 p,
+.hero.hero26 a,
+.hero.hero26 .view-all-link {
+  display: none;
+}
+
+/* Remove spacing between this block and surrounding layout, if any */
+.hero.hero26 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (width <= 600px) {
+  .hero.hero26 h2 {
+    font-size: 16px;
   }
 }
