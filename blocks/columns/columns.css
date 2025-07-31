@@ -1265,8 +1265,6 @@
   font-family: 'Open Sans', Arial, sans-serif;
   color: #222;
 }
-
-/* Four column grid, tighter and more balanced */
 .columns.columns7 > div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.15fr;
@@ -1298,16 +1296,12 @@
     padding: 12px 0 0 0;
   }
 }
-
-/* Each column is a vertical stack */
 .columns.columns7 > div > div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
 }
-
-/* Headings refinement for spacing */
 .columns.columns7 > div > div > p:first-child {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: bold;
@@ -1317,8 +1311,6 @@
   line-height: 1.2;
   letter-spacing: 0;
 }
-
-/* Remove bullets, tighter vertical spacing for lists */
 .columns.columns7 ul {
   list-style: none;
   margin: 0 0 8px 0;
@@ -1330,8 +1322,6 @@
 .columns.columns7 li:last-child {
   margin-bottom: 0;
 }
-
-/* Footer navigation links: refined font weight and spacing */
 .columns.columns7 > div > div ul li a {
   color: #222;
   font-size: 15px;
@@ -1347,8 +1337,6 @@
   color: #00b9ae;
   text-decoration: underline;
 }
-
-/* --- Rightmost column (download/social/awards) --- */
 .columns.columns7 > div > div:last-child {
   min-width: 170px;
   max-width: 310px;
@@ -1360,8 +1348,6 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
-/* Section headings in rightmost column */
 .columns.columns7 > div > div:last-child h6,
 .columns.columns7 > div > div:last-child > h6,
 .columns.columns7 > div > div:last-child > #social,
@@ -1373,8 +1359,6 @@
   margin: 19px 0 13px 0;
   font-family: 'Open Sans', Arial, sans-serif;
 }
-
-/* Social icons row (use flex row for all links in the social p) */
 .columns.columns7 > div > div:last-child #social + p {
   display: flex;
   flex-direction: row;
@@ -1384,8 +1368,6 @@
   margin-top: 6px;
   font-size: 0;
 }
-
-/* WhatsApp badge (if present as an image) */
 .columns.columns7 > div > div:last-child ul li > picture img[alt="Whatsapp"] {
   height: 34px;
   width: auto;
@@ -1393,8 +1375,6 @@
   display: block;
   margin-bottom: 10px;
 }
-
-/* Download badges: size and stacking, no extra screenshots */
 .columns.columns7 > div > div:last-child ul li picture img[alt*="PlayStore"],
 .columns.columns7 > div > div:last-child ul li picture img[alt*="Apple"] {
   height: 42px;
@@ -1403,13 +1383,9 @@
   display: block;
   margin-bottom: 7px;
 }
-
-/* Hide screenshots and promo images above/below badges in right column */
 .columns.columns7 > div > div:last-child ul li:not(:has(img[alt*="PlayStore"], img[alt*="Apple"], img[alt*="award"], img[alt="Whatsapp"])) {
   display: none;
 }
-
-/* Awards heading and badge row: compact, centered, larger icons */
 .columns.columns7 > div > div:last-child h6[id="our-awards"],
 .columns.columns7 > div > div:last-child #our-awards {
   margin-top: 20px;
@@ -1431,20 +1407,14 @@
   margin-bottom: 0;
   display: block;
 }
-
-/* Ensure all columns start at the top */
 .columns.columns7 > div > div,
 .columns.columns7 > div > div > div {
   align-items: flex-start;
   text-align: left;
 }
-
-/* Tighter vertical spacing between sections in rightmost column */
 .columns.columns7 > div > div:last-child > *:not(:last-child) {
   margin-bottom: 22px;
 }
-
-/* Responsive: collapse to fewer columns on smaller screens */
 @media (max-width: 800px) {
   .columns.columns7 > div > div {
     min-width: 0;
@@ -1456,5 +1426,76 @@
     flex-direction: row;
     gap: 4px;
     justify-content: center;
+  }
+}
+
+
+.columns {
+  background: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+/* Slim horizontal white bar with a slightly more visible soft shadow and slightly increased height */
+.columns > div,
+.columns > div:empty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 9px;
+  box-shadow: 0 6px 18px 0 rgba(60,60,60,0.085), 0 1.5px 4px 0 rgba(60,60,60,0.09);
+  min-height: 23px;
+  height: 23px;
+  width: 100%;
+  max-width: 100%;
+  margin: 13px 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  transition: box-shadow 0.18s;
+}
+
+/* Nested block structure stays horizontal and vertically centered */
+.columns > div > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  min-width: 0;
+  flex: 1 1 0;
+  gap: 0;
+  padding: 0;
+}
+
+/* Compact, neutral font for future content */
+.columns > div,
+.columns > div > div,
+.columns > div > div > * {
+  font-size: 12px;
+  font-family: var(--body-font-family, Arial, sans-serif);
+  color: #444;
+  font-weight: 400;
+  background: none;
+  border: none;
+}
+
+/* Remove default margin/padding from all descendants */
+.columns > div > div > * {
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive: on narrow screens, keep bar slim and maintain radius */
+@media (max-width: 600px) {
+  .columns > div,
+  .columns > div:empty {
+    padding: 0 3px;
+    min-height: 15px;
+    height: 15px;
+    border-radius: 7px;
+    margin: 6px 0;
   }
 }
