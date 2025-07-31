@@ -164,108 +164,6 @@
   padding: 0;
 }
 
-.hero.hero14 {
-  min-height: 240px;
-  height: 33vw;
-  max-height: 420px;
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-.hero.hero14 > div:first-child {
-  flex: 0 0 0;
-  min-width: 0;
-  min-height: 0;
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  display: block;
-}
-
-.hero.hero14 > div:last-child {
-  position: absolute;
-  top: 50%;
-  right: 28px;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: auto;
-  z-index: 2;
-  background: none;
-  padding: 0;
-}
-
-.hero.hero14 > div:last-child > div {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 0;
-  width: 56px;
-  min-height: 102px;
-  justify-content: center;
-}
-
-.hero.hero14 > div:last-child > div > div {
-  width: 38px;
-  height: 38px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 6%);
-  cursor: pointer;
-  user-select: none;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.hero.hero14 > div:last-child > div > div:hover {
-  border-color: #aaa;
-  background: #f0f0f0;
-}
-
-@media (width <= 800px) {
-  .hero.hero14 {
-    min-height: 120px;
-    height: 32vw;
-    max-height: 180px;
-  }
-
-  .hero.hero14 > div:last-child {
-    right: 10px;
-  }
-
-  .hero.hero14 > div:last-child > div {
-    width: 34px;
-    min-height: 52px;
-    gap: 6px;
-    padding: 4px 0;
-    border-radius: 8px;
-  }
-
-  .hero.hero14 > div:last-child > div > div {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-  }
-}
-
 .hero.hero26 {
   background: #fff;
   box-shadow: none;
@@ -402,8 +300,6 @@
   position: relative;
   overflow: visible;
 }
-
-/* Fine-tuned: left (text) panel width and whitespace */
 .hero.hero29 > div:first-child {
   flex: 1 1 58%;
   display: flex;
@@ -420,14 +316,10 @@
   color: #1c22b3;
   font-family: var(--heading-font-family), "Arial Rounded MT", Arial, sans-serif;
 }
-
-/* Logo row spacing */
 .hero.hero29 > div:first-child > *:first-child {
   margin-top: 0;
   margin-bottom: 32px;
 }
-
-/* Main headline: larger, with less letter-spacing, less bottom margin */
 .hero.hero29 > div:first-child h1,
 .hero.hero29 > div:first-child h2 {
   font-size: 110px;
@@ -438,8 +330,6 @@
   letter-spacing: -1px;
   word-spacing: 3px;
 }
-
-/* Option row: wider, more prominent border, centered text, more gap */
 .hero.hero29 > div:first-child > div {
   display: flex;
   flex-direction: row;
@@ -482,8 +372,6 @@
   font-size: 24px;
   font-weight: 500;
 }
-
-/* Feature row: large icons, increased horizontal gap, more margin-top */
 .hero.hero29 > div:first-child > ul,
 .hero.hero29 > div:first-child > ol {
   display: flex;
@@ -529,8 +417,6 @@
   margin-top: 48px;
   display: block;
 }
-
-/* --- RIGHT PANEL (Images) --- */
 .hero.hero29 > div:last-child {
   flex: 1 1 42%;
   display: flex;
@@ -543,8 +429,6 @@
   overflow: visible;
   box-sizing: border-box;
 }
-
-/* Main upright suitcase image: centered in hero, broader, overlap left */
 .hero.hero29 > div:last-child > picture,
 .hero.hero29 > div:last-child > img {
   position: relative;
@@ -560,8 +444,6 @@
   border-radius: 22px;
   box-shadow: 0 2px 16px rgba(28,34,179,0.10);
 }
-
-/* Top-right angled suitcase: overlaps more, larger, further out */
 .hero.hero29 > div:last-child > img:nth-child(2),
 .hero.hero29 > div:last-child > picture:nth-child(2) {
   position: absolute;
@@ -577,8 +459,6 @@
   border-radius: 16px;
   box-shadow: 0 2px 15px rgba(28,34,179,0.07);
 }
-
-/* Bottom-right open suitcase: further down/right, larger */
 .hero.hero29 > div:last-child > img:nth-child(3),
 .hero.hero29 > div:last-child > picture:nth-child(3) {
   position: absolute;
@@ -591,8 +471,6 @@
   object-fit: contain;
   border-radius: 0 0 40px 40px;
 }
-
-/* "Limited stock" badge: large, overlapping suitcase, more leftward */
 .hero.hero29 > div:last-child > .badge,
 .hero.hero29 > div:last-child > img.badge,
 .hero.hero29 > div:last-child > svg.badge {
@@ -606,8 +484,6 @@
   pointer-events: none;
   transform: rotate(-10deg);
 }
-
-/* Responsiveness */
 @media (max-width: 1200px) {
   .hero.hero29 > div:first-child { padding-left: 4vw; }
   .hero.hero29 > div:last-child > picture,
@@ -660,4 +536,158 @@
 
 .hero.hero29 > div:last-child {
   overflow: visible;
+}
+
+
+.hero.hero14 {
+  position: relative;
+  width: 100vw;
+  min-height: 220px;
+  height: 220px;
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80") center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* Ensure children fill height */
+.hero.hero14 > div {
+  height: 100%;
+}
+
+/* Hide unused first child */
+.hero.hero14 > div:first-child {
+  flex: 0 0 0;
+  width: 0;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  display: block;
+}
+
+/* Overlay container for zoom controls: right, vertically centered */
+.hero.hero14 > div:last-child {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  height: auto;
+  background: none;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Zoom control box */
+.hero.hero14 > div:last-child > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #fff;
+  border-radius: 18px;
+  width: 44px;
+  height: 100px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  margin: 0;
+  pointer-events: auto;
+}
+
+/* Zoom "buttons" - two vertically stacked divs, center content */
+.hero.hero14 > div:last-child > div > div {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  margin: 0;
+  pointer-events: auto;
+}
+
+.hero.hero14 > div:last-child > div > div:first-child::before,
+.hero.hero14 > div:last-child > div > div:first-child::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #222;
+  border-radius: 2px;
+  display: block;
+  content: "";
+}
+.hero.hero14 > div:last-child > div > div:first-child::before {
+  width: 16px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+}
+.hero.hero14 > div:last-child > div > div:first-child::after {
+  width: 4px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+}
+
+.hero.hero14 > div:last-child > div > div:last-child::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 4px;
+  background: #222;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  display: block;
+  content: "";
+}
+
+.hero.hero14 > div:last-child > div > div:hover {
+  border-color: #aaa;
+  background: #f5f5f5;
+}
+
+@media (max-width: 800px) {
+  .hero.hero14 {
+    min-height: 100px;
+    height: 120px;
+    max-height: 160px;
+  }
+  .hero.hero14 > div:last-child {
+    right: 8px;
+  }
+  .hero.hero14 > div:last-child > div {
+    width: 32px;
+    height: 64px;
+    border-radius: 12px;
+    gap: 8px;
+  }
+  .hero.hero14 > div:last-child > div > div {
+    width: 18px;
+    height: 18px;
+  }
+  .hero.hero14 > div:last-child > div > div:first-child::before,
+  .hero.hero14 > div:last-child > div > div:last-child::before {
+    width: 10px;
+    height: 2px;
+  }
+  .hero.hero14 > div:last-child > div > div:first-child::after {
+    width: 2px;
+    height: 10px;
+  }
 }
