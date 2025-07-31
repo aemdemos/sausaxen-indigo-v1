@@ -164,62 +164,6 @@
   padding: 0;
 }
 
-.hero.hero26 {
-  background: #fff;
-  box-shadow: none;
-  border: none;
-  display: block;
-}
-
-.hero.hero26 > div:first-child {
-  display: none;
-}
-
-.hero.hero26 > div:last-child {
-  display: block;
-  padding: 0;
-  margin: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.hero.hero26 > div:last-child > div {
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-.hero.hero26 h2 {
-  font-family: 'Open Sans', Arial, sans-serif;
-  color: #222;
-  font-weight: 700;
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
-  line-height: 1.1;
-  text-align: left;
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.hero.hero26 p,
-.hero.hero26 a,
-.hero.hero26 .view-all-link {
-  display: none;
-}
-
-.hero.hero26 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-@media (width <= 600px) {
-  .hero.hero26 h2 {
-    font-size: 16px;
-  }
-}
-
 .hero.hero27 {
   width: 100%;
   max-width: 100vw;
@@ -554,13 +498,9 @@
   background-size: cover;
   overflow: hidden;
 }
-
-/* Ensure children fill height */
 .hero.hero14 > div {
   height: 100%;
 }
-
-/* Hide unused first child */
 .hero.hero14 > div:first-child {
   flex: 0 0 0;
   width: 0;
@@ -572,8 +512,6 @@
   border: none;
   display: block;
 }
-
-/* Overlay container for zoom controls: right, vertically centered */
 .hero.hero14 > div:last-child {
   position: absolute;
   right: 40px;
@@ -588,8 +526,6 @@
   padding: 0;
   pointer-events: none;
 }
-
-/* Zoom control box */
 .hero.hero14 > div:last-child > div {
   display: flex;
   flex-direction: column;
@@ -604,8 +540,6 @@
   margin: 0;
   pointer-events: auto;
 }
-
-/* Zoom "buttons" - two vertically stacked divs, center content */
 .hero.hero14 > div:last-child > div > div {
   position: relative;
   width: 32px;
@@ -690,4 +624,75 @@
     width: 2px;
     height: 10px;
   }
+}
+
+
+.hero.hero26 {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  box-shadow: none;
+  border: none;
+}
+
+.hero.hero26 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+.hero.hero26 > div:first-child {
+  display: none;
+}
+
+.hero.hero26 > div:last-child {
+  flex: 1 1 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: none;
+  min-width: 0;
+  min-height: 0;
+}
+
+.hero.hero26 > div:last-child > div {
+  margin: 0;
+  padding: 0;
+  background: none;
+  min-width: 0;
+  min-height: 0;
+}
+
+.hero.hero26 h2 {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem; /* closely matches ~20px or --heading-font-size-xl */
+  color: #222;
+  margin: 0.22em 0 0 0; /* add a small top margin for a subtle gap */
+  padding: 0;
+  line-height: 1.1;
+  text-align: left;
+  background: none;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  display: block;
+}
+
+.hero.hero26 p,
+.hero.hero26 a,
+.hero.hero26 .view-all-link {
+  display: none;
 }
