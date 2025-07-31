@@ -600,146 +600,6 @@
 }
 
 
-.columns.columns4 {
-  background: transparent;
-  border-top: 1px solid #e6e6e6;
-  border-bottom: 1px solid #e6e6e6;
-  box-shadow: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  min-height: 0;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-}
-.columns.columns4 > div {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  gap: 0;
-  padding: 0;
-  margin: 0 auto;
-  background: none;
-  box-sizing: border-box;
-}
-@media (max-width: 900px) {
-  .columns.columns4 > div {
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 8px;
-  }
-}
-.columns.columns4 > div > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  min-width: 0;
-  width: 100%;
-  max-width: 300px;
-  padding: 0;
-  margin: 0 24px 0 0;
-  height: auto;
-  box-sizing: border-box;
-}
-
-.columns.columns4 > div > div:last-child {
-  margin-right: 0;
-}
-.columns.columns4 > div > div > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.columns.columns4 > div > div h6,
-.columns.columns4 > div > div h6 a {
-  font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 6px;
-  line-height: 1.3;
-  text-align: left;
-  text-decoration: none;
-  pointer-events: none;
-  background: none;
-}
-.columns.columns4 > div > div .button {
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 13px;
-  font-weight: 400;
-  box-shadow: none;
-  padding: 0;
-  margin: 0 0 4px 0;
-  text-align: left;
-  cursor: auto;
-  line-height: 1.4;
-  pointer-events: none;
-  white-space: normal;
-  max-width: 100%;
-  overflow: visible;
-}
-.columns.columns4 > div > div:nth-child(1) .button[title="View Number"] {
-  color: #3b63fb;
-  text-decoration: underline;
-  font-size: 13px;
-  font-weight: 400;
-  margin: 6px 0 0 0;
-  padding: 0;
-  background: none;
-  border: none;
-  pointer-events: auto;
-  display: inline-block;
-  line-height: 1.4;
-  cursor: pointer;
-}
-.columns.columns4 > div > div:nth-child(1) .button[title^="India"] {
-  color: #888;
-  font-size: 13px;
-  margin-top: 8px;
-  pointer-events: none;
-  text-decoration: none;
-  display: block;
-}
-.columns.columns4 > div > div .button-container {
-  margin: 0 0 2px 0;
-  padding: 0;
-}
-
-.columns.columns4 > div > div .button-container:last-child {
-  margin-bottom: 0;
-}
-
-.columns.columns4 > div > div .button-container + .button-container {
-  margin-top: 0;
-}
-.columns.columns4 > div > div:nth-child(2) .button,
-.columns.columns4 > div > div:nth-child(3) .button {
-  color: #bbb;
-  font-size: 13px;
-  margin-top: 6px;
-  margin-bottom: 0;
-  opacity: 0.9;
-}
-@media (max-width: 600px) {
-  .columns.columns4 > div {
-    gap: 6px;
-    padding: 0 2px;
-  }
-  .columns.columns4 > div > div {
-    padding: 0;
-    margin: 0 0 8px 0;
-    max-width: 100%;
-  }
-}
-
-
 .columns.columns7 {
   background: #fff;
   border-top: none;
@@ -1654,8 +1514,6 @@
   margin: 0;
   padding: 0;
 }
-
-/* Use grid for precise column control and vertical alignment */
 .columns.columns31 > div {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1670,8 +1528,6 @@
   min-height: 100px;
   gap: 0 0;
 }
-
-/* Responsiveness: stack to 2 columns on medium screens, 1 on mobile */
 @media (max-width: 900px) {
   .columns.columns31 > div {
     grid-template-columns: repeat(2, 1fr);
@@ -1686,8 +1542,6 @@
     gap: 16px 0;
   }
 }
-
-/* Each feature column: vertical stack, center-aligned */
 .columns.columns31 > div > div {
   display: flex;
   flex-direction: column;
@@ -1697,13 +1551,9 @@
   text-align: center;
   padding: 0 10px;
 }
-
-/* Space between icon/title/subtitle */
 .columns.columns31 > div > div > *:not(:last-child) {
   margin-bottom: 7px;
 }
-
-/* Icon appearance: circle, outlined, centered */
 .columns.columns31 > div > div img,
 .columns.columns31 > div > div svg {
   width: 40px;
@@ -1717,8 +1567,6 @@
   padding: 6px;
   box-sizing: border-box;
 }
-
-/* Title: bold, larger */
 .columns.columns31 > div > div strong,
 .columns.columns31 > div > div b {
   font-size: 18px;
@@ -1728,8 +1576,6 @@
   display: block;
   margin-bottom: 2px;
 }
-
-/* Subtitle: smaller, muted */
 .columns.columns31 > div > div span,
 .columns.columns31 > div > div em {
   font-size: 14px;
@@ -1738,4 +1584,115 @@
   line-height: 1.2;
   display: block;
   margin-top: 0;
+}
+
+
+.columns.columns4 {
+  border: none;
+  background: #fff;
+  padding: 36px 0 32px 0;
+}
+
+/* Use CSS Grid for even three-column layout and natural row balance */
+.columns.columns4 > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+  margin: 0 auto;
+  background: none;
+  box-sizing: border-box;
+  padding: 0 24px;
+  align-items: start;
+  justify-items: stretch;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 900px) {
+  .columns.columns4 > div {
+    grid-template-columns: 1fr;
+    gap: 18px 0;
+    padding: 0 8px;
+  }
+}
+
+/* Each block: always top-left align content, fill cell height */
+.columns.columns4 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: #fff;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  min-height: 48px;
+  height: 100%;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Headings: bold, dark, with margin to separate from subtext */
+.columns.columns4 > div > div h6,
+.columns.columns4 > div > div h6 a {
+  font-family: var(--heading-font-family);
+  font-weight: bold;
+  font-size: 16px;
+  color: #222;
+  margin: 0 0 4px 0;
+  line-height: 1.18;
+  background: none;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+/* Subtext and button: smaller, lighter, and left-aligned */
+.columns.columns4 > div > div .button,
+.columns.columns4 > div > div p {
+  font-family: var(--body-font-family);
+  color: #888;
+  font-size: 13px;
+  font-weight: normal;
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0 0 2px 0;
+  line-height: 1.4;
+  text-align: left;
+  pointer-events: auto;
+  padding: 0;
+}
+
+/* Extra vertical spacing between heading, subtext and link */
+.columns.columns4 > div > div > *:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+/* "View Number" link specific style */
+.columns.columns4 > div > div:nth-child(1) .button[title="View Number"] {
+  color: #0074eb;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+/* Avoid unwanted text truncation and horizontal overflow */
+.columns.columns4 > div > div > * {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
+}
+
+/* Remove unwanted margins on last child */
+.columns.columns4 > div > div > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure no vertical centering of content inside any grid cell */
+.columns.columns4 > div > div {
+  align-self: start;
+  justify-self: start;
 }
