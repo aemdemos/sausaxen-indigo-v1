@@ -492,205 +492,6 @@
 }
 
 
-.columns.columns22 {
-  background: #fff;
-  margin: 0 auto;
-  max-width: 1280px;
-  padding: 0 16px;
-  font-size: 14px;
-  color: #222;
-  box-sizing: border-box;
-}
-
-.columns.columns22 > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 32px 0 0 0;
-  box-sizing: border-box;
-}
-
-@media (max-width: 1050px) {
-  .columns.columns22 {
-    padding: 0 4px;
-  }
-  .columns.columns22 > div {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 24px 0 0 0;
-  }
-}
-
-.columns.columns22 > div > div {
-  background: none;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 0;
-  min-width: 0;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.columns.columns22 > div > div:first-child {
-  gap: 0;
-  min-width: 0;
-  max-width: 100%;
-}
-.columns.columns22 > div > div:first-child > p {
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  margin: 36px 0 6px 0;
-  font-family: var(--heading-font-family);
-  line-height: 1.3;
-  letter-spacing: 0.01em;
-}
-.columns.columns22 > div > div:first-child > p:first-child {
-  margin-top: 0;
-}
-.columns.columns22 > div > div:first-child > ul:not(:first-of-type) {
-  margin-top: 16px;
-}
-.columns.columns22 > div > div:first-child ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 8px 0;
-}
-.columns.columns22 > div > div:first-child ul li {
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #222;
-}
-.columns.columns22 > div > div:first-child ul li:last-child {
-  margin-bottom: 0;
-}
-.columns.columns22 > div > div:first-child ul li a {
-  color: #222;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.columns.columns22 > div > div:first-child ul li a:hover,
-.columns.columns22 > div > div:first-child ul li a:focus {
-  color: #0070e0;
-  text-decoration: underline;
-}
-.columns.columns22 > div > div:last-child {
-  gap: 0;
-  min-width: 0;
-  max-width: 100%;
-  align-items: flex-start;
-  padding-left: 0;
-}
-.columns.columns22 > div > div:last-child > h6,
-.columns.columns22 > div > div:last-child > p {
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  margin: 14px 0 4px 0;
-  font-family: var(--heading-font-family);
-  line-height: 1.3;
-  letter-spacing: 0.01em;
-}
-.columns.columns22 > div > div:last-child > h6:first-child,
-.columns.columns22 > div > div:last-child > p:first-child {
-  margin-top: 0;
-}
-.columns.columns22 > div > div:last-child ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 4px 0;
-}
-.columns.columns22 > div > div:last-child ul li {
-  font-size: 14px;
-  color: #222;
-  margin-bottom: 3px;
-  line-height: 1.6;
-}
-.columns.columns22 > div > div:last-child ul li:empty {
-  display: none;
-}
-.columns.columns22 > div > div:last-child ul li:last-child {
-  margin-bottom: 0;
-}
-.columns.columns22 > div > div:last-child a {
-  color: #444;
-  text-decoration: none;
-  margin-right: 5px;
-  font-size: 14px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.columns.columns22 > div > div:last-child a:hover,
-.columns.columns22 > div > div:last-child a:focus {
-  color: #0070e0;
-  text-decoration: underline;
-}
-.columns.columns22 > div > div:last-child p a {
-  display: inline-block;
-  margin-right: 8px;
-  margin-bottom: 1px;
-  vertical-align: middle;
-  white-space: nowrap;
-  max-width: 108px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 13px;
-}
-.columns.columns22 > div > div:last-child p a:last-child {
-  margin-right: 0;
-}
-.columns.columns22 picture img,
-.columns.columns22 img {
-  max-width: 110px;
-  height: auto;
-  display: block;
-  margin-bottom: 5px;
-  border-radius: 0;
-  box-shadow: none;
-  background: none;
-}
-.columns.columns22 [id="our-awards"] + ul li picture img {
-  max-width: 38px;
-  margin-bottom: 4px;
-}
-.columns.columns22 > div > div:last-child > * {
-  margin-bottom: 5px;
-}
-.columns.columns22 > div > div:last-child > *:last-child {
-  margin-bottom: 0;
-}
-.columns.columns22 > div > div:last-child ul li picture img,
-.columns.columns22 > div > div:last-child ul li img {
-  margin-bottom: 3px;
-}
-.columns.columns22 > div > div:last-child > p + ul,
-.columns.columns22 > div > div:last-child > h6 + ul {
-  margin-top: 0;
-}
-.columns.columns22 > div > div:last-child > ul + ul {
-  margin-top: 0;
-}
-
-@media (max-width: 600px) {
-  .columns.columns22 {
-    padding: 0 2px;
-  }
-  .columns.columns22 > div {
-    padding: 8px 0 0 0;
-    gap: 8px;
-  }
-}
-.columns.columns22 a {
-  word-break: break-word;
-  overflow-wrap: anywhere;
-}
-
-
 .columns {
   background: #f7f7fb;
   width: 100%;
@@ -1519,7 +1320,7 @@
   box-sizing: border-box;
   padding: 18px 0 18px 0;
   width: 100%;
-  display: block; /* Remove flex so padding works as expected */
+  display: block;
 }
 
 .columns.columns19 > div {
@@ -1527,7 +1328,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 0 56px; /* Slightly more gap for better balance */
+  gap: 0 56px;
   width: 100%;
   max-width: 100%;
   padding: 0 36px;
@@ -1557,8 +1358,6 @@
   white-space: normal;
   max-width: 100%;
 }
-
-/* Responsive: two columns on medium, stack on small screens */
 @media (max-width: 900px) {
   .columns.columns19 > div {
     flex-wrap: wrap;
@@ -1584,12 +1383,304 @@
     margin-bottom: 12px;
   }
 }
-
-/* Remove any unwanted background, border, or shadow from previous columns/card styles */
 .columns.columns19,
 .columns.columns19 > div,
 .columns.columns19 > div > div {
   background: #f7f7fb;
   border: none;
   box-shadow: none;
+}
+
+
+.columns.columns22 {
+  background: #fff;
+  margin: 40px auto 0 auto;
+  max-width: 1200px;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+/* Top-level grid: 2 columns, top-aligned and tight gap */
+.columns.columns22 > div {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 40px;
+  align-items: start;
+  justify-items: start;
+  padding: 48px 48px 0 48px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 480px;
+}
+
+/* Responsive: stack columns on smaller screens */
+@media (max-width: 1050px) {
+  .columns.columns22 > div {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 10px 0 10px;
+    min-height: unset;
+  }
+}
+
+/* LEFT COLUMN: Nav Sections */
+.columns.columns22 > div > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Nav section headings (first-level p) */
+.columns.columns22 > div > div:first-child > p {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.columns.columns22 > div > div:first-child > p:not(:first-child) {
+  margin-top: 24px;
+}
+
+/* Nav lists, with margin only between groups */
+.columns.columns22 > div > div:first-child > ul {
+  margin: 0 0 0 0;
+}
+.columns.columns22 > div > div:first-child > ul:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+
+/* List styling for navigation links */
+.columns.columns22 > div > div:first-child ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.columns.columns22 > div > div:first-child ul li {
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.columns.columns22 > div > div:first-child ul li:last-child {
+  margin-bottom: 0;
+}
+.columns.columns22 > div > div:first-child ul li a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 15px;
+}
+.columns.columns22 > div > div:first-child ul li a:hover,
+.columns.columns22 > div > div:first-child ul li a:focus {
+  color: #00b9ae;
+  text-decoration: underline;
+}
+
+/* RIGHT COLUMN: Social/App/Awards vertical stack */
+.columns.columns22 > div > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  min-width: 0;
+  width: 100%;
+  padding-left: 0;
+}
+
+/* Each logical section (not an element!) should be tight.
+   If you want more space between certain groups, use nth-child to target. */
+
+/* App promo section: Make vertically stacked, badge row horizontal */
+.columns.columns22 > div > div:last-child ul:first-of-type {
+  margin-bottom: 0;
+  padding: 0;
+}
+.columns.columns22 > div > div:last-child ul:first-of-type li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #eaf8fa;
+  border-radius: 7px;
+  padding: 10px 18px;
+  font-size: 15px;
+  margin-bottom: 7px;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.columns.columns22 > div > div:last-child ul:first-of-type li:last-child {
+  margin-bottom: 0;
+}
+
+/* Second list: app badges row, always flex row */
+.columns.columns22 > div > div:last-child ul:nth-of-type(2) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+.columns.columns22 > div > div:last-child ul:nth-of-type(2) li {
+  margin-bottom: 0;
+}
+
+/* Section headings (h6, 'Download', 'Social', 'Our Awards', etc.) */
+.columns.columns22 > div > div:last-child > h6,
+.columns.columns22 > div > div:last-child > p:not(:first-of-type) {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* Social row: flex row for all anchors, fixed width per icon/link */
+.columns.columns22 > div > div:last-child > p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 10px 0;
+}
+.columns.columns22 > div > div:last-child > p a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  max-width: 120px;
+  height: 26px;
+  color: #444;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Awards heading spacing */
+.columns.columns22 > div > div:last-child [id="our-awards"] {
+  font-size: 15px;
+  margin: 8px 0 10px 0;
+  color: #000;
+  font-weight: 700;
+}
+
+/* Awards horizontal row */
+.columns.columns22 > div > div:last-child ul:last-of-type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+.columns.columns22 > div > div:last-child ul:last-of-type li {
+  margin-bottom: 0;
+}
+
+/* All badge/app/award images in right column */
+.columns.columns22 > div > div:last-child ul li img,
+.columns.columns22 > div > div:last-child ul li picture img {
+  max-height: 40px;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+.columns.columns22 > div > div:last-child ul:last-of-type img,
+.columns.columns22 > div > div:last-child [id="our-awards"] + ul img {
+  max-height: 38px;
+  max-width: 38px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.11);
+  margin: 0;
+}
+
+/* Remove extra browser default margin/padding */
+.columns.columns22 p, 
+.columns.columns22 ul, 
+.columns.columns22 li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+/* Copyright bar (assuming it's a sibling div below the main block) */
+.columns.columns22 + div {
+  border-top: 2px solid #00b9ae;
+  margin-top: 36px;
+  padding-top: 14px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #444;
+  gap: 8px;
+  background: #fff;
+  min-height: 38px;
+}
+.columns.columns22 + div img {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* Responsive: stack columns, tighten vertical spacing and gaps */
+@media (max-width: 900px) {
+  .columns.columns22 > div {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 20px 4vw 0 4vw;
+    min-height: unset;
+  }
+  .columns.columns22 > div > div {
+    width: 100%;
+    max-width: none;
+  }
+  .columns.columns22 > div > div:last-child {
+    margin-top: 12px;
+    gap: 10px;
+  }
+  .columns.columns22 + div {
+    margin-top: 18px;
+    padding-top: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .columns.columns22 {
+    padding: 0 2px;
+  }
+  .columns.columns22 > div {
+    padding: 10px 1vw 0 1vw;
+    gap: 8px;
+  }
+  .columns.columns22 > div > div:last-child {
+    gap: 8px;
+  }
+  .columns.columns22 + div {
+    font-size: 12px;
+    gap: 4px;
+    min-height: 24px;
+  }
 }
