@@ -1789,8 +1789,6 @@
 .columns.columns12 > div > div > *:not(:last-child) {
   margin-bottom: 7px;
 }
-
-/* Responsiveness for mobile: stack blocks vertically */
 @media (max-width: 700px) {
   .columns.columns12 > div {
     flex-direction: column;
@@ -1809,4 +1807,128 @@
     font-size: 13px;
     max-width: 94vw;
   }
+}
+
+
+.columns {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 1px solid #ececf2;
+  box-shadow: 0 1.5px 8px 0 rgba(60,60,60,0.065);
+  background: #fff;
+  min-height: 38px;
+  height: 38px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  overflow: visible;
+}
+
+/* Main flex row for the block */
+.columns > div {
+  width: 100%;
+  height: 38px;
+  min-height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background: none;
+  border-radius: 24px;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+/* Simulate the blue button area on the right, ensure it's visible ABOVE the white field */
+.columns > div::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 148px;
+  background: #002ea1;
+  border-radius: 0 24px 24px 0;
+  z-index: 10;
+  /* Shadow for layering */
+  box-shadow: 0 2px 8px 0 rgba(34,34,68,0.06);
+  pointer-events: none;
+}
+
+/* Simulate the separator line between field and button */
+.columns > div::before {
+  display: block;
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  right: 148px;
+  width: 1px;
+  background: #e0e0e0;
+  z-index: 11;
+  border-radius: 1px;
+  pointer-events: none;
+  content: "";
+}
+
+/* The inner div is the white "field" area, reserve space for the button with margin */
+.columns > div > div {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 22px;
+  margin-right: 148px; /* reserve space for button, do NOT use padding here! */
+  background: #fff;
+  border-radius: 24px 0 0 24px;
+  box-sizing: border-box;
+  z-index: 12;
+  position: relative;
+  box-shadow: none;
+}
+
+/* Responsive: Stack vertically on small screens */
+@media (max-width: 600px) {
+  .columns {
+    border-radius: 16px;
+    min-height: 32px;
+    height: auto;
+    max-width: 100vw;
+  }
+  .columns > div {
+    min-height: 32px;
+    height: auto;
+    border-radius: 16px;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    background: #fff;
+  }
+  .columns > div::after,
+  .columns > div::before {
+    display: none;
+  }
+  .columns > div > div {
+    border-radius: 12px;
+    width: 100%;
+    height: 38px;
+    min-width: 0;
+    margin: 0;
+    padding: 0 16px;
+    background: #fff;
+    box-shadow: none;
+  }
+}
+
+.columns {
+  overflow-x: auto;
 }
