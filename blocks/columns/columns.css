@@ -68,143 +68,6 @@
   }
 }
 
-.columns.columns7 {
-  background: #fff;
-  border-top: 1px solid #e0e0e0;
-  padding: 32px 0 0;
-}
-
-.columns.columns7 > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.25fr;
-  gap: 48px;
-  align-items: start;
-  padding: 0 24px 32px;
-}
-
-@media (width <= 900px) {
-  .columns.columns7 > div {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 0 8px 8px;
-  }
-
-  .columns.columns7 > div > div,
-  .columns.columns7 > div > div:last-child {
-    min-width: 0;
-    max-width: unset;
-  }
-}
-
-.columns.columns7 > div > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 180px;
-  max-width: 300px;
-  text-align: left;
-}
-
-.columns.columns7 > div > div:last-child {
-  min-width: 220px;
-  max-width: 340px;
-  padding-right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0;
-  height: auto;
-}
-
-.columns.columns7 > div > div:last-child > *:nth-child(-n+4) {
-  opacity: 55%;
-  font-size: 13px;
-  margin-bottom: 2px;
-  transition: opacity 0.2s;
-}
-
-.columns.columns7 > div > div:last-child > *:nth-child(4) {
-  margin-bottom: 10px;
-}
-
-.columns.columns7 > div > div:last-child h6 {
-  margin-bottom: 8px;
-  margin-top: 0;
-  font-size: 15px;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  color: #222;
-}
-
-.columns.columns7 > div > div:last-child ul,
-.columns.columns7 > div > div:last-child p,
-.columns.columns7 > div > div:last-child picture {
-  margin-bottom: 8px;
-  margin-top: 0;
-}
-
-.columns.columns7 > div > div:last-child > *:first-child {
-  margin-top: 0;
-}
-
-.columns.columns7 > div > div:last-child img,
-.columns.columns7 > div > div:last-child picture {
-  display: block;
-  max-width: 120px;
-  width: 100%;
-  height: auto;
-  margin-bottom: 8px;
-}
-
-.columns.columns7 > div > div:last-child ul:last-of-type li {
-  margin-bottom: 10px;
-}
-
-.columns.columns7 ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 0 12px;
-}
-
-.columns.columns7 li {
-  margin-bottom: 6px;
-}
-
-.columns.columns7 li:empty {
-  display: none;
-}
-
-.columns.columns7 p:first-child {
-  font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-  margin-top: 0;
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-
-.columns.columns7 a {
-  color: #444;
-  font-size: 14px;
-  text-decoration: none;
-  transition: color 0.2s;
-  font-family: var(--body-font-family);
-  line-height: 1.6;
-}
-
-.columns.columns7 a:hover {
-  color: #1574d2;
-  text-decoration: underline;
-}
-
-.columns.columns7 > div,
-.columns.columns7 > div > div {
-  align-items: flex-start;
-  text-align: left;
-}
-
 .columns.columns10 {
   background: #f8f9fc;
   padding: 0;
@@ -1268,8 +1131,6 @@
   align-items: flex-start;
   justify-content: center;
 }
-
-/* Use flex for columns to avoid extra vertical whitespace and ensure horizontal row */
 .columns.columns4 > div {
   display: flex;
   flex-direction: row;
@@ -1282,8 +1143,6 @@
   background: none;
   box-sizing: border-box;
 }
-
-/* Responsive: stack columns vertically on small screens */
 @media (max-width: 900px) {
   .columns.columns4 > div {
     flex-direction: column;
@@ -1291,8 +1150,6 @@
     padding: 0 8px;
   }
 }
-
-/* Make columns tight, compact, and left-aligned */
 .columns.columns4 > div > div {
   display: flex;
   flex-direction: column;
@@ -1310,14 +1167,10 @@
 .columns.columns4 > div > div:last-child {
   margin-right: 0;
 }
-
-/* Remove default margin from child elements to get compact layout */
 .columns.columns4 > div > div > * {
   margin-top: 0;
   margin-bottom: 0;
 }
-
-/* Headings: bold, tight, left aligned */
 .columns.columns4 > div > div h6,
 .columns.columns4 > div > div h6 a {
   font-family: var(--heading-font-family);
@@ -1331,8 +1184,6 @@
   pointer-events: none;
   background: none;
 }
-
-/* Subtext: gray, compact, not bold */
 .columns.columns4 > div > div .button {
   background: none;
   border: none;
@@ -1350,8 +1201,6 @@
   max-width: 100%;
   overflow: visible;
 }
-
-/* "View Number" link (first block only): blue, compact */
 .columns.columns4 > div > div:nth-child(1) .button[title="View Number"] {
   color: #3b63fb;
   text-decoration: underline;
@@ -1366,8 +1215,6 @@
   line-height: 1.4;
   cursor: pointer;
 }
-
-/* Phone numbers: subtle, compact */
 .columns.columns4 > div > div:nth-child(1) .button[title^="India"] {
   color: #888;
   font-size: 13px;
@@ -1376,8 +1223,6 @@
   text-decoration: none;
   display: block;
 }
-
-/* Reduce gap in Feedback and Chat blocks */
 .columns.columns4 > div > div .button-container {
   margin: 0 0 2px 0;
   padding: 0;
@@ -1390,8 +1235,6 @@
 .columns.columns4 > div > div .button-container + .button-container {
   margin-top: 0;
 }
-
-/* Feedback/Chat markdown: lighter, tighter */
 .columns.columns4 > div > div:nth-child(2) .button,
 .columns.columns4 > div > div:nth-child(3) .button {
   color: #bbb;
@@ -1400,8 +1243,6 @@
   margin-bottom: 0;
   opacity: 0.9;
 }
-
-/* Even tighter at mobile */
 @media (max-width: 600px) {
   .columns.columns4 > div {
     gap: 6px;
@@ -1411,5 +1252,209 @@
     padding: 0;
     margin: 0 0 8px 0;
     max-width: 100%;
+  }
+}
+
+
+.columns.columns7 {
+  background: #fff;
+  border-top: none;
+  border-bottom: 1px solid #00b9ae;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #222;
+}
+
+/* Four column grid, tighter and more balanced */
+.columns.columns7 > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.15fr;
+  align-items: start;
+  gap: 24px;
+  max-width: 1124px;
+  margin: 0 auto;
+  padding: 40px 0 0 0;
+  min-height: 510px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+  .columns.columns7 > div {
+    gap: 16px;
+    padding: 24px 0 0 0;
+  }
+}
+@media (max-width: 800px) {
+  .columns.columns7 > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .columns.columns7 > div {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px 0 0 0;
+  }
+}
+
+/* Each column is a vertical stack */
+.columns.columns7 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Headings refinement for spacing */
+.columns.columns7 > div > div > p:first-child {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 19px;
+  color: #222;
+  margin: 0 0 18px 0;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+/* Remove bullets, tighter vertical spacing for lists */
+.columns.columns7 ul {
+  list-style: none;
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.columns.columns7 li {
+  margin-bottom: 7px;
+}
+.columns.columns7 li:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer navigation links: refined font weight and spacing */
+.columns.columns7 > div > div ul li a {
+  color: #222;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  font-family: 'Open Sans', Arial, sans-serif;
+  line-height: 1.7;
+  transition: color 0.2s;
+  display: inline-block;
+  vertical-align: top;
+}
+.columns.columns7 > div > div ul li a:hover {
+  color: #00b9ae;
+  text-decoration: underline;
+}
+
+/* --- Rightmost column (download/social/awards) --- */
+.columns.columns7 > div > div:last-child {
+  min-width: 170px;
+  max-width: 310px;
+  width: 100%;
+  padding: 0 5px;
+  gap: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Section headings in rightmost column */
+.columns.columns7 > div > div:last-child h6,
+.columns.columns7 > div > div:last-child > h6,
+.columns.columns7 > div > div:last-child > #social,
+.columns.columns7 > div > div:last-child > #download,
+.columns.columns7 > div > div:last-child > #our-awards {
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+  margin: 19px 0 13px 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+/* Social icons row (use flex row for all links in the social p) */
+.columns.columns7 > div > div:last-child #social + p {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 6px;
+  font-size: 0;
+}
+
+/* WhatsApp badge (if present as an image) */
+.columns.columns7 > div > div:last-child ul li > picture img[alt="Whatsapp"] {
+  height: 34px;
+  width: auto;
+  border-radius: 5px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Download badges: size and stacking, no extra screenshots */
+.columns.columns7 > div > div:last-child ul li picture img[alt*="PlayStore"],
+.columns.columns7 > div > div:last-child ul li picture img[alt*="Apple"] {
+  height: 42px;
+  width: 215px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 7px;
+}
+
+/* Hide screenshots and promo images above/below badges in right column */
+.columns.columns7 > div > div:last-child ul li:not(:has(img[alt*="PlayStore"], img[alt*="Apple"], img[alt*="award"], img[alt="Whatsapp"])) {
+  display: none;
+}
+
+/* Awards heading and badge row: compact, centered, larger icons */
+.columns.columns7 > div > div:last-child h6[id="our-awards"],
+.columns.columns7 > div > div:last-child #our-awards {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+.columns.columns7 > div > div:last-child ul:last-of-type {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  margin-bottom: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.columns.columns7 > div > div:last-child ul:last-of-type li picture img {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0;
+  display: block;
+}
+
+/* Ensure all columns start at the top */
+.columns.columns7 > div > div,
+.columns.columns7 > div > div > div {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Tighter vertical spacing between sections in rightmost column */
+.columns.columns7 > div > div:last-child > *:not(:last-child) {
+  margin-bottom: 22px;
+}
+
+/* Responsive: collapse to fewer columns on smaller screens */
+@media (max-width: 800px) {
+  .columns.columns7 > div > div {
+    min-width: 0;
+    max-width: unset;
+    width: 100%;
+    padding: 0;
+  }
+  .columns.columns7 > div > div:last-child ul:last-of-type {
+    flex-direction: row;
+    gap: 4px;
+    justify-content: center;
   }
 }
