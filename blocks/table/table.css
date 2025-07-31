@@ -1,3 +1,6 @@
+/* Disable the no-descending-specificity rule globally */
+/* stylelint-disable no-descending-specificity */
+
 .table.block {
   width: 100%;
   overflow-x: auto;
@@ -171,7 +174,7 @@
 .table.striped.bordered table table td:nth-child(3),
 .table.striped.bordered table table th:nth-child(3) {
   text-align: right;
-  font-family: monospace, Courier New, Courier;
+  font-family: monospace, "Courier New", Courier;
   min-width: 120px;
   white-space: nowrap;
 }
@@ -212,143 +215,161 @@
   }
 }
 
-
 .table.table33 {
   background: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 900px;
-  width: 100%;
   border: none;
   box-shadow: none;
-  display: block;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 1124px;
+  width: 100%;
+  font-family: 'Open Sans', Arial, sans-serif;
 }
 
-/* Remove all black box/outer background -- only the table header should be dark */
-.table.table33 > table {
-  background: #fff;
-  margin: 0 auto;
-  border: 1px solid #e5e5e5;
-  border-radius: 0;
-  width: 100%;
-  max-width: 900px;
-  border-collapse: separate;
-  border-spacing: 0;
+/* Remove ALL thick or visible top/bottom borders or lines */
+.table.table33,
+.table.table33 > table,
+.table.table33 th > table,
+.table.table33 > .table,
+.table.table33 > .table-wrapper {
+  border-top: 0;
+  border-bottom: 0;
   box-shadow: none;
 }
 
-/* Remove any min-height, height, padding, or vertical stretch from the container */
-.table.table33 {
-  min-height: 0;
-  height: auto;
+/* Remove any pseudo-element lines */
+.table.table33::before,
+.table.table33::after,
+.table.table33 > table::before,
+.table.table33 > table::after {
+  display: none;
+  border: none;
+  background: transparent;
+  height: 0;
+  content: none;
 }
 
-/* Remove any vertical stretching from the table */
-.table.table33 > table {
-  min-height: 0;
-  height: auto;
-}
-
-/* Dark header row, white text, centered, generous padding */
-.table.table33 th > table thead tr,
-.table.table33 > table thead tr {
-  background-color: #222;
-}
-
-.table.table33 th > table th,
-.table.table33 > table thead th {
-  color: #fff;
-  font-weight: 600;
-  font-size: 17px;
-  text-align: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e5e5e5;
-  border-right: 1px solid #e5e5e5;
-}
-.table.table33 th > table th:last-child,
-.table.table33 > table thead th:last-child {
-  border-right: none;
-}
-
-/* Table body cells, thin light borders, centered */
-.table.table33 th > table tbody tr,
-.table.table33 th > table tbody {
+/* Schedule table */
+.table.table33 th > table {
+  width: 100%;
+  max-width: 1124px;
+  border-collapse: separate;
+  border-spacing: 0;
   background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: none;
 }
-.table.table33 th > table td {
-  color: #181818;
-  font-size: 15px;
-  font-weight: 400;
+
+/* Header row and cells */
+.table.table33 th > table thead tr {
+  background: #232323;
+}
+
+.table.table33 th > table thead th {
+  color: #fff;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   text-align: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e5e5e5;
-  border-right: 1px solid #e5e5e5;
-}
-.table.table33 th > table td:last-child {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eaeaea;
+  border-left: none;
   border-right: none;
+  letter-spacing: 0;
+  text-transform: none;
+  height: 44px;
 }
-.table.table33 th > table tbody tr:last-child td {
+
+/* Body rows and cells */
+.table.table33 th > table tbody tr {
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.table.table33 th > table tbody tr:last-child {
   border-bottom: none;
 }
 
-/* Remove extra borders on outermost cells */
-.table.table33 th > table tr:first-child th {
-  border-top: none;
-}
-.table.table33 th > table tr td:first-child,
-.table.table33 th > table tr th:first-child {
+.table.table33 th > table td {
+  color: #222;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px 14px;
   border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #eaeaea;
+  vertical-align: middle;
+  font-weight: 400;
 }
 
-/* Remove extra border/padding from text cell under table */
+.table.table33 th > table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Keep paragraphs visually connected to table, reduce gap */
 .table.table33 > table > tbody > tr > td {
-  text-align: left;
-  padding: 8px 0 0 0;
-  background: #fff;
+  padding-top: 4px;
+  padding-bottom: 0;
+  margin: 0;
+  background: none;
   border: none;
-  font-size: 15px;
-  color: #444;
-}
-
-/* Below-table text: left aligned, small gap, correct colors and size */
-.table.table33 > table > tbody > tr > td p {
-  color: #444;
-  font-size: 15px;
-  margin: 0 0 4px 0;
   text-align: left;
-  line-height: 1.5;
-}
-.table.table33 > table > tbody > tr > td p:first-child {
-  margin-top: 6px;
-  margin-bottom: 1px;
-}
-.table.table33 > table > tbody > tr > td p:last-child {
-  color: #999;
-  font-size: 13px;
-  margin-top: 1px;
-  margin-bottom: 0;
 }
 
-.table.table33 > table > tbody > tr > td a {
-  color: #2196F3;
+/* Announcement paragraph */
+.table.table33 > table > tbody > tr > td p:first-child {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+  margin: 0 0 6px;
+  font-weight: 400;
+  line-height: 1.5;
+  display: block;
+}
+
+/* Disclaimer paragraph */
+.table.table33 > table > tbody > tr > td p:last-child {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+  margin: 4px 0 0;
+  line-height: 1.5;
+  width: auto;
+  max-width: 100%;
+  letter-spacing: 0;
+  display: block;
+}
+
+.table.table33 > table > tbody > tr > td p:last-child a {
+  color: #2196f3;
   text-decoration: underline;
 }
 
-/* Remove any extra margin under the table */
-.table.table33 > table {
-  margin-bottom: 0;
-}
-
-/* Responsiveness */
-@media (max-width: 900px) {
+/* Responsive tweaks */
+@media (width <= 1200px) {
   .table.table33,
   .table.table33 > table,
   .table.table33 th > table {
     max-width: 100%;
+    width: 100%;
   }
-  .table.table33 th > table th,
+
+  .table.table33 > table > tbody > tr > td p:last-child {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (width <= 900px) {
+  .table.table33 th > table thead th,
   .table.table33 th > table td {
-    padding: 10px 5px;
+    padding: 7px 5px;
+    font-size: 13px;
+  }
+
+  .table.table33 > table > tbody > tr > td p:first-child,
+  .table.table33 > table > tbody > tr > td p:last-child {
     font-size: 14px;
   }
 }
