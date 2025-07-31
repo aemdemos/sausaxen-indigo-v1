@@ -1,4 +1,4 @@
-/* Disable no-descending-specificity globally */
+/* Disable no-descending-specificity globally for this file */
 /* stylelint-disable no-descending-specificity */
 
 .hero-container .hero-wrapper {
@@ -48,113 +48,9 @@
   height: 100%;
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .hero {
     padding: 40px 32px;
-  }
-}
-
-.hero.hero14 {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: 100vw;
-  min-height: 120px;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
-  background-size: cover;
-  background-position: center;
-}
-
-.hero.hero14.block {
-  padding: 0;
-}
-
-.hero.hero14 > div:first-child {
-  flex: 1 1 0%;
-  min-width: 0;
-  min-height: 0;
-}
-
-.hero.hero14 > div:last-child {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  z-index: 3;
-  background: none;
-  padding: 0;
-  height: auto;
-  box-sizing: border-box;
-}
-
-.hero.hero14 > div:last-child > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 38px;
-  min-height: 80px;
-  background: #fff;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
-  padding: 10px 0;
-  box-sizing: border-box;
-}
-
-.hero.hero14 > div:last-child > div > div {
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  min-height: 26px;
-  border-radius: 50%;
-  border: 2px solid #bdbdbd;
-  background: #f9f9f9;
-  box-shadow: 0 1px 2px rgb(80 80 80 / 6%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.hero.hero14 > div:last-child > div > div:hover {
-  border-color: #888;
-  background: #f0f0f0;
-}
-
-@media (max-width: 600px) {
-  .hero.hero14 {
-    min-height: 80px;
-  }
-
-  .hero.hero14 > div:last-child {
-    top: 8px;
-    right: 8px;
-  }
-
-  .hero.hero14 > div:last-child > div {
-    width: 30px;
-    min-height: 54px;
-    gap: 7px;
-    padding: 5px 0;
-  }
-
-  .hero.hero14 > div:last-child > div > div {
-    width: 18px;
-    height: 18px;
-    min-width: 18px;
-    min-height: 18px;
   }
 }
 
@@ -188,7 +84,7 @@
   font-size: 16px;
   font-weight: bold;
   color: #232323;
-  font-family: var(--heading-font-family), sans-serif;
+  font-family: var(--heading-font-family), Arial, sans-serif;
   line-height: 1;
   text-align: left;
   box-sizing: border-box;
@@ -232,7 +128,6 @@
   box-shadow: none;
 }
 
-/* Left side: content area with dark background */
 .hero > div:first-child {
   flex: 1 1 0%;
   display: flex;
@@ -246,12 +141,10 @@
   z-index: 2;
 }
 
-/* Left side text color */
 .hero > div:first-child * {
   color: #fff;
 }
 
-/* Right side: image as background that covers only this column, with fade to dark on the left */
 .hero > div:last-child {
   flex: 1 1 0%;
   position: relative;
@@ -267,7 +160,6 @@
   overflow: hidden;
 }
 
-/* Ensure image in right column fills area if used as <img> or <picture> */
 .hero > div:last-child img,
 .hero > div:last-child picture {
   width: 100%;
@@ -276,7 +168,6 @@
   display: block;
 }
 
-/* Button styles in left column */
 .hero > div:first-child .button,
 .hero > div:first-child button {
   margin-top: 32px;
@@ -299,7 +190,6 @@
   background: #f1f6fb;
 }
 
-/* Headline styles */
 .hero > div:first-child h1,
 .hero > div:first-child h2 {
   color: #fff;
@@ -310,8 +200,7 @@
   line-height: 1.1;
 }
 
-/* Responsive: stack vertically on smaller screens */
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .hero {
     flex-direction: column;
     min-height: 400px;
@@ -335,5 +224,122 @@
       linear-gradient(to top, rgb(35 35 43 / 100%) 0%, rgb(35 35 43 / 80%) 20%, rgb(35 35 43 / 30%) 60%, rgb(35 35 43 / 0%) 100%),
       url('/your-image-path.jpg') center top no-repeat;
     background-size: cover;
+  }
+}
+
+.hero-container > .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero.hero14 {
+  width: 100vw;
+  min-height: 240px;
+  height: 33vw;
+  max-height: 420px;
+  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Do not hide the first child: keep it present but invisible and non-interfering */
+.hero.hero14 > div:first-child {
+  flex: 0 0 0;
+  min-width: 0;
+  min-height: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  display: block;
+}
+
+/* Vertically center the overlay zoom control panel at the right edge */
+.hero.hero14 > div:last-child {
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: auto;
+  z-index: 2;
+  background: none;
+  padding: 0;
+}
+
+/* Zoom control white rectangle with improved sizing and proportions */
+.hero.hero14 > div:last-child > div {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  width: 56px;
+  min-height: 102px;
+  justify-content: center;
+}
+
+/* Two pronounced circular button placeholders stacked vertically */
+.hero.hero14 > div:last-child > div > div {
+  width: 38px;
+  height: 38px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 6%);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+/* Subtle hover effect for interactivity */
+.hero.hero14 > div:last-child > div > div:hover {
+  border-color: #aaa;
+  background: #f0f0f0;
+}
+
+@media (width <= 800px) {
+  .hero.hero14 {
+    min-height: 120px;
+    height: 32vw;
+    max-height: 180px;
+  }
+
+  .hero.hero14 > div:last-child {
+    right: 10px;
+  }
+
+  .hero.hero14 > div:last-child > div {
+    width: 34px;
+    min-height: 52px;
+    gap: 6px;
+    padding: 4px 0;
+    border-radius: 8px;
+  }
+
+  .hero.hero14 > div:last-child > div > div {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
   }
 }
