@@ -738,84 +738,6 @@
 }
 
 
-.columns.columns31 {
-  background: #f6f6fa;
-  margin: 0;
-  padding: 0;
-}
-.columns.columns31 > div {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  justify-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: none;
-  padding: 32px 12px;
-  min-height: 100px;
-  gap: 0 0;
-}
-@media (max-width: 900px) {
-  .columns.columns31 > div {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 24px 4vw;
-    gap: 22px 0;
-  }
-}
-@media (max-width: 500px) {
-  .columns.columns31 > div {
-    grid-template-columns: 1fr;
-    padding: 16px 2vw;
-    gap: 16px 0;
-  }
-}
-.columns.columns31 > div > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  text-align: center;
-  padding: 0 10px;
-}
-.columns.columns31 > div > div > *:not(:last-child) {
-  margin-bottom: 7px;
-}
-.columns.columns31 > div > div img,
-.columns.columns31 > div > div svg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1.5px solid #18181a;
-  background: #fff;
-  object-fit: contain;
-  display: block;
-  margin-bottom: 8px;
-  padding: 6px;
-  box-sizing: border-box;
-}
-.columns.columns31 > div > div strong,
-.columns.columns31 > div > div b {
-  font-size: 18px;
-  font-weight: 700;
-  color: #222229;
-  line-height: 1.2;
-  display: block;
-  margin-bottom: 2px;
-}
-.columns.columns31 > div > div span,
-.columns.columns31 > div > div em {
-  font-size: 14px;
-  color: #88888f;
-  font-weight: 400;
-  line-height: 1.2;
-  display: block;
-  margin-top: 0;
-}
-
-
 .columns.columns4 {
   border: none;
   background: #fff;
@@ -1674,8 +1596,6 @@
   box-sizing: border-box;
   align-items: flex-start;
 }
-
-/* Main two-column layout */
 .columns.columns22 > div {
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -1686,8 +1606,6 @@
   width: 100%;
   box-sizing: border-box;
 }
-
-/* Left side: 3 columns for nav */
 .columns.columns22 > div > div:first-child {
   display: flex;
   flex-direction: row;
@@ -1696,7 +1614,6 @@
   width: 100%;
   align-items: flex-start;
   box-sizing: border-box;
-  /* Ensure equal height as right column */
 }
 
 .columns.columns22 > div > div:first-child > div {
@@ -1705,8 +1622,6 @@
   min-width: 0;
   flex: 1 1 0;
 }
-
-/* Properly style section headers */
 .columns.columns22 > div > div:first-child > div > p {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: bold;
@@ -1717,8 +1632,6 @@
   letter-spacing: 0.01em;
   padding: 0;
 }
-
-/* Navigation lists */
 .columns.columns22 > div > div:first-child > div > ul {
   margin: 0 0 18px 0;
   padding: 0;
@@ -1748,8 +1661,6 @@
   color: #00b9ae;
   text-decoration: underline;
 }
-
-/* Right column: vertical stack, top-aligned */
 .columns.columns22 > div > div:last-child {
   display: flex;
   flex-direction: column;
@@ -1761,8 +1672,6 @@
   box-sizing: border-box;
   justify-content: flex-start;
 }
-
-/* Section headings (Social, Download, etc) */
 .columns.columns22 > div > div:last-child > h6,
 .columns.columns22 > div > div:last-child > p:not(:first-of-type) {
   font-size: 17px;
@@ -1778,8 +1687,6 @@
 .columns.columns22 > div > div:last-child > p:first-of-type {
   margin-top: 0;
 }
-
-/* Social icon row (force single-line, no wrap, hide overflow) */
 .columns.columns22 > div > div:last-child > p {
   display: flex;
   flex-direction: row;
@@ -1805,8 +1712,6 @@
   white-space: nowrap;
   margin: 0;
 }
-
-/* WhatsApp/banner style for relevant ul(s) */
 .columns.columns22 > div > div:last-child ul:first-of-type li {
   background: #e9f9f7;
   color: #222;
@@ -1819,8 +1724,6 @@
   align-items: center;
   gap: 10px;
 }
-
-/* App badges row */
 .columns.columns22 > div > div:last-child ul:nth-of-type(2) {
   display: flex;
   flex-direction: row;
@@ -1840,8 +1743,6 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   display: block;
 }
-
-/* Awards badges row */
 .columns.columns22 > div > div:last-child ul:last-of-type {
   display: flex;
   flex-direction: row;
@@ -1870,8 +1771,6 @@
   font-weight: 700;
   font-family: 'Open Sans', Arial, sans-serif;
 }
-
-/* Remove unwanted vertical dividers and border-radius from ancestors */
 .columns.columns22,
 .columns.columns22 > div,
 .columns.columns22 > div > div {
@@ -1879,8 +1778,6 @@
   box-shadow: none;
   border-right: none;
 }
-
-/* Responsive: stack nav columns vertically and adjust padding/gap for mobile */
 @media (max-width: 1100px) {
   .columns.columns22 > div {
     padding: 32px 10px 0 10px;
@@ -1924,8 +1821,6 @@
     padding-left: 0;
   }
 }
-
-/* Copyright bar below block */
 .columns.columns22 + div {
   border-top: 2px solid #00b9ae;
   margin-top: 36px;
@@ -1955,5 +1850,102 @@
     min-height: 24px;
     padding-top: 8px;
     margin-top: 16px;
+  }
+}
+
+
+.columns.columns31 {
+  background: #f6f6fa;
+  padding: 56px 0 56px 0;
+  margin: 0;
+}
+
+.columns.columns31 > div {
+  background: #fff;
+  border-radius: 32px;
+  box-shadow: 0 2px 16px 0 rgba(34, 34, 34, 0.05);
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 44px 40px;
+  gap: 0;
+  position: relative;
+}
+
+.columns.columns31 > div::before,
+.columns.columns31 > div::after {
+  display: none;
+}
+
+.columns.columns31 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  text-align: center;
+  padding: 0 22px;
+}
+
+.columns.columns31 > div > div > *:not(:last-child) {
+  margin-bottom: 7px;
+}
+
+.columns.columns31 > div > div img,
+.columns.columns31 > div > div svg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid #18181a;
+  background: #fff;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.columns.columns31 > div > div strong,
+.columns.columns31 > div > div b {
+  font-size: 18px;
+  font-weight: 700;
+  color: #222229;
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.columns.columns31 > div > div span,
+.columns.columns31 > div > div em {
+  font-size: 14px;
+  color: #88888f;
+  font-weight: 400;
+  line-height: 1.2;
+  display: block;
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .columns.columns31 > div {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 28px 4vw;
+    gap: 22px 0;
+  }
+  .columns.columns31 {
+    padding: 36px 0 36px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .columns.columns31 > div {
+    grid-template-columns: 1fr;
+    padding: 16px 2vw;
+    gap: 16px 0;
+  }
+  .columns.columns31 {
+    padding: 16px 0 16px 0;
   }
 }
