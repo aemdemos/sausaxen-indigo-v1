@@ -68,138 +68,6 @@
   }
 }
 
-.columns.columns4 {
-  background: #fff;
-  padding: 48px 0;
-}
-
-.columns.columns4 > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  gap: 20px;
-}
-
-@media (width <= 900px) {
-  .columns.columns4 > div {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 10px;
-  }
-}
-
-.columns.columns4 > div > div {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.columns.columns4 h6, .columns.columns4 h6 a {
-  font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-  margin: 0 0 12px;
-  text-decoration: none;
-  line-height: 1.3;
-  pointer-events: none;
-}
-
-.columns.columns4 .button-container {
-  margin: 0 0 12px;
-  padding: 0;
-}
-
-.columns.columns4 > div > div .button-container:last-child {
-  margin-bottom: 0;
-}
-
-.columns.columns4 .button-container + .button-container {
-  margin-top: 0;
-}
-
-.columns.columns4 .button-container a.button {
-  display: inline;
-  background: none;
-  border: none;
-  border-radius: 0;
-  color: #666;
-  font-size: 13px;
-  font-weight: 400;
-  box-shadow: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  cursor: auto;
-  line-height: 1.6;
-  pointer-events: none;
-  white-space: normal;
-  max-width: 100%;
-  overflow: visible;
-}
-
-.columns.columns4 .button-container a.button[title="View Number"] {
-  color: #0070cc;
-  text-decoration: underline;
-  cursor: pointer;
-  pointer-events: auto;
-  margin-top: 6px;
-  margin-bottom: 0;
-  display: inline-block;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.columns.columns4 .button-container a.button[title^="India"] {
-  color: #666;
-  text-decoration: none;
-  cursor: auto;
-  pointer-events: none;
-}
-
-.columns.columns4 .button-container a.button:hover[title="View Number"] {
-  color: #1d3ecf;
-}
-
-.columns.columns4 > div > div:not(:first-child) h6, .columns.columns4 > div > div:not(:first-child) h6 a {
-  display: none;
-}
-
-.columns.columns4 > div > div:not(:first-child) .button-container a.button {
-  color: #666;
-  opacity: 85%;
-  font-size: 13px;
-  font-weight: 400;
-  background: none;
-  border: none;
-  border-radius: 0;
-  text-align: left;
-  cursor: auto;
-  line-height: 1.6;
-  pointer-events: none;
-}
-
-@media (width <= 600px) {
-  .columns.columns4 {
-    padding: 28px 0;
-  }
-
-  .columns.columns4 > div {
-    gap: 12px;
-    padding: 0 6px;
-  }
-}
-
 .columns.columns7 {
   background: #fff;
   border-top: 1px solid #e0e0e0;
@@ -1295,16 +1163,12 @@
   margin: 0 24px;
   padding: 36px 32px;
   box-sizing: border-box;
-
-  /* Flexible horizontal layout for features */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
   gap: 36px;
 }
-
-/* Responsive: two per row at tablet, one per row at mobile */
 @media (max-width: 900px) {
   .columns > div {
     flex-wrap: wrap;
@@ -1327,8 +1191,6 @@
     min-width: 0;
   }
 }
-
-/* Feature: icon and text horizontal, left-aligned, no border/oval */
 .columns > div > div {
   display: flex;
   flex-direction: row;
@@ -1343,16 +1205,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-/* Remove accidental borders/ovals */
 .columns > div > div,
 .columns > div > div > p,
 .columns > div > div > p img {
   border: none;
   outline: none;
 }
-
-/* Icon styling */
 .columns > div > div > p:first-child img {
   background: #fff;
   border: 1.5px solid #18181a;
@@ -1364,14 +1222,10 @@
   box-sizing: border-box;
   display: block;
 }
-
-/* Remove default p spacing inside features */
 .columns > div > div > p {
   margin: 0;
   padding: 0;
 }
-
-/* Feature text styling */
 .columns > div > div > p:last-child {
   display: flex;
   flex-direction: column;
@@ -1380,8 +1234,6 @@
   font-family: 'Poppins-Regular', 'Poppins-Regular Fallback', Arial, sans-serif;
   line-height: 1.2;
 }
-
-/* Feature title */
 .columns > div > div > p:last-child strong,
 .columns > div > div > p:last-child b {
   font-size: 18px;
@@ -1391,8 +1243,6 @@
   display: block;
   margin-bottom: 2px;
 }
-
-/* Feature subtitle/description */
 .columns > div > div > p:last-child span,
 .columns > div > div > p:last-child em {
   font-size: 14px;
@@ -1400,4 +1250,166 @@
   font-weight: 400;
   display: block;
   margin-top: 0;
+}
+
+
+.columns.columns4 {
+  background: transparent;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Use flex for columns to avoid extra vertical whitespace and ensure horizontal row */
+.columns.columns4 > div {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+  padding: 0;
+  margin: 0 auto;
+  background: none;
+  box-sizing: border-box;
+}
+
+/* Responsive: stack columns vertically on small screens */
+@media (max-width: 900px) {
+  .columns.columns4 > div {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 8px;
+  }
+}
+
+/* Make columns tight, compact, and left-aligned */
+.columns.columns4 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+  width: 100%;
+  max-width: 300px;
+  padding: 0;
+  margin: 0 24px 0 0;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.columns.columns4 > div > div:last-child {
+  margin-right: 0;
+}
+
+/* Remove default margin from child elements to get compact layout */
+.columns.columns4 > div > div > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Headings: bold, tight, left aligned */
+.columns.columns4 > div > div h6,
+.columns.columns4 > div > div h6 a {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+  line-height: 1.3;
+  text-align: left;
+  text-decoration: none;
+  pointer-events: none;
+  background: none;
+}
+
+/* Subtext: gray, compact, not bold */
+.columns.columns4 > div > div .button {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 13px;
+  font-weight: 400;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  text-align: left;
+  cursor: auto;
+  line-height: 1.4;
+  pointer-events: none;
+  white-space: normal;
+  max-width: 100%;
+  overflow: visible;
+}
+
+/* "View Number" link (first block only): blue, compact */
+.columns.columns4 > div > div:nth-child(1) .button[title="View Number"] {
+  color: #3b63fb;
+  text-decoration: underline;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 6px 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
+  pointer-events: auto;
+  display: inline-block;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* Phone numbers: subtle, compact */
+.columns.columns4 > div > div:nth-child(1) .button[title^="India"] {
+  color: #888;
+  font-size: 13px;
+  margin-top: 8px;
+  pointer-events: none;
+  text-decoration: none;
+  display: block;
+}
+
+/* Reduce gap in Feedback and Chat blocks */
+.columns.columns4 > div > div .button-container {
+  margin: 0 0 2px 0;
+  padding: 0;
+}
+
+.columns.columns4 > div > div .button-container:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns4 > div > div .button-container + .button-container {
+  margin-top: 0;
+}
+
+/* Feedback/Chat markdown: lighter, tighter */
+.columns.columns4 > div > div:nth-child(2) .button,
+.columns.columns4 > div > div:nth-child(3) .button {
+  color: #bbb;
+  font-size: 13px;
+  margin-top: 6px;
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+/* Even tighter at mobile */
+@media (max-width: 600px) {
+  .columns.columns4 > div {
+    gap: 6px;
+    padding: 0 2px;
+  }
+  .columns.columns4 > div > div {
+    padding: 0;
+    margin: 0 0 8px 0;
+    max-width: 100%;
+  }
 }
