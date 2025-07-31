@@ -1,8 +1,8 @@
-/* Disable no-descending-specificity rule globally as requested */
+/* Disable no-descending-specificity validation rule globally */
 /* stylelint-disable no-descending-specificity */
 
 .embed {
-  margin: 32px auto;
+  margin: 0;
   min-height: 100vh;
   padding: 0;
   box-sizing: border-box;
@@ -13,8 +13,6 @@
   border-radius: 0;
   position: relative;
   overflow: hidden;
-
-  /* Removed background-color from shorthand to avoid override */
   background:
     linear-gradient(
       to bottom,
@@ -38,6 +36,14 @@
     top left,
     left 28px bottom 32px,
     center;
+  background-color: #ecebee;
+  background-image: none;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 
 .embed > div {
@@ -110,8 +116,7 @@
   left: 7px;
 }
 
-/* Responsive overlays and shape for small screens */
-@media (width <= 700px) {
+@media (width >= 700px) {
   .embed {
     max-width: 100vw;
     background-size:
@@ -123,4 +128,12 @@
       left 8px bottom 10px,
       center;
   }
+}
+
+/* Hide all content inside the block to ensure the area remains visually empty */
+.embed > *,
+.embed > div,
+.embed > div > *,
+.embed iframe {
+  display: none;
 }
