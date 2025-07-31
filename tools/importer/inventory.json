@@ -502,9 +502,9 @@
     {
       "name": "Cards",
       "cluster": 10,
-      "source": "Columns",
-      "target": "Columns (columns10)",
-      "key": "columns10",
+      "source": "Cards",
+      "target": "Cards (cards10)",
+      "key": "cards10",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -622,9 +622,9 @@
     {
       "name": "Cards",
       "cluster": 17,
-      "source": "Columns",
-      "target": "Columns (columns17)",
-      "key": "columns17",
+      "source": "Cards",
+      "target": "Cards (cards17)",
+      "key": "cards17",
       "instances": [
         {
           "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
@@ -682,9 +682,9 @@
     {
       "name": "Cards",
       "cluster": 21,
-      "source": "Columns",
-      "target": "Columns (columns21)",
-      "key": "columns21",
+      "source": "Cards",
+      "target": "Cards (cards21)",
+      "key": "cards21",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
