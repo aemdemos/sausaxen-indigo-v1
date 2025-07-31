@@ -787,6 +787,9 @@
     {
       "name": "Hero",
       "cluster": 28,
+      "source": "Hero",
+      "target": "Hero (hero28)",
+      "key": "hero28",
       "instances": [
         {
           "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
@@ -799,6 +802,9 @@
     {
       "name": "Hero",
       "cluster": 29,
+      "source": "Hero",
+      "target": "Hero (hero29)",
+      "key": "hero29",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -811,6 +817,9 @@
     {
       "name": "Cards",
       "cluster": 30,
+      "source": "Cards",
+      "target": "Cards (cards30)",
+      "key": "cards30",
       "instances": [
         {
           "url": "https://www.goindigo.in/get-inspired/nofilterbyindigo.html",
@@ -823,6 +832,9 @@
     {
       "name": "Columns",
       "cluster": 31,
+      "source": "Columns",
+      "target": "Columns (columns31)",
+      "key":"columns31",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -835,6 +847,9 @@
     {
       "name": "Embed (video)",
       "cluster": 32,
+      "source": "Embed",
+      "target": "Embed (embedVideo32)",
+      "key":"embedVideo32",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -847,6 +862,9 @@
     {
       "name": "Table (striped & bordered)",
       "cluster": 33,
+      "source": "Table",
+      "target": "Table (table33)",
+      "key":"table33",
       "instances": [
         {
           "url": "https://www.goindigo.in/campaigns/thai-visa.html",
