@@ -168,191 +168,6 @@
 }
 
 
-.columns.columns11 {
-  background: #f6f6f6;
-  padding: 48px 0;
-}
-
-.columns.columns11 > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 230px;
-  gap: 64px;
-  align-items: start;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 0 40px;
-}
-
-@media (width <= 1200px) {
-  .columns.columns11 > div {
-    max-width: 100%;
-    padding: 0 10px;
-    gap: 28px;
-    grid-template-columns: 1fr 1fr 1fr 180px;
-  }
-}
-
-@media (width <= 900px) {
-  .columns.columns11 > div {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .columns.columns11 > div > div:nth-child(3) {
-    grid-column: 1 / 2;
-    grid-row: 2;
-  }
-
-  .columns.columns11 > div > div:nth-child(4) {
-    grid-column: 2 / 3;
-    grid-row: 2;
-  }
-}
-
-@media (width <= 700px) {
-  .columns.columns11 > div {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 4px;
-  }
-
-  .columns.columns11 > div > div {
-    grid-column: 1 / 2 !important;
-    grid-row: auto !important;
-    max-width: 100%;
-  }
-}
-
-.columns.columns11 > div > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-.columns.columns11 strong {
-  color: #222;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: inherit;
-  display: block;
-  margin-bottom: 18px;
-  line-height: 1.4;
-}
-
-.columns.columns11 > div > div:last-child strong {
-  margin-bottom: 0;
-}
-
-.columns.columns11 ul,
-.columns.columns11 li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.columns.columns11 li {
-  margin-bottom: 12px;
-  line-height: 1.7;
-}
-
-.columns.columns11 li:last-child {
-  margin-bottom: 0;
-}
-
-.columns.columns11 a {
-  color: #4d4d4d;
-  font-size: 14px;
-  text-decoration: none;
-  transition: color 0.15s;
-  line-height: 1.7;
-}
-
-.columns.columns11 a:hover {
-  color: #0077b6;
-  text-decoration: underline;
-}
-
-.columns.columns11 > div > div:last-child ul,
-.columns.columns11 > div > div:last-child ul li {
-  width: 100%;
-  display: block;
-  min-height: 1px;
-}
-
-.columns.columns11 > div > div:last-child ul:first-of-type li:last-child {
-  margin-bottom: 32px;
-}
-
-.columns.columns11 > div > div:last-child > p {
-  margin-top: 40px;
-  margin-bottom: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #222;
-  letter-spacing: 0;
-}
-
-.columns.columns11 > div > div:last-child > p:first-child {
-  margin-top: 0;
-}
-
-.columns.columns11 > div > div:last-child > p + ul {
-  margin-top: 12px;
-  margin-bottom: 28px;
-}
-
-.columns.columns11 > div > div:last-child ul:first-of-type a {
-  font-size: 13px;
-  color: #767676;
-}
-
-.columns.columns11 > div > div:last-child picture {
-  display: block;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.columns.columns11 > div > div:last-child picture:last-child {
-  margin-bottom: 0;
-}
-
-.columns.columns11 > div > div:last-child ul + p {
-  margin-top: 44px;
-}
-
-.columns.columns11 > div > div:last-child img {
-  display: block;
-  max-width: 180px;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 16px;
-  margin-left: 0;
-}
-
-.columns.columns11 > div > div:last-child ul li img {
-  margin-bottom: 0;
-}
-
-.columns.columns11 > div > div:last-child ul:nth-of-type(2) img,
-.columns.columns11 > div > div:last-child ul:nth-of-type(3) img {
-  max-width: 160px;
-}
-
-.columns.columns11 > div > div:last-child ul,
-.columns.columns11 > div > div:last-child ul li,
-.columns.columns11 > div > div:last-child picture,
-.columns.columns11 > div > div:last-child img {
-  visibility: visible;
-  opacity: 1;
-}
-
-
 .columns.columns12 {
   background: #fff;
   border-bottom: 2px solid #6DE9EA;
@@ -1436,8 +1251,6 @@
   padding: 0;
   box-shadow: none;
 }
-
-/* Slim horizontal white bar with a slightly more visible soft shadow and slightly increased height */
 .columns > div,
 .columns > div:empty {
   display: flex;
@@ -1456,8 +1269,6 @@
   box-sizing: border-box;
   transition: box-shadow 0.18s;
 }
-
-/* Nested block structure stays horizontal and vertically centered */
 .columns > div > div {
   display: flex;
   flex-direction: row;
@@ -1469,8 +1280,6 @@
   gap: 0;
   padding: 0;
 }
-
-/* Compact, neutral font for future content */
 .columns > div,
 .columns > div > div,
 .columns > div > div > * {
@@ -1481,14 +1290,10 @@
   background: none;
   border: none;
 }
-
-/* Remove default margin/padding from all descendants */
 .columns > div > div > * {
   margin: 0;
   padding: 0;
 }
-
-/* Responsive: on narrow screens, keep bar slim and maintain radius */
 @media (max-width: 600px) {
   .columns > div,
   .columns > div:empty {
@@ -1497,5 +1302,223 @@
     height: 15px;
     border-radius: 7px;
     margin: 6px 0;
+  }
+}
+
+
+.columns.columns11 {
+  background: #f5f5f5;
+  padding: 36px 0 28px 0;
+}
+
+.columns.columns11 > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 54px;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Responsive stack for small screens */
+@media (max-width: 900px) {
+  .columns.columns11 > div {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 4vw;
+  }
+}
+
+/* Each column - vertical stack: heading above content */
+.columns.columns11 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Last column is narrower */
+.columns.columns11 > div > div:last-child {
+  flex: 0 0 220px;
+  max-width: 230px;
+  min-width: 140px;
+  align-items: flex-start;
+  padding-left: 16px;
+  box-sizing: border-box;
+  border-left: 1px solid #e3e3e3;
+}
+
+/* Responsive: no border and full width for last column on mobile */
+@media (max-width: 900px) {
+  .columns.columns11 > div > div:last-child {
+    border-left: none;
+    padding-left: 0;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Headings: force as block at top of each column, remove any pill/row styling */
+.columns.columns11 h3 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  color: #222222;
+  margin: 0 0 14px 0;
+  line-height: 1.3;
+  letter-spacing: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  align-self: flex-start;
+  width: auto;
+  padding: 0;
+  display: block;
+}
+
+/* Remove inherited pill-bar or grid-header looks from headings */
+.columns.columns11 > div > div > h3,
+.columns.columns11 > div > div:first-child > h3,
+.columns.columns11 > div > div:nth-child(2) > h3,
+.columns.columns11 > div > div:nth-child(3) > h3,
+.columns.columns11 > div > div:last-child > h3 {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  width: auto;
+  padding: 0;
+  margin-top: 0;
+  display: block;
+  position: static;
+}
+
+/* Fix any possible table/grid-row display on headings and columns */
+.columns.columns11 > div > div,
+.columns.columns11 > div > div > h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* But restore vertical flow for lists and subsequent content */
+.columns.columns11 > div > div > ul,
+.columns.columns11 > div > div > div,
+.columns.columns11 > div > div > p {
+  display: block;
+}
+
+/* Last column: additional spacing for section headings */
+.columns.columns11 > div > div:last-child h3 {
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.columns.columns11 > div > div:last-child h3:first-of-type {
+  margin-top: 0;
+}
+
+/* List and link styling */
+.columns.columns11 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.columns.columns11 li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.columns.columns11 li:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns11 a {
+  color: #434343;
+  font-size: 15px;
+  font-family: 'Open Sans', Arial, sans-serif;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.columns.columns11 a:hover {
+  color: #005faa;
+  text-decoration: underline;
+}
+
+/* Rightmost column: stack social/app/award blocks vertically */
+.columns.columns11 > div > div:last-child ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.columns.columns11 > div > div:last-child ul:last-of-type {
+  margin-bottom: 0;
+}
+
+/* WhatsApp/app/award images: sizing */
+.columns.columns11 > div > div:last-child picture {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.columns.columns11 > div > div:last-child picture:last-child {
+  margin-bottom: 0;
+}
+
+.columns.columns11 > div > div:last-child img {
+  display: block;
+  max-width: 140px;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.columns.columns11 > div > div:last-child ul li img {
+  margin-bottom: 0;
+}
+
+.columns.columns11 > div > div:last-child ul:nth-of-type(2) img,
+.columns.columns11 > div > div:last-child ul:nth-of-type(3) img {
+  max-width: 133px;
+  height: 37px;
+}
+
+/* For WhatsApp/award images to fill full width of the sidebar */
+.columns.columns11 > div > div:last-child picture img[alt*="WhatsApp"],
+.columns.columns11 > div > div:last-child picture img[alt*="Award"] {
+  max-width: 100%;
+}
+
+/* Extra section spacing for visual clarity in rightmost column */
+.columns.columns11 > div > div:last-child h3:not(:first-child) {
+  margin-top: 22px;
+}
+
+/* Responsive: adjust image max-width for small screens */
+@media (max-width: 700px) {
+  .columns.columns11 > div > div:last-child img {
+    max-width: 100px;
   }
 }
