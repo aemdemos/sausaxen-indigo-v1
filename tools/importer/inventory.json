@@ -500,7 +500,7 @@
       ]
     },
     {
-      "name": "Columns",
+      "name": "Cards",
       "cluster": 10,
       "source": "Columns",
       "target": "Columns (columns10)",
