@@ -500,7 +500,7 @@
       ]
     },
     {
-      "name": "Columns",
+      "name": "Cards",
       "cluster": 10,
       "source": "Columns",
       "target": "Columns (columns10)",
@@ -620,7 +620,7 @@
       ]
     },
     {
-      "name": "Columns",
+      "name": "Cards",
       "cluster": 17,
       "source": "Columns",
       "target": "Columns (columns17)",
@@ -834,7 +834,7 @@
       "cluster": 31,
       "source": "Columns",
       "target": "Columns (columns31)",
-      "key":"columns31",
+      "key": "columns31",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -849,7 +849,7 @@
       "cluster": 32,
       "source": "Embed",
       "target": "Embed (embedVideo32)",
-      "key":"embedVideo32",
+      "key": "embedVideo32",
       "instances": [
         {
           "url": "https://www.goindigo.in/mokobara.html",
@@ -864,7 +864,7 @@
       "cluster": 33,
       "source": "Table",
       "target": "Table (table33)",
-      "key":"table33",
+      "key": "table33",
       "instances": [
         {
           "url": "https://www.goindigo.in/campaigns/thai-visa.html",
