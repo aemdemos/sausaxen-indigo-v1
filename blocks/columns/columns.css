@@ -738,84 +738,6 @@
 }
 
 
-.columns.columns19 {
-  background: #f7f7fb;
-  border-radius: 12px;
-  box-sizing: border-box;
-  padding: 18px 0 18px 0;
-  width: 100%;
-  display: block;
-}
-
-.columns.columns19 > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0 56px;
-  width: 100%;
-  max-width: 100%;
-  padding: 0 36px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-.columns.columns19 > div > div {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.columns.columns19 > div > div > p {
-  color: #22232a;
-  font-size: 13px;
-  font-family: Inter, Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.4;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  white-space: normal;
-  max-width: 100%;
-}
-@media (max-width: 900px) {
-  .columns.columns19 > div {
-    flex-wrap: wrap;
-    gap: 24px 0;
-    padding: 0 12px;
-    max-width: 700px;
-  }
-  .columns.columns19 > div > div {
-    flex: 0 1 48%;
-    margin-bottom: 16px;
-  }
-}
-@media (max-width: 540px) {
-  .columns.columns19 > div {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 95vw;
-    padding: 0 4vw;
-    gap: 0;
-  }
-  .columns.columns19 > div > div {
-    flex: 1 1 100%;
-    margin-bottom: 12px;
-  }
-}
-.columns.columns19,
-.columns.columns19 > div,
-.columns.columns19 > div > div {
-  background: #f7f7fb;
-  border: none;
-  box-shadow: none;
-}
-
-
 .columns.columns22 {
   background: #fff;
   margin: 40px auto 0 auto;
@@ -1828,8 +1750,6 @@
   position: relative;
   overflow: visible;
 }
-
-/* Main flex row for the block */
 .columns > div {
   width: 100%;
   height: 38px;
@@ -1847,8 +1767,6 @@
   position: relative;
   z-index: 1;
 }
-
-/* Simulate the blue button area on the right, ensure it's visible ABOVE the white field */
 .columns > div::after {
   display: block;
   position: absolute;
@@ -1859,12 +1777,9 @@
   background: #002ea1;
   border-radius: 0 24px 24px 0;
   z-index: 10;
-  /* Shadow for layering */
   box-shadow: 0 2px 8px 0 rgba(34,34,68,0.06);
   pointer-events: none;
 }
-
-/* Simulate the separator line between field and button */
 .columns > div::before {
   display: block;
   position: absolute;
@@ -1878,8 +1793,6 @@
   pointer-events: none;
   content: "";
 }
-
-/* The inner div is the white "field" area, reserve space for the button with margin */
 .columns > div > div {
   flex: 1 1 auto;
   min-width: 0;
@@ -1887,7 +1800,7 @@
   display: flex;
   align-items: center;
   padding-left: 22px;
-  margin-right: 148px; /* reserve space for button, do NOT use padding here! */
+  margin-right: 148px;
   background: #fff;
   border-radius: 24px 0 0 24px;
   box-sizing: border-box;
@@ -1895,8 +1808,6 @@
   position: relative;
   box-shadow: none;
 }
-
-/* Responsive: Stack vertically on small screens */
 @media (max-width: 600px) {
   .columns {
     border-radius: 16px;
@@ -1931,4 +1842,73 @@
 
 .columns {
   overflow-x: auto;
+}
+
+
+.columns.columns19 {
+  background: #f7f7fb;
+  border-radius: 16px;
+  padding: 44px 0;
+  min-height: 160px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.columns.columns19 > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0 24px;
+  align-items: start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.columns.columns19 > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  background: none;
+  border-radius: 0;
+  /* No width constraints to allow grid to manage widths */
+}
+
+/* Stat text: allow natural wrapping and clear centering */
+.columns.columns19 > div > div > p {
+  font-size: 17px;
+  font-family: "Poppins-Regular", Arial, sans-serif;
+  color: #232323;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+  word-break: normal;
+  hyphens: auto;
+  background: none;
+}
+
+/* Responsive: 2 columns for medium, 1 column for small screens */
+@media (max-width: 900px) {
+  .columns.columns19 > div {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 0;
+    padding: 0 12px;
+    max-width: 700px;
+  }
+}
+@media (max-width: 540px) {
+  .columns.columns19 > div {
+    grid-template-columns: 1fr;
+    padding: 0 2vw;
+    max-width: 98vw;
+    gap: 0;
+  }
 }
