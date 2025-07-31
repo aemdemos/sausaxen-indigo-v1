@@ -1,41 +1,38 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Header row as required
+  // Header row: matches the example block name exactly
   const headerRow = ['Hero (hero26)'];
-
-  // Background image row (none present in this HTML)
+  // 2nd row: Background image (none in this HTML)
   const backgroundRow = [''];
 
-  // Compose content row
-  // For this block, combine all visible content from the main content column into a single cell
-  let mainCol = element.querySelector('.col-md-10.col-9');
-  if (!mainCol) {
-    // fallback to first child div
-    mainCol = element.querySelector('div');
-  }
+  // 3rd row: Title (Heading), Subheading, CTA
+  const content = [];
 
-  let contentCell = '';
-  if (mainCol) {
-    // Gather all nodes contributing to visible content (text, headings, links, etc.)
-    // We reference existing child nodes without cloning to preserve structure and semantics
-    const nodes = Array.from(mainCol.childNodes).filter(node => {
-      // Filter out empty text nodes and comment nodes
-      if (node.nodeType === Node.COMMENT_NODE) return false;
-      if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) return false;
-      return true;
-    });
-    // If we have only one node, use it directly; otherwise, wrap in a div
-    if (nodes.length === 1) {
-      contentCell = nodes[0];
-    } else if (nodes.length > 1) {
-      const wrapper = document.createElement('div');
-      nodes.forEach(node => wrapper.appendChild(node));
-      contentCell = wrapper;
+  // Extract the left column (contains heading and subhead)
+  const leftCol = element.querySelector(':scope > div.col-md-10');
+  if (leftCol) {
+    // Title (heading)
+    const heading = leftCol.querySelector('h1, h2, h3, h4, h5, h6');
+    if (heading) content.push(heading);
+    // Subheading (p inside a)
+    const aWithP = leftCol.querySelector('a > p');
+    if (aWithP && aWithP.textContent.trim()) {
+      content.push(aWithP);
     }
   }
-  if (!contentCell) contentCell = '';
 
-  const contentRow = [contentCell];
+  // Extract right column (CTA, may be hidden)
+  const rightCol = element.querySelector(':scope > div.col-md-2');
+  if (rightCol) {
+    const cta = rightCol.querySelector('a');
+    if (cta && cta.textContent.trim()) {
+      content.push(cta);
+    }
+  }
+
+  // If everything is empty, at least produce the structure
+  const contentRow = [content.length > 0 ? content : ['']];
+
   const cells = [headerRow, backgroundRow, contentRow];
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);

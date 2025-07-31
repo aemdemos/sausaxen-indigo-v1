@@ -1,51 +1,42 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Table header row as per block name
+  // Prepare the header as a single cell row
   const rows = [
-    ['Accordion (accordion3)'],
+    ['Accordion (accordion3)']
   ];
 
-  // Select all accordion items in the sidebar accordion group
-  const accGroup = element.querySelector('.faq-side-bar .faq-sb-acc-group');
+  // Find all accordion items within the .faq-sb-acc-group
+  const accGroup = element.querySelector('.faq-sb-acc-group.faq-top-queries');
   if (accGroup) {
-    const accHeadings = accGroup.querySelectorAll(':scope > .faq-sb-heading');
-
-    accHeadings.forEach((heading) => {
-      // Title cell: the FAQ title link (with formatting)
-      const titleLink = heading.querySelector('.faq-sb-acc-heading');
-      let titleContent = '';
+    const accItems = accGroup.querySelectorAll(':scope > .faq-sb-heading');
+    accItems.forEach(acc => {
+      // Title cell: use only the text of the <a> without the <i> icon, as a string
+      const titleLink = acc.querySelector('.faq-sb-acc-heading');
+      let titleCell = '';
       if (titleLink) {
-        // Remove the trailing icon from the titleLink
-        const icon = titleLink.querySelector('i');
+        // Remove the icon for a clean string
+        const temp = titleLink.cloneNode(true);
+        const icon = temp.querySelector('i');
         if (icon) icon.remove();
-        // Use the actual element (not clone!) for the table cell
-        titleContent = titleLink;
-      } else {
-        // Fallback: plain text node
-        titleContent = heading.textContent.trim();
+        titleCell = temp.textContent.trim();
       }
 
-      // Content cell: body content for the accordion item
-      const contentDiv = heading.querySelector('.faq-acc-inner-content');
+      // Content cell: preserve all child nodes of .faq-acc-inner-content
+      const contentDiv = acc.querySelector('.faq-acc-inner-content');
       let contentCell = '';
       if (contentDiv) {
-        // Reference all children nodes (paragraphs, etc)
-        // If there is only one child, just use it; if multiple, use array
-        const nodes = Array.from(contentDiv.childNodes).filter(n => n.nodeType !== Node.COMMENT_NODE && (n.textContent.trim() || n.nodeType === Node.ELEMENT_NODE));
-        if (nodes.length === 1) {
-          contentCell = nodes[0];
-        } else if (nodes.length > 1) {
-          contentCell = nodes;
-        } else {
-          contentCell = '';
-        }
+        const fragment = document.createDocumentFragment();
+        Array.from(contentDiv.childNodes).forEach(node => {
+          fragment.appendChild(node.cloneNode(true));
+        });
+        // If only text, get text; else use fragment
+        contentCell = fragment.childNodes.length === 1 ? fragment.firstChild : fragment;
       }
-      rows.push([titleContent, contentCell]);
+      rows.push([titleCell, contentCell]);
     });
   }
-  // Replace only if there are rows besides the header
-  if (rows.length > 1) {
-    const table = WebImporter.DOMUtils.createTable(rows, document);
-    element.replaceWith(table);
-  }
+
+  // Create the block table with correct structure and replace original element
+  const block = WebImporter.DOMUtils.createTable(rows, document);
+  element.replaceWith(block);
 }

@@ -1,37 +1,51 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Collect all text content from the element and its descendants
-  // as a single block for the cell if any present.
-  // For robustness, include all direct children (including elements with no text)
-  const contentNodes = Array.from(element.childNodes).filter(
-    node => node.nodeType !== Node.COMMENT_NODE
-  );
+  // Create Embed block header
+  const headerRow = ['Embed'];
 
-  // If there is at least one non-empty text node or element, add it to the cell
-  let cellContent;
-  if (contentNodes.length > 0) {
-    // If all child nodes are empty whitespace text nodes, fallback to ''
-    const hasVisible = contentNodes.some(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        return node.textContent.trim().length > 0;
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        return node.textContent.trim().length > 0;
-      }
-      return false;
-    });
-    if (hasVisible) {
-      cellContent = contentNodes;
-    } else {
-      cellContent = [''];
+  // Get all direct children inside the .embed block
+  const children = Array.from(element.childNodes);
+  // Collect non-empty text nodes and element nodes
+  const contentNodes = [];
+  children.forEach((child) => {
+    // For text nodes
+    if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) {
+      contentNodes.push(child);
     }
-  } else {
-    cellContent = [''];
+    // For element nodes (e.g., <div id="embed-..." ...>)
+    if (child.nodeType === Node.ELEMENT_NODE) {
+      // If the child itself has meaningful text, include it
+      if (child.textContent && child.textContent.trim()) {
+        contentNodes.push(child);
+      }
+      // If the child is empty but might hold an embed, still include
+      else if (!child.textContent.trim()) {
+        contentNodes.push(child);
+      }
+    }
+  });
+
+  // If there are no content nodes, try to grab any text from deeply nested nodes
+  if (contentNodes.length === 0) {
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (node.textContent && node.textContent.trim()) {
+          return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      }
+    });
+    let node;
+    while ((node = walker.nextNode())) {
+      contentNodes.push(node);
+    }
   }
 
-  const cells = [
-    ['Embed'],
-    [cellContent]
-  ];
+  // If still nothing, set cell to blank string
+  const contentRow = [contentNodes.length ? contentNodes : ''];
+
+  // Build the table and replace
+  const cells = [headerRow, contentRow];
   const table = WebImporter.DOMUtils.createTable(cells, document);
   element.replaceWith(table);
 }

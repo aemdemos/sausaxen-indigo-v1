@@ -1,56 +1,85 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find all slides in the carousel (one or more destination-trip-details blocks)
-  const details = element.querySelectorAll('.destination-trip-details');
+  // Helper: Find the .getinspired-blck block (image/title/cta)
+  const getinspiredBlck = element.querySelector('.getinspired-blck');
+  // Helper: Find the .dest-city-info block (text/description)
+  const destCityInfo = element.querySelector('.dest-city-info');
 
-  // Prepare table rows
-  const rows = [['Carousel']]; // Header row, exactly matching example
-
-  details.forEach((detail) => {
-    // --- IMAGE CELL ---
-    let img = null;
-    const picture = detail.querySelector('picture');
+  // 1. IMAGE: always in .getinspired-blck > picture > img
+  let img = null;
+  if (getinspiredBlck) {
+    const picture = getinspiredBlck.querySelector('picture');
     if (picture) {
       img = picture.querySelector('img');
     }
-    const imageCell = img || '';
+  }
 
-    // --- TEXT CELL ---
-    const textCellContent = [];
-
-    // 1. TITLE (h2 in .dest-basic)
-    const title = detail.querySelector('.dest-basic h2');
-    if (title) {
-      textCellContent.push(title);
+  // 2. TITLE: in .getinspired-blck > .dest-basic > h2
+  let titleEl = null;
+  if (getinspiredBlck) {
+    const basic = getinspiredBlck.querySelector('.dest-basic');
+    if (basic) {
+      const h2 = basic.querySelector('h2');
+      if (h2) {
+        // Use existing element reference
+        titleEl = h2;
+      }
     }
+  }
 
-    // 2. DESCRIPTION (paragraph in .dest-city-info .textblock .clearfix.text-pagination p)
-    const descP = detail.querySelector('.dest-city-info .textblock .clearfix.text-pagination p');
-    if (descP) {
-      textCellContent.push(descP);
+  // 3. CTA: in .getinspired-blck > a.btn[data-path] (Book Now)
+  let ctaEl = null;
+  if (getinspiredBlck) {
+    const cta = getinspiredBlck.querySelector('a.btn[data-path]');
+    if (cta) {
+      // Create a new link element with the correct href and text
+      ctaEl = document.createElement('a');
+      ctaEl.href = cta.getAttribute('data-path');
+      ctaEl.textContent = cta.textContent.trim();
     }
+  }
 
-    // 3. CTA (Book Now link, from a.booknow-getins[data-path])
-    const bookNow = detail.querySelector('a.booknow-getins[data-path]');
-    if (bookNow) {
-      // Use only the existing element, but ensure it's an <a> with href taken from data-path
-      // We should not clone it or create a new one, but update the href attribute on the actual element
-      bookNow.setAttribute('href', bookNow.getAttribute('data-path'));
-      textCellContent.push(bookNow);
+  // 4. DESCRIPTION: in .dest-city-info .textblock p (may contain links)
+  let descEl = null;
+  if (destCityInfo) {
+    const desc = destCityInfo.querySelector('.textblock p');
+    if (desc) {
+      // Create a new <p> containing text and links, but remove any trailing "Read More" links
+      const p = document.createElement('p');
+      // Clone child nodes except any trailing link named "Read More"
+      desc.childNodes.forEach(node => {
+        if (
+          node.nodeType === Node.ELEMENT_NODE &&
+          node.tagName === 'A' &&
+          /Read More/i.test(node.textContent)
+        ) {
+          // skip
+        } else {
+          p.appendChild(node.cloneNode(true)); // safe clone
+        }
+      });
+      // Remove trailing whitespace or &nbsp; if present
+      p.innerHTML = p.innerHTML.replace(/(&nbsp;|\s)+$/, '');
+      // Only add if there's any content
+      if (p.innerHTML.trim()) {
+        descEl = p;
+      }
     }
+  }
 
-    // Compose text cell
-    let textCell = '';
-    if (textCellContent.length === 1) {
-      textCell = textCellContent[0];
-    } else if (textCellContent.length > 1) {
-      textCell = textCellContent;
-    } // else remains ''
+  // Compose right cell content, in order: title, description, CTA
+  const rightCell = [];
+  if (titleEl) rightCell.push(titleEl);
+  if (descEl) rightCell.push(descEl);
+  if (ctaEl) rightCell.push(document.createElement('br'), ctaEl);
 
-    rows.push([imageCell, textCell]);
-  });
+  // Build the table: Header, then [img, rightCell]
+  const rows = [
+    ['Carousel'],
+    [img, rightCell]
+  ];
 
-  // Create the block table and replace the original element
+  // Create and replace
   const table = WebImporter.DOMUtils.createTable(rows, document);
   element.replaceWith(table);
 }

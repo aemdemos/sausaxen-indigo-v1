@@ -1,61 +1,66 @@
 /* global WebImporter */
 export default function parse(element, { document }) {
-  // Find the slick-track containing all cards
-  const slickTrack = element.querySelector('.promotional-slide .slick-track');
-  if (!slickTrack) return;
-  const slides = Array.from(slickTrack.querySelectorAll('.slick-slide'));
+  // Header row: required by spec
   const headerRow = ['Cards (cards18)'];
-  const rows = [headerRow];
+  const rows = [];
 
-  slides.forEach((slide) => {
-    const item = slide.querySelector('.promotional-slide--carosuel--item');
-    if (!item) return;
-    const link = item.querySelector('a.promotional-slide--redirection');
-    const img = item.querySelector('img');
-    if (!img) return;
+  // Find the carousel slides section
+  const promoSlide = element.querySelector('.promotional-slide');
+  if (!promoSlide) return;
 
-    // Attempt to extract all text content that may be present in the card
-    let textContentNodes = [];
-    // 1. Collect text from the surrounding card area (outside image wrapper)
-    // We'll look inside the link, but outside the image wrapper
-    // Also, sometimes there may be elements with text content directly
-    const imageContainer = item.querySelector('.get-inspired-carausel--picture');
-    if (link) {
-      // For each element or text node in the link, if it is not inside imageContainer, extract text
-      Array.from(link.childNodes).forEach((node) => {
-        if (imageContainer && imageContainer.contains(node)) return; // skip image
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-          textContentNodes.push(document.createTextNode(node.textContent.trim()));
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          // Check for textContent of element if not image container
-          if (node !== imageContainer && node.textContent.trim()) {
-            textContentNodes.push(document.createTextNode(node.textContent.trim()));
+  // Get all card slides (each .slick-slide)
+  const slideEls = promoSlide.querySelectorAll('.slick-slide');
+  slideEls.forEach((slide) => {
+    const cardCol = slide.querySelector('.promotional-slide--carosuel--item');
+    if (!cardCol) return;
+    // Get the image (required)
+    const img = cardCol.querySelector('img');
+    const imgCell = img;
+    // Get the card link (CTA)
+    const cardLink = cardCol.querySelector('a.promotional-slide--redirection');
+    // Try to find all text content associated with this card, including any text under the link, image alt, and any additional visible text
+    let cardTextContent = [];
+
+    // 1. Gather all descendant text nodes in cardCol except those inside buttons or images
+    function gatherTextNodes(node) {
+      node.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const text = child.textContent.trim();
+          if (text) cardTextContent.push(document.createTextNode(text));
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          if (!['IMG', 'BUTTON', 'SVG'].includes(child.tagName)) {
+            gatherTextNodes(child);
           }
         }
       });
     }
-    // Also, scan for any text nodes directly under the card item but outside link or image container
-    Array.from(item.childNodes).forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-        textContentNodes.push(document.createTextNode(node.textContent.trim()));
-      }
-    });
-    // 2. Always add CTA link to Instagram reel
-    if (link && link.href) {
-      const cta = document.createElement('a');
-      cta.href = link.href;
-      cta.textContent = 'View Instagram Reel';
-      cta.target = '_blank';
-      cta.rel = 'noopener noreferrer';
-      textContentNodes.push(cta);
-    }
-    // Row: image | [title/desc/text, CTA] (combine as array in second cell)
-    rows.push([
-      img,
-      textContentNodes.length ? textContentNodes : ''
-    ]);
-  });
+    gatherTextNodes(cardCol);
 
-  const table = WebImporter.DOMUtils.createTable(rows, document);
+    // 2. Always use image alt as heading if present (first, above any other text)
+    if (img && img.alt) {
+      const heading = document.createElement('strong');
+      heading.textContent = img.alt;
+      cardTextContent.unshift(heading);
+    }
+    // 3. Add CTA link
+    if (cardLink && cardLink.href) {
+      if (cardTextContent.length > 0) cardTextContent.push(document.createElement('br'));
+      const cta = document.createElement('a');
+      cta.href = cardLink.href;
+      cta.target = '_blank';
+      cta.textContent = 'Instagram Reel';
+      cardTextContent.push(cta);
+    }
+    // Remove empty content
+    cardTextContent = cardTextContent.filter(Boolean);
+    // Compose the row
+    const contentCell = cardTextContent.length === 1 ? cardTextContent[0] : cardTextContent;
+    rows.push([imgCell, contentCell]);
+  });
+  // Compose and replace
+  const table = WebImporter.DOMUtils.createTable([
+    headerRow,
+    ...rows
+  ], document);
   element.replaceWith(table);
 }
